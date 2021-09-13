@@ -9,6 +9,9 @@ import { HeaderComponent } from './general/header/header.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './Authentication/login/login.component';
 import { RegisterComponent } from './Authentication/register/register.component';
+import { AdministrationsSiteComponent } from './admin/administrations-site/administrations-site.component';
+import { MySiteComponent } from './my-site/my-site.component';
+import { MyCartComponent } from './my-cart/my-cart.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { RegisterComponent } from './Authentication/register/register.component'
     HeaderComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdministrationsSiteComponent,
+    MySiteComponent,
+    MyCartComponent
   ],
   imports: [
     BrowserModule,
