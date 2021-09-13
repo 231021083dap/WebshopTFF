@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebshopAPI.Responses
 {
-    public class itemResponse
+    public class ItemResponse
     {
     }
 }

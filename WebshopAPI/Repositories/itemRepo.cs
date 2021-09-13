@@ -11,11 +11,11 @@ namespace WebshopAPI.Repositories
 
     }
 
-    public class itemRepo : IItemRepo
+    public class ItemRepo : IItemRepo
     {
         private readonly WebshopContext _context;
 
-        public itemRepo(WebshopContext context)
+        public ItemRepo(WebshopContext context)
         {
             _context = context;
         }

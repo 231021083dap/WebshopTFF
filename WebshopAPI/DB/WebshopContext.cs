@@ -16,14 +16,14 @@ namespace WebshopAPI.DB
         public DbSet<Item> Item { get; set; }
 
 
-        public override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Item>().HasData(
                 new Item
                 {
                     ItemId = 1,
                     ItemName = "Acer 15.6 tommer laptop",
-                    ItemCategory = "PC",
+                  //  ItemCategory = "PC",
                     ItemSubCategory = "Bærbar",
                     ItemPrice = 4999,
                     ItemOnSale = false
@@ -32,17 +32,11 @@ namespace WebshopAPI.DB
                 {
                     ItemId = 2,
                     ItemName = "SteelSeries Arctic 7 Wireless",
-                    ItemCategory = "PC",
+                  //  ItemCategory = "PC",
                     ItemSubCategory = "PC Audio",
                     ItemPrice = 999,
                     ItemOnSale = true
-                });
-            modelBuilder.Entity<Orders>(entity =>
-            {
-                entity.Property(r => r.OrdreDato)
-                    .HasDefaultValueSql("getdate()");
-
-            });
+                });         
                 
         }
     }

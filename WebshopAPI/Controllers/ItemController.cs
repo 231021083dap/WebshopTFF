@@ -19,10 +19,10 @@ namespace WebshopAPI.Controllers
             _itemService = itemService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllItems()
-        {
+        //[HttpGet]
+        //public async Task<IActionResult> GetAllItems()
+        //{
 
-        }
+        //}
     }
 }
