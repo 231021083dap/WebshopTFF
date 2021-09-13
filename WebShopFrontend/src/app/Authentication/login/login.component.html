@@ -1,1 +1,45 @@
-<p>login works!</p>
+<section class="hero is-primary is-bold">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            Login / Register
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+
+        <div class="tabs is-centered is-medium is-boxed is-rounded is-fullwidth">
+            <ul>
+                <li class="is-active"><a routerlink="/Authentication/Login">Login</a></li>
+                <li><a routerlink="/Authentication/Register">Register</a></li>
+            </ul>
+        </div>
+
+        <form (ngSubmit)="LoginUser()">
+
+            <div class="Field">
+                <label class="label">Email</label>
+                <input class="input is-link is-rounded" placeholder="Email" type="text" 
+                    name="logininput" [(ngModel)]="User.Email" #loginInput="ngModel" required>
+
+                <div class="help is-error" *ngIf="loginInput.invalid && loginInput.touched">
+                    Email is required!
+                </div>
+            </div>
+
+            <p class="mt-6">
+            </p>
+
+            <div class="Field">
+                <label class="label">Password</label>
+                <input class="input is-link is-rounded" placeholder="Password" type="password" 
+                    name="passwordinput" [(ngModel)]="User.Password" #passwordInput="ngModel" required>
+
+                <div class="help is-error" *ngIf="passwordInput.invalid && passwordInput.touched">
+                    Fill out your password and try again!
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
