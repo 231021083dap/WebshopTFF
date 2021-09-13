@@ -37,6 +37,13 @@ namespace WebshopAPI.DB
                     ItemPrice = 999,
                     ItemOnSale = true
                 });
+            modelBuilder.Entity<Orders>(entity =>
+            {
+                entity.Property(r => r.OrdreDato)
+                    .HasDefaultValueSql("getdate()");
+
+            });
+                
         }
     }
 }
