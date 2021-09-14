@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -11,11 +12,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebshopAPI.DB;
+using WebshopAPI.Repositories;
+using WebshopAPI.Services;
 
 namespace WebshopAPI
 {
     public class Startup
     {
+        private readonly string CORSRules = "_CORSRules";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,7 +32,35 @@ namespace WebshopAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: CORSRules,
+                    builder => {
+                        builder.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                    });
+            });
+            
             services.AddControllers();
+
+            //Opsætning af vores SQL server.
+            services.AddDbContext<WebshopContext>(
+               o => o.UseSqlServer(Configuration.GetConnectionString("Default")));
+
+            //DI -> UserService
+            services.AddScoped<IUserService, UserService>();
+            //DI -> UserRepo
+            services.AddScoped<IUserRepo, UserRepo>();
+
+            services.AddScoped<IItemService, ItemService>();
+            services.AddScoped<IItemRepo, ItemRepo>();
+
+
+
+
+
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebshopAPI", Version = "v1" });
@@ -46,6 +79,7 @@ namespace WebshopAPI
 
             app.UseHttpsRedirection();
 
+            app.UseCors(CORSRules);
             app.UseRouting();
 
             app.UseAuthorization();
