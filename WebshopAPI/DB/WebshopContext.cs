@@ -26,7 +26,8 @@ namespace WebshopAPI.DB
                    // ItemCategory = "PC",
                     ItemSubCategory = "Bærbar",
                     ItemPrice = 4999,
-                    ItemOnSale = false
+                    ItemDiscount = 5,
+                    ItemAmount = 0
                 },
                 new Item
                 {
@@ -35,7 +36,9 @@ namespace WebshopAPI.DB
                    //ItemCategory = "PC",
                     ItemSubCategory = "PC Audio",
                     ItemPrice = 999,
-                    ItemOnSale = true
+                    ItemDiscount = 0,
+                    ItemAmount = 2
+                    
                 });
             modelBuilder.Entity<User>().HasData(
                 new User

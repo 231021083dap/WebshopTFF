@@ -53,7 +53,9 @@ namespace WebshopAPI
             //DI -> UserRepo
             services.AddScoped<IUserRepo, UserRepo>();
 
+            //DI -> ItemService
             services.AddScoped<IItemService, ItemService>();
+            //DI -> ItemRepo
             services.AddScoped<IItemRepo, ItemRepo>();
 
 
