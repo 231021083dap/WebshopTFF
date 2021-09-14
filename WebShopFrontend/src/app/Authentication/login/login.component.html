@@ -1,0 +1,51 @@
+<section class="hero is-primary is-bold">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            Login / Register
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+
+        <div class="tabs is-centered is-medium is-boxed is-rounded is-fullwidth">
+            <ul>
+                <li class="is-active"><a routerLink="/Authentication/Login">Login</a></li>
+                <li><a routerLink="/Authentication/Register">Register</a></li>
+            </ul>
+        </div>
+
+        <form (ngSubmit)="Login()" #LoginForm="ngForm">
+
+            <div class="Field">
+                <div class="control">
+
+                    <label class="label">Email</label>
+                    <input class="input is-link is-rounded" type="text"
+                        placeholder="Email" [(ngModel)]="Email" required>
+
+                </div>
+            </div>
+
+            <p class="mt-6">
+            </p>
+
+            <div class="Field">
+                <div class="control">
+                    <label class="label">Password</label>
+                    <input class="input is-link is-rounded" type="password"
+                        placeholder="Password" [(ngModel)]="Password" required>
+                </div>
+            </div>
+
+            <p class="mt-6">
+            </p>
+
+            <button class="button is-link is-rounded" type="button" [disabled]="Loginform.invalid" (click)="Login()">
+                Login
+            </button>
+
+        </form>
+    </div>
+</section>
