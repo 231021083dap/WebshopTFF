@@ -11,11 +11,11 @@ namespace WebshopAPI.Services
 
     }
 
-    public class itemService : IItemService
+    public class ItemService : IItemService
     {
         private readonly IItemRepo _itemRepo;
 
-        public itemService(IItemRepo itemRepo)
+        public ItemService(IItemRepo itemRepo)
         {
             _itemRepo = itemRepo;
         }
