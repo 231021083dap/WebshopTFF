@@ -1,1 +1,40 @@
-<p>my-site works!</p>
+<section class="hero is-primary is-bold">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      Min Side. Logget ind som: {{ User.FirstName }} {{ User.LastName }}
+      {{ User.Email }} {{ User.UserId }}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="column-body">
+      <div class="column is-half">
+        <p class="control is-expanded has-icons-left">
+          <input class="input" type="text" placeholder="Name" />
+          <span class="icon is-small is-left">
+            <i class="fas fa-user"></i>
+          </span>
+        </p>
+      </div>
+      <div class="column is-half">
+        <p class="control is-expanded has-icons-left has-icons-right">
+          <input class="input is-success" type="email" placeholder="Email" />
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+          <span class="icon is-small is-right">
+            <i class="fas fa-check"></i>
+          </span>
+        </p>
+      </div>    
+    </div>
+  </div>
+
+  <!-- <div class="tabs is-centered is-medium is-boxed is-round is-fullwidth">
+    <ul>
+      <li class="is-active"><a routerLink="/orders"></a></li>
+    </ul>
+  </div> -->
+</section>
