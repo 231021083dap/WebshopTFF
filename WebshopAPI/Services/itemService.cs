@@ -109,11 +109,11 @@ namespace WebshopAPI.Services
             };
         }
 
-            public async Task<bool> Delete(int ItemId)
-            {
-                var result = await _ItemRepo.Delete(ItemId);
-                return true;
-            }
+        public async Task<bool> Delete(int ItemId)
+        {
+            var result = await _ItemRepo.Delete(ItemId);
+            return true;
         }
-    } 
+    }
+}
 
