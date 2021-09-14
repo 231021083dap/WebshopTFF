@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WebshopAPI.DTO
 {
-    public class newItem
+    public class NewItem
     {
         [Required]
         [MinLength(1, ErrorMessage = "Item name can not be blank")]
@@ -19,12 +19,8 @@ namespace WebshopAPI.DTO
 
         public int ItemPrice { get; set; }
 
-        public Boolean ItemOnSale { get; set; } = false;
+        public int ItemDiscount { get; set; }
 
-        public int DiscountPercent { get; set; }
-
-        public Boolean ItemInstock { get; set; }
-
-        public int AmountInStorage { get; set; }
+        public int ItemAmount { get; set; }
     }
 }

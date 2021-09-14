@@ -17,14 +17,10 @@ namespace WebshopAPI.DTO
         [Required]
         public string ItemSubCategory { get; set; }
 
-        public int ItemPrice { get; set; }
+        public int ItemPrice { get; set; } 
 
-        public Boolean ItemOnSale { get; set; } = false;
+        public int ItemDiscount { get; set; }
 
-        public int DiscountPercent { get; set; }
-
-        public Boolean ItemInstock { get; set; }
-
-        public int AmountInStorage { get; set; }
+        public int ItemAmount { get; set; }
     }
 }
