@@ -1,3 +1,5 @@
+import { DeclarationListEmitMode } from "@angular/compiler";
+
 export interface Item
 {
     ItemId: number;
@@ -23,6 +25,7 @@ export interface User
     MiddleName?: String;
     Address: String;
     PostalCode: number; 
+    Token?: string;
 };
 
 export interface Category
@@ -44,16 +47,10 @@ export interface Roles
     RoleName: string;
 };
 
-export interface Cart
-{
-    CartId: number;
-    UserId: number;
-    items: string;
-};
-
 export interface Order
 {
     OrderId: number;
-    Items: string;
-    // User object ? 
+    Userid: number;
+    OrderDate: Date; 
 };
+

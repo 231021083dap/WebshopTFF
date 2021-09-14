@@ -13,6 +13,7 @@ import { AdministrationsSiteComponent } from './admin/administrations-site/admin
 import { MySiteComponent } from './my-site/my-site.component';
 import { MyCartComponent } from './my-cart/my-cart.component';
 import { OrdersComponent } from './orders/orders.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { OrdersComponent } from './orders/orders.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

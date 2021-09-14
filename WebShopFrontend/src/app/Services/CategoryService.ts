@@ -8,7 +8,7 @@ import { Category } from "../models";
     providedIn : 'root'
 })
 
-export class ItemService{
+export class CategoryService{
     private apiUrl = 'Https://Localhost:5001/api/category';
 
     httpOptions = 
