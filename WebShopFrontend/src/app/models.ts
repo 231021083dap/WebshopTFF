@@ -1,15 +1,13 @@
-import { DeclarationListEmitMode } from "@angular/compiler";
+// import { DeclarationListEmitMode } from "@angular/compiler";
 
 export interface Item
 {
     ItemId: number;
-    ItemName: String;
-    ItemSubCategory: String;
-    ItemPrice: number;
-    ItemOnSale: Boolean;
-    DiscountPercent: number;
-    ItemInStock: Boolean;
-    AmountInStorage: number;
+    ItemName: string;
+    ItemSubCategory: string;
+    ItemPrice: number;    
+    ItemDiscount: number;    
+    ItemAmount: number;
 
 };
 
@@ -17,13 +15,13 @@ export interface User
 {
     UserId: number;
     UserRoleId: number;
-    Email: String;
-    TLF: number;
+    Email: string;
+    Phone: number;
     Password: string;
-    FirstName: String;
-    LastName: String;
-    MiddleName?: String;
-    Address: String;
+    FirstName: string;
+    LastName: string;
+    MiddleName?: string;
+    Address: string;
     PostalCode: number; 
     Token?: string;
 };
@@ -31,7 +29,7 @@ export interface User
 export interface Category
 {
     CategoryId: number;
-    CategoryName: String;
+    CategoryName: string;
 };
 
 export interface SubCategory
