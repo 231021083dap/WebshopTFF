@@ -15,6 +15,9 @@ namespace WebshopAPI.DB
 
         public DbSet<Item> Item { get; set; }
         public DbSet <User> User { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<SubCategory> SubCategory { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -40,6 +43,8 @@ namespace WebshopAPI.DB
                     ItemAmount = 2
                     
                 });
+
+
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
@@ -53,6 +58,48 @@ namespace WebshopAPI.DB
                     MiddleName = "Er",
                     Address = "Noobstreet",
                     PostalCode = 1337
+                });
+
+
+            modelBuilder.Entity<Category>().HasData(
+                new Category
+                {
+                    CategoryId = 1,
+                    CategoryName = "Hardware"
+                },
+                new Category
+                {
+                    CategoryId = 2,
+                    CategoryName = "Gaming"
+                },
+                new Category
+                {
+                    CategoryId = 3,
+                    CategoryName = "PC & Tablets"
+                },
+                new Category
+                {
+                    CategoryId = 4,
+                    CategoryName = "TV & HIFI"
+                },
+                new Category
+                {
+                    CategoryId = 5,
+                    CategoryName = "Mobil"
+                });
+
+            modelBuilder.Entity<SubCategory>().HasData(
+                new SubCategory
+                {
+                    SubId = 1,
+                    SubName = "MobilTelefoner",
+                    CategoryId = 5
+                },
+                new SubCategory
+                {
+                    SubId = 2,
+                    SubName = "SmartWatches",
+                    CategoryId = 5
                 });
         }
     }
