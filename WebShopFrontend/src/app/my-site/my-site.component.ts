@@ -16,7 +16,7 @@ export class MySiteComponent implements OnInit {
     UserId: 0,
     UserRoleId: 0,
     Email: '',
-    TLF: 0,
+    Phone: 0,
     Password: '',
     FirstName: '',
     LastName: '',
@@ -45,6 +45,7 @@ export class MySiteComponent implements OnInit {
     if(confirm('Er du sikker på at du vil slette denne bruger?'))
     {
       this.userService.DeleteUser(user.UserId)
+      
     }
   }
 

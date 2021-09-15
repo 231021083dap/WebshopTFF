@@ -42,7 +42,12 @@ namespace WebshopAPI
                     });
             });
             
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions
+                      .PropertyNamingPolicy = null;
+                });
 
             //Opsætning af vores SQL server.
             services.AddDbContext<WebshopContext>(

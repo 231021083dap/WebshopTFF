@@ -1,1 +1,80 @@
-<p>my-site works!</p>
+<section class="hero is-primary is-bold">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      Min Side. Logget ind som: {{ User.FirstName }} {{ User.LastName }}
+      {{ User.Email }} {{ User.UserId }}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="field-body">
+    <div class="column is-one-third">
+      <p class="control is-expanded has-icons-left">
+        <input
+          class="input is-link is-rounded"
+          type="text"
+          placeholder="Name"
+        />
+        <span class="icon is-small is-left">
+          <i class="fas fa-user"></i>
+        </span>
+      </p>
+    </div>
+    <div class="column is-one-third">
+      <p class="control is-expanded has-icons-left has-icons-right">
+        <input
+          class="input is-link is-rounded"
+          type="email"
+          placeholder="Email"
+        />
+        <span class="icon is-small is-left">
+          <i class="fas fa-envelope"></i>
+        </span>
+        <span class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+      </p>
+    </div>
+    <div class="column is-one-third">
+      <div class="field has-addons">
+        <p class="control">
+          <a class="button is-static is-link is-rounded"> +45 </a>
+        </p>
+        <p class="control is-expanded has-icons-right">
+          <input
+            class="input is-link is-rounded"
+            type="tel"
+            placeholder="Your phone number"
+          />
+          <span class="icon is-small is-right">
+            <i class="fas fa-phone"></i>
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="field-body">
+    <div class="column is-one-third">
+      <p class="control is-expanded has-icons-left">
+        <input
+          class="input is-link is-rounded"
+          type="password"
+          placeholder="Password"
+        />
+        <span class="icon is-small is-left">
+          <i class="fas fa-lock"></i>
+        </span>
+      </p>
+      <p class="mt-2"> </p>
+      <button class="button is-link is-rounded" type="button">
+        Change Password
+      </button>
+    </div>
+  </div>
+  <div class="buttons is-centered">
+    <button class="button is-link is-rounded" type="button">Save</button>
+    <button class="button is-link is-rounded" type="button">Cancel</button>
+  </div>
+</section>
