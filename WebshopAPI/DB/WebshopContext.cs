@@ -17,6 +17,7 @@ namespace WebshopAPI.DB
         public DbSet <User> User { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<SubCategory> SubCategory { get; set; }
+        public DbSet<Orders> Orders { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,7 +27,6 @@ namespace WebshopAPI.DB
                 {
                     ItemId = 1,
                     ItemName = "Acer 15.6 tommer laptop",
-                   // ItemCategory = "PC",
                     ItemSubCategory = "Bærbar",
                     ItemPrice = 4999,
                     ItemDiscount = 5,
@@ -36,7 +36,6 @@ namespace WebshopAPI.DB
                 {
                     ItemId = 2,
                     ItemName = "SteelSeries Arctic 7 Wireless",
-                   //ItemCategory = "PC",
                     ItemSubCategory = "PC Audio",
                     ItemPrice = 999,
                     ItemDiscount = 0,
@@ -88,6 +87,7 @@ namespace WebshopAPI.DB
                     CategoryName = "Mobil"
                 });
 
+
             modelBuilder.Entity<SubCategory>().HasData(
                 new SubCategory
                 {
@@ -101,6 +101,8 @@ namespace WebshopAPI.DB
                     SubName = "SmartWatches",
                     CategoryId = 5
                 });
+
+
         }
     }
 }

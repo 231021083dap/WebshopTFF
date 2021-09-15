@@ -23,6 +23,8 @@ namespace WebshopAPI.Repositories
         {
             _context = context;
         }
+
+
         public async Task<List<Item>> GetAllItems()
         {
             return await _context.Item

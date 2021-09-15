@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebshopAPI.DB.Entities
+namespace WebshopAPI.DTO
 {
-    public class Orders
+    public class NewOrder
     {
         [Key]
         public int OrderId { get; set; }
@@ -18,6 +18,5 @@ namespace WebshopAPI.DB.Entities
         public static DateTime OrderDate { get; set; } = DateTime.Now;
 
         public string OrderStatus { get; set; }
-
     }
 }

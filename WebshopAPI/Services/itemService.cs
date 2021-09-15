@@ -57,6 +57,7 @@ namespace WebshopAPI.Services
 
             };
         }
+
         public async Task<ItemResponse> Create(NewItem newItem)
         {
             Item item = new Item
@@ -81,7 +82,6 @@ namespace WebshopAPI.Services
                 ItemAmount = item.ItemAmount
             };
         }
-
 
         public async Task<ItemResponse> Update(int ItemId, UpdateItem updateItem)
         {

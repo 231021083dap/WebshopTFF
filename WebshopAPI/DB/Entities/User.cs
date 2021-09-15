@@ -41,8 +41,6 @@ namespace WebshopAPI.DB.Entities
         [Required(ErrorMessage = "Postal code is required")]
         [Range(4,4, ErrorMessage ="Danish postal codes only")]
         public int PostalCode { get; set; }
-        
-
 
 
     }
