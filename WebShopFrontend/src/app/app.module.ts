@@ -12,10 +12,13 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './Authentication/login/login.component';
 import { RegisterComponent } from './Authentication/register/register.component';
 import { AdministrationsSiteComponent } from './admin/administrations-site/administrations-site.component';
-import { MySiteComponent } from './my-site/my-site.component';
-import { MyCartComponent } from './my-cart/my-cart.component';
-import { OrdersComponent } from './orders/orders.component';
+import { MySiteComponent } from './User/my-site/my-site.component';
+import { MyCartComponent } from './User/my-cart/my-cart.component';
 import { FormsModule } from '@angular/forms';
+import { AdminSubCategoryComponent } from './admin/admin-sub-category/admin-sub-category.component';
+import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+import { AdminItemsComponent } from './admin/admin-items/admin-items.component';
 
 
 @NgModule({
@@ -30,7 +33,10 @@ import { FormsModule } from '@angular/forms';
     AdministrationsSiteComponent,
     MySiteComponent,
     MyCartComponent,
-    OrdersComponent
+    AdminSubCategoryComponent,
+    AdminOrdersComponent,
+    AdminUsersComponent,
+    AdminItemsComponent
   ],
   imports: [
     BrowserModule,
