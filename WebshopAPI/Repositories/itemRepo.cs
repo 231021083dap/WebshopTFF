@@ -28,6 +28,7 @@ namespace WebshopAPI.Repositories
         public async Task<List<Item>> GetAllItems()
         {
             return await _context.Item
+                .Include(s => s.SubCategory)
                 .ToListAsync();
         }
         public async Task<Item> GetById(int ItemId)
@@ -53,6 +54,8 @@ namespace WebshopAPI.Repositories
                 UpdateItem.ItemDiscount = item.ItemDiscount;
                 UpdateItem.ItemAmount = item.ItemAmount;
                 UpdateItem.ItemStatus = item.ItemStatus;
+
+                await _context.SaveChangesAsync();
             }
             return UpdateItem;
         }

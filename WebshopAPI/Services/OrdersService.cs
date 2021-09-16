@@ -30,25 +30,23 @@ namespace WebshopAPI.Services
 
         public async Task<List<OrderResponse>> GetAllOrders()
         {
-            List<OrderResponse> Orders = new();
             List<Orders> Order = await _orderRepo.GetAllOrders();
 
-            return Orders.Select(i => new OrderResponse
+            return Order.Select(i => new OrderResponse
             {
                 OrderId = i.OrderId,
                 UserId = i.UserId,
-                OrderDate = i.OrderDate,
                 OrderStatus = i.OrderStatus,
-                OrderUser = new OrderUserResponse
+                User = new OrderUserResponse
                 {
-                    RoleId = i.OrderUser.RoleId,
-                    Email = i.OrderUser.Email,
-                    Phone = i.OrderUser.Phone,
-                    FirstName = i.OrderUser.FirstName,
-                    MiddleName = i.OrderUser.MiddleName,
-                    LastName = i.OrderUser.LastName,
-                    Address = i.OrderUser.Address,
-                    PostalCode = i.OrderUser.PostalCode
+                    RoleId = i.User.RoleId,
+                    Email = i.User.Email,
+                    Phone = i.User.Phone,
+                    FirstName = i.User.FirstName,
+                    MiddleName = i.User.MiddleName,
+                    LastName = i.User.LastName,
+                    Address = i.User.Address,
+                    PostalCode = i.User.PostalCode
                 }
             }).ToList();
         }
@@ -61,7 +59,7 @@ namespace WebshopAPI.Services
                 OrderId = Order.OrderId,
                 UserId = Order.UserId,
                 OrderStatus = Order.OrderStatus,
-                OrderUser = new OrderUserResponse
+                User = new OrderUserResponse
                 {
                     RoleId = Order.User.RoleId,
                     Email = Order.User.Email,
@@ -90,7 +88,7 @@ namespace WebshopAPI.Services
                 OrderId = Order.OrderId,
                 UserId = Order.UserId,
                 OrderStatus = Order.OrderStatus,
-                OrderUser = new OrderUserResponse
+                User = new OrderUserResponse
                 {
                     RoleId = Order.User.RoleId,
                     Email = Order.User.Email,
@@ -118,7 +116,7 @@ namespace WebshopAPI.Services
                 OrderId = Order.OrderId,
                 UserId = Order.UserId,
                 OrderStatus = Order.OrderStatus,
-                OrderUser = new OrderUserResponse
+                User = new OrderUserResponse
                 {
                     RoleId = Order.User.RoleId,
                     Email = Order.User.Email,

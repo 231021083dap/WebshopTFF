@@ -29,6 +29,7 @@ namespace WebshopAPI.Repositories
         public async Task<List<Orders>> GetAllOrders()
         {
             return await _context.Orders
+                .Include(u => u.User)
                 .ToListAsync();
         }
 
@@ -52,6 +53,8 @@ namespace WebshopAPI.Repositories
             {
                 updateOrder.UserId = Order.UserId;
                 updateOrder.OrderStatus = Order.OrderStatus;
+
+                await _context.SaveChangesAsync();
             }
 
             return updateOrder;

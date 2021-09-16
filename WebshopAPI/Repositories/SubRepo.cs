@@ -26,6 +26,7 @@ namespace WebshopAPI.Repositories
         public async Task<List<SubCategory>> GetAllSubs()
         {
             return await _context.SubCategory
+                .Include(c => c.Category)
                 .ToListAsync();
         }
         public async Task<SubCategory> GetById(int SubId)
@@ -47,6 +48,8 @@ namespace WebshopAPI.Repositories
             {
                 UpdateSub.SubName = sub.SubName;
                 UpdateSub.CategoryId= sub.CategoryId;
+
+                await _context.SaveChangesAsync();
             }
             return UpdateSub;
         }

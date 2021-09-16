@@ -20,19 +20,20 @@ namespace WebshopAPI.Services
     public class SubService : ISubService
     {
         private readonly ISubRepo _subRepo;
+        private readonly ICategoryRepo _categoryRepo;
         //CTOR
-        public SubService(ISubRepo subRepo)
+        public SubService(ISubRepo subRepo, ICategoryRepo categoryRepo)
         {
             _subRepo = subRepo;
+            _categoryRepo = categoryRepo;
 
         }
 
         public async Task<List<SubResponse>> GetAllSubs()
         {
-            List<SubResponse> Subs = new();
             List<SubCategory> Sub = await _subRepo.GetAllSubs();
             //lambda
-            return Subs.Select(i => new SubResponse
+            return Sub.Select(i => new SubResponse
             {
                 SubId = i.SubId,
                 SubName = i.SubName,
@@ -72,19 +73,23 @@ namespace WebshopAPI.Services
 
             sub = await _subRepo.Create(sub);
 
-            //Turnary operator, hvis værdien er null -> return, hvis værdien IKKE er null -> continue
-            return sub == null ? null : new SubResponse
+            if (sub != null)
             {
-                SubId = sub.SubId,
-                SubName = sub.SubName,
-                CategoryId = sub.CategoryId,
-                Category = new SubCatResponse
+                sub.Category = await _categoryRepo.GetById(sub.CategoryId);
+                return new SubResponse
                 {
-                    CategoryId = sub.Category.CategoryId,
-                    CategoryName = sub.Category.CategoryName
-                }
+                    SubId = sub.SubId,
+                    SubName = sub.SubName,
+                    CategoryId = sub.CategoryId,
+                    Category = new SubCatResponse
+                    {
+                        CategoryId = sub.Category.CategoryId,
+                        CategoryName = sub.Category.CategoryName
+                    }
+                };
 
-            };
+            }
+            return null;
         }
 
 
@@ -99,16 +104,22 @@ namespace WebshopAPI.Services
             };
             sub = await _subRepo.Update(SubId, sub);
 
-            return sub == null ? null : new SubResponse
+            if (sub != null)
             {
-                SubName = sub.SubName,
-                CategoryId = sub.CategoryId,
-                Category = new SubCatResponse
+                sub.Category = await _categoryRepo.GetById(sub.CategoryId);
+                return new SubResponse
                 {
-                    CategoryId = sub.Category.CategoryId,
-                    CategoryName = sub.Category.CategoryName
-                }
-            };
+                    SubId = sub.SubId,
+                    SubName = sub.SubName,
+                    CategoryId = sub.CategoryId,
+                    Category = new SubCatResponse
+                    {
+                        CategoryId = sub.Category.CategoryId,
+                        CategoryName = sub.Category.CategoryName
+                    }
+                };
+            }
+            return null;
         }
 
         public async Task<bool> Delete(int SubId)

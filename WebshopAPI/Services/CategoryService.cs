@@ -11,6 +11,7 @@ namespace WebshopAPI.Services
     public interface ICategoryService
     {
         Task<List<CategoryResponse>> GetAllCategories();
+        Task<CategoryResponse> GetById(int CategoryId);
     }
 
     public class CategoryService : ICategoryService
@@ -24,10 +25,9 @@ namespace WebshopAPI.Services
 
         public async Task<List<CategoryResponse>> GetAllCategories()
         {
-            List<CategoryResponse> Categories = new();
             List<Category> Category = await _categoryRepo.GetAllCategories();
 
-            return Categories.Select(i => new CategoryResponse
+            return Category.Select(i => new CategoryResponse
             {
                 CategoryId = i.CategoryId,
                 CategoryName = i.CategoryName,
@@ -38,6 +38,21 @@ namespace WebshopAPI.Services
                 }).ToList()
 
             }).ToList();
+        }
+
+        public async Task<CategoryResponse> GetById(int CategoryId)
+        {
+            Category category = await _categoryRepo.GetById(CategoryId);
+            return category == null ? null : new CategoryResponse
+            {
+                CategoryId = category.CategoryId,
+                CategoryName = category.CategoryName,
+                SubCategory = category.SubCategory.Select(s => new CategorySubResponse
+                {
+                    SubId = s.SubId,
+                    SubName = s.SubName
+                }).ToList()
+            };
         }
     }
 }

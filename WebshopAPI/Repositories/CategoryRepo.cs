@@ -11,6 +11,7 @@ namespace WebshopAPI.Repositories
     public interface ICategoryRepo
     {
         Task<List<Category>> GetAllCategories();
+        Task<Category> GetById(int CategoryId);
     }
     public class CategoryRepo : ICategoryRepo
     {
@@ -24,7 +25,14 @@ namespace WebshopAPI.Repositories
         public async Task<List<Category>> GetAllCategories()
         {
             return await _context.Category
+                .Include(c => c.SubCategory)
                 .ToListAsync();
+        }
+
+        public async Task<Category> GetById(int CategoryId)
+        {
+            return await _context.Category
+            .FirstOrDefaultAsync(c => c.CategoryId == CategoryId);
         }
     }
 }
