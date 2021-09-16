@@ -11,7 +11,7 @@ namespace WebshopAPI.DTO
     {
 
         [ForeignKey("Role.RoleId")]
-        public int UserRoleId { get; set; }
+        public int RoleId { get; set; }
 
         [Required]
         public string Email { get; set; }

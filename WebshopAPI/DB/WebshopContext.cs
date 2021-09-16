@@ -51,7 +51,7 @@ namespace WebshopAPI.DB
                 new User
                 {
                     UserId = 1,
-                    UserRoleId = 1,
+                    RoleId = 1,
                     Email = "Test@gmail.com",
                     Phone = 20202020,
                     Password = "TestTest",

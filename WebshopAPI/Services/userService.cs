@@ -40,7 +40,7 @@ namespace WebshopAPI.Services
             return Users.Select(u => new UserResponse
             {
                 UserId = u.UserId,
-                UserRoleId = u.UserRoleId,
+                RoleId = u.RoleId,
                 Email = u.Email,
                 Phone = u.Phone,
                 Password = u.Password,
@@ -63,7 +63,7 @@ namespace WebshopAPI.Services
             return user == null ? null : new UserResponse
             {
                 UserId = user.UserId,
-                UserRoleId = user.UserRoleId,
+                RoleId = user.RoleId,
                 Email = user.Email,
                 Phone = user.Phone,
                 Password = user.Password,
@@ -82,7 +82,7 @@ namespace WebshopAPI.Services
         {
             User user = new User
             {
-                UserRoleId = newUser.UserRoleId,
+                RoleId = newUser.RoleId,
                 Email = newUser.Email,
                 Phone = newUser.Phone,
                 Password = newUser.Password,
@@ -98,7 +98,7 @@ namespace WebshopAPI.Services
             return user == null ? null : new UserResponse
             {
                 UserId = user.UserId,
-                UserRoleId = user.UserRoleId,
+                RoleId = user.RoleId,
                 Email = user.Email,
                 Phone = user.Phone,
                 Password = user.Password,
@@ -120,7 +120,7 @@ namespace WebshopAPI.Services
         {
             User user = new User
             {
-                UserRoleId = updateUser.UserRoleId,
+                RoleId = updateUser.RoleId,
                 Email = updateUser.Email,
                 Phone = updateUser.Phone,
                 Password = updateUser.Password,
@@ -134,7 +134,7 @@ namespace WebshopAPI.Services
 
             return user == null ? null : new UserResponse
             {
-                UserRoleId = user.UserRoleId,
+                RoleId = user.RoleId,
                 Email = user.Email,
                 Phone = user.Phone,
                 Password = user.Password,

@@ -8,7 +8,7 @@ namespace WebshopAPI.Responses
     public class UserResponse
     {
         public int UserId { get; set; }
-        public int UserRoleId { get; set; }
+        public int RoleId { get; set; }
 
         public UserRoleResponse UserRole { get; set; }
 

@@ -19,7 +19,7 @@ namespace WebshopAPI.Responses
     public class OrderUserResponse
     {
         public int UserId { get; set; }
-        public int UserRoleId { get; set; }
+        public int RoleId { get; set; }
         public string Email { get; set; }
         public int Phone { get; set; }
         public string FirstName { get; set; }

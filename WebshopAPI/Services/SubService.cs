@@ -36,7 +36,7 @@ namespace WebshopAPI.Services
             {
                 SubId = i.SubId,
                 SubName = i.SubName,
-                CatId = i.CatId,
+                CategoryId = i.CategoryId,
                 Category = new SubCatResponse
                 {
                     CategoryId = i.Category.CategoryId,
@@ -53,7 +53,7 @@ namespace WebshopAPI.Services
             {
                 SubId = sub.SubId,
                 SubName = sub.SubName,
-                CatId = sub.CategoryId,
+                CategoryId = sub.CategoryId,
                 Category = new SubCatResponse
                 {
                     CategoryId = sub.Category.CategoryId,
@@ -77,7 +77,7 @@ namespace WebshopAPI.Services
             {
                 SubId = sub.SubId,
                 SubName = sub.SubName,
-                CatId = sub.CategoryId,
+                CategoryId = sub.CategoryId,
                 Category = new SubCatResponse
                 {
                     CategoryId = sub.Category.CategoryId,
@@ -102,7 +102,7 @@ namespace WebshopAPI.Services
             return sub == null ? null : new SubResponse
             {
                 SubName = sub.SubName,
-                CatId = sub.CategoryId,
+                CategoryId = sub.CategoryId,
                 Category = new SubCatResponse
                 {
                     CategoryId = sub.Category.CategoryId,
