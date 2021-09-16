@@ -23,17 +23,19 @@ namespace WebshopAPI.Services
 
     public class ItemService : IItemService
     {
-        private readonly IItemRepo _ItemRepo;
+        private readonly IItemRepo _itemRepo;
+        private readonly ISubRepo _subRepo;
         //CTOR
-        public ItemService(IItemRepo ItemRepo)
+        public ItemService(IItemRepo itemRepo, ISubRepo subRepo)
         {
-            _ItemRepo = ItemRepo;
+            _itemRepo = itemRepo;
+            _subRepo = subRepo;
 
         }
 
         public async Task<List<ItemResponse>> GetAllItems()
         {
-            List<Item> Item = await _ItemRepo.GetAllItems();
+            List<Item> Item = await _itemRepo.GetAllItems();
 
             return Item.Select(i => new ItemResponse
             {
@@ -57,7 +59,7 @@ namespace WebshopAPI.Services
 
         public async Task<ItemResponse> GetById(int ItemId)
         {
-            Item item = await _ItemRepo.GetById(ItemId);
+            Item item = await _itemRepo.GetById(ItemId);
             
             return item == null ? null : new ItemResponse
             {
@@ -88,7 +90,7 @@ namespace WebshopAPI.Services
                 ItemAmount = newItem.ItemAmount,
                 ItemStatus = newItem.ItemStatus
             };
-            item = await _ItemRepo.Create(item);
+            item = await _itemRepo.Create(item);
 
             //Turnary operator, hvis værdien er null -> return, hvis værdien IKKE er null -> continue
             return item == null ? null : new ItemResponse
@@ -105,9 +107,8 @@ namespace WebshopAPI.Services
 
         public async Task<ItemResponse> Update(int ItemId, UpdateItem updateItem)
         {
-            Item item = new Item
+            Item item = new()
             {
-
                 ItemName = updateItem.ItemName,
                 SubCategoryId = updateItem.SubCategoryId,
                 ItemPrice = updateItem.ItemPrice,
@@ -116,24 +117,34 @@ namespace WebshopAPI.Services
                 ItemStatus = updateItem.ItemStatus
 
             };
-            item = await _ItemRepo.Update(ItemId, item);
+            item = await _itemRepo.Update(ItemId, item);
 
-            return item == null ? null : new ItemResponse
+            if (item != null)
             {
-
-                ItemName = item.ItemName,
-                SubCategoryId = item.SubCategoryId,
-                ItemPrice = item.ItemPrice,
-                ItemDiscount = item.ItemDiscount,
-                ItemAmount = item.ItemAmount,
-                ItemStatus = item.ItemStatus
-
-            };
+                item.SubCategory = await _subRepo.GetById(item.SubCategoryId);
+                return new ItemResponse
+                {
+                    ItemId = item.ItemId,
+                    ItemName = item.ItemName,
+                    SubCategoryId = item.SubCategoryId,
+                    ItemPrice = item.ItemPrice,
+                    ItemDiscount = item.ItemDiscount,
+                    ItemAmount = item.ItemAmount,
+                    ItemStatus = item.ItemStatus,
+                    SubCategory = new ItemSubResponse
+                    {
+                        SubId = item.SubCategory.SubId,
+                        SubName = item.SubCategory.SubName,
+                        CategoryId = item.SubCategory.CategoryId
+                    }
+                };
+            }   
+            return null;
         }
 
         public async Task<bool> Delete(int ItemId)
         {
-            var result = await _ItemRepo.Delete(ItemId);
+            var result = await _itemRepo.Delete(ItemId);
             return true;
         }
     }
