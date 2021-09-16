@@ -9,6 +9,9 @@ namespace WebshopAPI.Responses
     {
         public int UserId { get; set; }
         public int UserRoleId { get; set; }
+
+        public UserRoleResponse UserRole { get; set; }
+
         public string Email { get; set; }
         public int Phone { get; set; }
         public string Password { get; set; }
@@ -18,4 +21,12 @@ namespace WebshopAPI.Responses
         public string Address { get; set; }
         public int PostalCode { get; set; }
     }
+
+    public class UserRoleResponse
+    {
+        public int RoleId { get; set; }
+
+        public string RoleName { get; set; }
+    }
+
 }

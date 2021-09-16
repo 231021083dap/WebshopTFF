@@ -14,6 +14,6 @@ namespace WebshopAPI.DB.Entities
         [Required]
         public string CategoryName { get; set; }
 
-
+        public List<SubCategory> SubCategory { get; set; } = new();
     }
 }

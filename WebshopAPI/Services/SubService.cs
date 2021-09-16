@@ -34,19 +34,31 @@ namespace WebshopAPI.Services
             //lambda
             return Subs.Select(i => new SubResponse
             {
-                SubId = i.SubId
+                SubId = i.SubId,
+                SubName = i.SubName,
+                CatId = i.CatId,
+                Category = new SubCatResponse
+                {
+                    CategoryId = i.Category.CategoryId,
+                    CategoryName = i.Category.CategoryName
+                }
 
             }).ToList();
         }
 
         public async Task<SubResponse> GetById(int SubId)
         {
-            SubCategory Sub = await _subRepo.GetById(SubId);
-            return Sub == null ? null : new SubResponse
+            SubCategory sub = await _subRepo.GetById(SubId);
+            return sub == null ? null : new SubResponse
             {
-                SubId = Sub.SubId,
-                SubName = Sub.SubName,
-                CatId = Sub.CategoryId
+                SubId = sub.SubId,
+                SubName = sub.SubName,
+                CatId = sub.CategoryId,
+                Category = new SubCatResponse
+                {
+                    CategoryId = sub.Category.CategoryId,
+                    CategoryName = sub.Category.CategoryName
+                }
             };
         }
 
@@ -66,6 +78,11 @@ namespace WebshopAPI.Services
                 SubId = sub.SubId,
                 SubName = sub.SubName,
                 CatId = sub.CategoryId,
+                Category = new SubCatResponse
+                {
+                    CategoryId = sub.Category.CategoryId,
+                    CategoryName = sub.Category.CategoryName
+                }
 
             };
         }
@@ -73,19 +90,24 @@ namespace WebshopAPI.Services
 
         public async Task<SubResponse> Update(int SubId, UpdateSubCategory updateSub)
         {
-            SubCategory Sub = new()
+            SubCategory sub = new()
             {
 
                 SubName = updateSub.SubName,
                 CategoryId = updateSub.CategoryId
 
             };
-            Sub = await _subRepo.Update(SubId, Sub);
+            sub = await _subRepo.Update(SubId, sub);
 
-            return Sub == null ? null : new SubResponse
+            return sub == null ? null : new SubResponse
             {
-                SubName = Sub.SubName,
-                CatId = Sub.CategoryId
+                SubName = sub.SubName,
+                CatId = sub.CategoryId,
+                Category = new SubCatResponse
+                {
+                    CategoryId = sub.Category.CategoryId,
+                    CategoryName = sub.Category.CategoryName
+                }
             };
         }
 

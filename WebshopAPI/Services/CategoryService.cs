@@ -29,7 +29,14 @@ namespace WebshopAPI.Services
 
             return Categories.Select(i => new CategoryResponse
             {
-                CategoryId = i.CategoryId
+                CategoryId = i.CategoryId,
+                CategoryName = i.CategoryName,
+                SubCategory = i.SubCategory.Select(s => new CategorySubResponse
+                {
+                    SubId = s.SubId,
+                    SubName = s.SubName
+                }).ToList()
+
             }).ToList();
         }
     }

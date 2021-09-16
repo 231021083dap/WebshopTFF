@@ -14,10 +14,13 @@ namespace WebshopAPI.DB
         public WebshopContext(DbContextOptions<WebshopContext> options) : base(options) { }
 
         public DbSet<Item> Item { get; set; }
-        public DbSet <User> User { get; set; }
+        public DbSet<User> User { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<SubCategory> SubCategory { get; set; }
         public DbSet<Orders> Orders { get; set; }
+        public DbSet<OrderItems> OrderItems { get; set; } 
+        public DbSet<Role> Role { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -27,16 +30,16 @@ namespace WebshopAPI.DB
                 {
                     ItemId = 1,
                     ItemName = "Acer 15.6 tommer laptop",
-                    ItemSubCategory = "Bærbar",
+                    SubCategoryId = 1,
                     ItemPrice = 4999,
                     ItemDiscount = 5,
-                    ItemAmount = 0
+                    ItemAmount = 10
                 },
                 new Item
                 {
                     ItemId = 2,
                     ItemName = "SteelSeries Arctic 7 Wireless",
-                    ItemSubCategory = "PC Audio",
+                    SubCategoryId = 2,
                     ItemPrice = 999,
                     ItemDiscount = 0,
                     ItemAmount = 2
@@ -53,8 +56,8 @@ namespace WebshopAPI.DB
                     Phone = 20202020,
                     Password = "TestTest",
                     FirstName = "Anders",
-                    LastName = "Noob",
                     MiddleName = "Er",
+                    LastName = "Noob",
                     Address = "Noobstreet",
                     PostalCode = 1337
                 });
@@ -84,7 +87,7 @@ namespace WebshopAPI.DB
                 new Category
                 {
                     CategoryId = 5,
-                    CategoryName = "Mobil"
+                    CategoryName = "Mobile"
                 });
 
 
@@ -92,16 +95,55 @@ namespace WebshopAPI.DB
                 new SubCategory
                 {
                     SubId = 1,
+                    SubName = "Laptop",
+                    CategoryId = 1
+                },
+                new SubCategory
+                {
+                    SubId = 2,
+                    SubName = "PC Audio",
+                    CategoryId = 1
+                },
+                new SubCategory
+                {
+                    SubId = 3,
+                    SubName = "Monitors",
+                    CategoryId = 1
+                }, 
+                new SubCategory
+                {
+                    SubId = 4,
                     SubName = "MobilTelefoner",
                     CategoryId = 5
                 },
                 new SubCategory
                 {
-                    SubId = 2,
+                    SubId = 5,
                     SubName = "SmartWatches",
                     CategoryId = 5
                 });
 
+            modelBuilder.Entity<Role>().HasData(
+                new Role
+                {
+                    RoleId = 1,
+                    RoleName = "Customer"
+                },
+                new Role
+                {
+                    RoleId = 2,
+                    RoleName = "Employee"
+                },
+                new Role
+                {
+                    RoleId = 3,
+                    RoleName = "Admin"
+                },
+                new Role
+                {
+                    RoleId = 4,
+                    RoleName = "SuperUser"
+                });
 
         }
     }

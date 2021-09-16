@@ -35,7 +35,21 @@ namespace WebshopAPI.Services
 
             return Orders.Select(i => new OrderResponse
             {
-                OrderId = i.OrderId
+                OrderId = i.OrderId,
+                UserId = i.UserId,
+                OrderDate = i.OrderDate,
+                OrderStatus = i.OrderStatus,
+                OrderUser = new OrderUserResponse
+                {
+                    UserRoleId = i.OrderUser.UserRoleId,
+                    Email = i.OrderUser.Email,
+                    Phone = i.OrderUser.Phone,
+                    FirstName = i.OrderUser.FirstName,
+                    MiddleName = i.OrderUser.MiddleName,
+                    LastName = i.OrderUser.LastName,
+                    Address = i.OrderUser.Address,
+                    PostalCode = i.OrderUser.PostalCode
+                }
             }).ToList();
         }
 
@@ -46,7 +60,18 @@ namespace WebshopAPI.Services
             {
                 OrderId = Order.OrderId,
                 UserId = Order.UserId,
-                OrderStatus = Order.OrderStatus
+                OrderStatus = Order.OrderStatus,
+                OrderUser = new OrderUserResponse
+                {
+                    UserRoleId = Order.User.UserRoleId,
+                    Email = Order.User.Email,
+                    Phone = Order.User.Phone,
+                    FirstName = Order.User.FirstName,
+                    MiddleName = Order.User.MiddleName,
+                    LastName = Order.User.LastName,
+                    Address = Order.User.Address,
+                    PostalCode = Order.User.PostalCode
+                }
             };
         }
 
@@ -64,7 +89,18 @@ namespace WebshopAPI.Services
             {
                 OrderId = Order.OrderId,
                 UserId = Order.UserId,
-                OrderStatus = Order.OrderStatus
+                OrderStatus = Order.OrderStatus,
+                OrderUser = new OrderUserResponse
+                {
+                    UserRoleId = Order.User.UserRoleId,
+                    Email = Order.User.Email,
+                    Phone = Order.User.Phone,
+                    FirstName = Order.User.FirstName,
+                    MiddleName = Order.User.MiddleName,
+                    LastName = Order.User.LastName,
+                    Address = Order.User.Address,
+                    PostalCode = Order.User.PostalCode
+                }
             };
         }
 
@@ -81,7 +117,18 @@ namespace WebshopAPI.Services
             {
                 OrderId = Order.OrderId,
                 UserId = Order.UserId,
-                OrderStatus = Order.OrderStatus
+                OrderStatus = Order.OrderStatus,
+                OrderUser = new OrderUserResponse
+                {
+                    UserRoleId = Order.User.UserRoleId,
+                    Email = Order.User.Email,
+                    Phone = Order.User.Phone,
+                    FirstName = Order.User.FirstName,
+                    MiddleName = Order.User.MiddleName,
+                    LastName = Order.User.LastName,
+                    Address = Order.User.Address,
+                    PostalCode = Order.User.PostalCode
+                }
             };
         }
 

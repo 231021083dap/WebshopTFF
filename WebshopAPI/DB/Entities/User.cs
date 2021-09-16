@@ -15,6 +15,8 @@ namespace WebshopAPI.DB.Entities
         [ForeignKey("Role.RoleId")]
         public int UserRoleId { get; set; }
 
+        public Role UserRole { get; set; }
+
         [Required]
         public string Email { get; set; }
 
@@ -29,11 +31,11 @@ namespace WebshopAPI.DB.Entities
         [MinLength(1, ErrorMessage ="First name must not be blank")]
         public string FirstName { get; set; }
 
+        public string MiddleName { get; set; }
+
         [Required]
         [MinLength(1, ErrorMessage ="Last name must not be blank")]
         public string LastName { get; set; }
-
-        public string MiddleName { get; set; }
 
         [Required(ErrorMessage ="Address is required")]
         public string Address { get; set; }
@@ -41,7 +43,6 @@ namespace WebshopAPI.DB.Entities
         [Required(ErrorMessage = "Postal code is required")]
         [Range(4,4, ErrorMessage ="Danish postal codes only")]
         public int PostalCode { get; set; }
-
 
     }
 }

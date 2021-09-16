@@ -48,7 +48,12 @@ namespace WebshopAPI.Services
                 LastName = u.LastName,
                 MiddleName = u.MiddleName,
                 Address = u.Address,
-                PostalCode = u.PostalCode
+                PostalCode = u.PostalCode,
+                UserRole = new UserRoleResponse
+                {
+                    RoleName = u.UserRole.RoleName
+                }
+
             }).ToList();
         }
 
@@ -66,7 +71,11 @@ namespace WebshopAPI.Services
                 LastName = user.LastName,
                 MiddleName = user.MiddleName,
                 Address = user.Address,
-                PostalCode = user.PostalCode
+                PostalCode = user.PostalCode,
+                UserRole = new UserRoleResponse
+                {
+                    RoleName = user.UserRole.RoleName
+                }
             };
         }
         public async Task<UserResponse> Create(NewUser newUser)
@@ -97,14 +106,19 @@ namespace WebshopAPI.Services
                 LastName = user.LastName,
                 MiddleName = user.MiddleName,
                 Address = user.Address,
-                PostalCode = user.PostalCode
+                PostalCode = user.PostalCode,
+                UserRole = new UserRoleResponse
+                {
+                    RoleName = user.UserRole.RoleName
+                }
+
             };
         }
 
 
         public async Task<UserResponse> Update(int UserId, UpdateUser updateUser)
         {
-            User User = new User
+            User user = new User
             {
                 UserRoleId = updateUser.UserRoleId,
                 Email = updateUser.Email,
@@ -116,19 +130,23 @@ namespace WebshopAPI.Services
                 Address = updateUser.Address,
                 PostalCode = updateUser.PostalCode
             };
-            User = await _UserRepo.Update(UserId, User);
+            user = await _UserRepo.Update(UserId, user);
 
-            return User == null ? null : new UserResponse
+            return user == null ? null : new UserResponse
             {
-                UserRoleId = User.UserRoleId,
-                Email = User.Email,
-                Phone = User.Phone,
-                Password = User.Password,
-                FirstName = User.FirstName,
-                LastName = User.LastName,
-                MiddleName = User.MiddleName,
-                Address = User.Address,
-                PostalCode = User.PostalCode
+                UserRoleId = user.UserRoleId,
+                Email = user.Email,
+                Phone = user.Phone,
+                Password = user.Password,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                MiddleName = user.MiddleName,
+                Address = user.Address,
+                PostalCode = user.PostalCode,
+                UserRole = new UserRoleResponse
+                {
+                    RoleName = user.UserRole.RoleName
+                }
             };
         }
 
