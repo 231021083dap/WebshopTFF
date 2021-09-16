@@ -27,6 +27,7 @@ namespace WebshopAPI.Repositories
         public async Task<List<User>> GetAllUsers()
         {
             return await _context.User
+                .Include(r => r.UserRole)
                 .ToListAsync();
         }
         public async Task<User> GetById(int UserId)
@@ -55,6 +56,8 @@ namespace WebshopAPI.Repositories
                 UpdateUser.MiddleName = user.MiddleName;
                 UpdateUser.Address = user.Address;
                 UpdateUser.PostalCode = user.PostalCode;
+
+                await _context.SaveChangesAsync();
             }
             return UpdateUser;
         }

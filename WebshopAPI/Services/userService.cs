@@ -60,6 +60,7 @@ namespace WebshopAPI.Services
         public async Task<UserResponse> GetById(int UserId)
         {
             User user = await _UserRepo.GetById(UserId);
+
             return user == null ? null : new UserResponse
             {
                 UserId = user.UserId,
@@ -76,6 +77,7 @@ namespace WebshopAPI.Services
                 {
                     RoleName = user.UserRole.RoleName
                 }
+
             };
         }
         public async Task<UserResponse> Create(NewUser newUser)

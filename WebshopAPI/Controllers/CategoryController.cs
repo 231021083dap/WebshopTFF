@@ -49,5 +49,28 @@ namespace WebshopAPI.Controllers
                 return Problem(ex.Message);
             }
         }
+
+        [HttpGet("{CategoryId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetById([FromRoute] int CategoryId)
+        {
+            try
+            {
+                CategoryResponse category = await _categoryService.GetById(CategoryId);
+
+                if(category == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(category);
+            }
+            catch(Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
     }
 }

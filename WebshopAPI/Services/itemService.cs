@@ -33,10 +33,9 @@ namespace WebshopAPI.Services
 
         public async Task<List<ItemResponse>> GetAllItems()
         {
-            List<ItemResponse> Items = new();
             List<Item> Item = await _ItemRepo.GetAllItems();
-            //lambda
-            return Items.Select(i => new ItemResponse
+
+            return Item.Select(i => new ItemResponse
             {
                 ItemId = i.ItemId,
                 ItemName = i.ItemName,
