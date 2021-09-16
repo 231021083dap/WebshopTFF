@@ -48,10 +48,11 @@ namespace WebshopAPI.Repositories
             if (UpdateItem != null)
             {
                 UpdateItem.ItemName = item.ItemName;
-                UpdateItem.ItemSubCategory = item.ItemSubCategory;
+                UpdateItem.SubCategoryId = item.SubCategoryId;
                 UpdateItem.ItemPrice = item.ItemPrice;
                 UpdateItem.ItemDiscount = item.ItemDiscount;
                 UpdateItem.ItemAmount = item.ItemAmount;
+                UpdateItem.ItemStatus = item.ItemStatus;
             }
             return UpdateItem;
         }

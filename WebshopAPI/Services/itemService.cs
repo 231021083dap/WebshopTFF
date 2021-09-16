@@ -39,22 +39,42 @@ namespace WebshopAPI.Services
             return Items.Select(i => new ItemResponse
             {
                 ItemId = i.ItemId,
-
+                ItemName = i.ItemName,
+                SubCategoryId = i.SubCategoryId,
+                ItemPrice = i.ItemPrice,
+                ItemDiscount = i.ItemDiscount,
+                ItemAmount = i.ItemAmount,
+                ItemStatus = i.ItemStatus,
+                SubCategory = new ItemSubResponse
+                {
+                    SubId = i.SubCategory.SubId,
+                    SubName = i.SubCategory.SubName,
+                    CategoryId = i.SubCategory.CategoryId
+                }
             }).ToList();
+
         }
+
 
         public async Task<ItemResponse> GetById(int ItemId)
         {
             Item item = await _ItemRepo.GetById(ItemId);
+            
             return item == null ? null : new ItemResponse
             {
                 ItemId = item.ItemId,
                 ItemName = item.ItemName,
-                ItemSubCategory = item.ItemSubCategory,
+                SubCategoryId = item.SubCategoryId,
                 ItemPrice = item.ItemPrice,
                 ItemDiscount = item.ItemDiscount,
-                ItemAmount = item.ItemAmount
-
+                ItemAmount = item.ItemAmount,
+                ItemStatus = item.ItemStatus,
+                SubCategory = new ItemSubResponse
+                {
+                    SubId = item.SubCategory.SubId,
+                    SubName = item.SubCategory.SubName,
+                    CategoryId = item.SubCategory.CategoryId
+                }
             };
         }
 
@@ -63,11 +83,11 @@ namespace WebshopAPI.Services
             Item item = new Item
             {
                 ItemName = newItem.ItemName,
-                ItemSubCategory = newItem.ItemSubCategory,
+                SubCategoryId = newItem.SubCategoryId,
                 ItemPrice = newItem.ItemPrice,
                 ItemDiscount = newItem.ItemDiscount,
-                ItemAmount = newItem.ItemAmount
-
+                ItemAmount = newItem.ItemAmount,
+                ItemStatus = newItem.ItemStatus
             };
             item = await _ItemRepo.Create(item);
 
@@ -76,35 +96,38 @@ namespace WebshopAPI.Services
             {
                 ItemId = item.ItemId,
                 ItemName = item.ItemName,
-                ItemSubCategory = item.ItemSubCategory,
+                SubCategoryId = item.SubCategoryId,
                 ItemPrice = item.ItemPrice,
                 ItemDiscount = item.ItemDiscount,
-                ItemAmount = item.ItemAmount
+                ItemAmount = item.ItemAmount,
+                ItemStatus = item.ItemStatus
             };
         }
 
         public async Task<ItemResponse> Update(int ItemId, UpdateItem updateItem)
         {
-            Item Item = new Item
+            Item item = new Item
             {
 
                 ItemName = updateItem.ItemName,
-                ItemSubCategory = updateItem.ItemSubCategory,
+                SubCategoryId = updateItem.SubCategoryId,
                 ItemPrice = updateItem.ItemPrice,
                 ItemDiscount = updateItem.ItemDiscount,
-                ItemAmount = updateItem.ItemAmount
+                ItemAmount = updateItem.ItemAmount,
+                ItemStatus = updateItem.ItemStatus
 
             };
-            Item = await _ItemRepo.Update(ItemId, Item);
+            item = await _ItemRepo.Update(ItemId, item);
 
-            return Item == null ? null : new ItemResponse
+            return item == null ? null : new ItemResponse
             {
 
-                ItemName = Item.ItemName,
-                ItemSubCategory = Item.ItemSubCategory,
-                ItemPrice = Item.ItemPrice,
-                ItemDiscount = Item.ItemDiscount,
-                ItemAmount = Item.ItemAmount
+                ItemName = item.ItemName,
+                SubCategoryId = item.SubCategoryId,
+                ItemPrice = item.ItemPrice,
+                ItemDiscount = item.ItemDiscount,
+                ItemAmount = item.ItemAmount,
+                ItemStatus = item.ItemStatus
 
             };
         }

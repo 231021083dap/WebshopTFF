@@ -16,16 +16,17 @@ namespace WebshopAPI.DB.Entities
         [MinLength(1, ErrorMessage ="Item name can not be blank")]
         public string ItemName { get; set; }
 
-        [ForeignKey("Subcategory.SubId")]
-        [Required]
-        public string ItemSubCategory { get; set; }
+        [ForeignKey("{SubCategory.SubId}")]
+        public int SubCategoryId { get; set; }
+
+        public SubCategory SubCategory { get; set; }
 
         public int ItemPrice { get; set; }   
 
-        
         public int ItemDiscount { get; set; }
         
         public int ItemAmount { get; set; }
 
+        public string ItemStatus { get; set; } = "In Stock";
     }
 }

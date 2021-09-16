@@ -11,12 +11,25 @@ namespace WebshopAPI.Responses
 
         public string ItemName { get; set; }
    
-        public string ItemSubCategory { get; set; }
+        public int SubCategoryId { get; set; }
+
+        public ItemSubResponse SubCategory { get; set; }
 
         public int ItemPrice { get; set; }
 
         public int ItemDiscount { get; set; }
 
         public int ItemAmount { get; set; }
+
+        public string ItemStatus { get; set; }
+    }
+
+    public class ItemSubResponse
+    {
+        public int SubId { get; set; }
+
+        public string SubName { get; set; }
+
+        public int CategoryId { get; set; }
     }
 }

@@ -17,6 +17,8 @@ namespace WebshopAPI.DB.Entities
         [ForeignKey("Category.CategoryId")]
         public int CategoryId { get; set; }
 
+        public Category Category { get; set; }
+
 
     }
 }
