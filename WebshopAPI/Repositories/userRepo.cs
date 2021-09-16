@@ -46,7 +46,7 @@ namespace WebshopAPI.Repositories
             User UpdateUser = await _context.User.FirstOrDefaultAsync(u => u.UserId == UserId);
             if (UpdateUser != null)
             {
-                UpdateUser.UserRoleId = user.UserRoleId;
+                UpdateUser.RoleId = user.RoleId;
                 UpdateUser.Email = user.Email;
                 UpdateUser.Phone = user.Phone;
                 UpdateUser.Password = user.Password;

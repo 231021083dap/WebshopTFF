@@ -10,7 +10,7 @@ namespace WebshopAPI.DB.Entities
     public class OrderItems
     {
         [Key]
-        public int OrderItemsId { get; set; }
+        public int OrderItemId { get; set; }
 
         [ForeignKey("Orders.OrderId")]
         public int OrderId { get; set; }

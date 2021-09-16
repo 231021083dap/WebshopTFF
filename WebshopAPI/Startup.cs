@@ -53,18 +53,21 @@ namespace WebshopAPI
             services.AddDbContext<WebshopContext>(
                o => o.UseSqlServer(Configuration.GetConnectionString("Default")));
 
-            //DI -> UserService
+
             services.AddScoped<IUserService, UserService>();
-            //DI -> UserRepo
             services.AddScoped<IUserRepo, UserRepo>();
 
-            //DI -> ItemService
             services.AddScoped<IItemService, ItemService>();
-            //DI -> ItemRepo
             services.AddScoped<IItemRepo, ItemRepo>();
 
+            services.AddScoped<IOrdersRepo, OrdersRepo>();
+            services.AddScoped<IOrdersService, OrdersService>();
 
+            services.AddScoped<ISubRepo, SubRepo>();
+            services.AddScoped<ISubService, SubService>();
 
+            services.AddScoped<ICategoryRepo, CategoryRepo>();
+            services.AddScoped<ICategoryService, CategoryService>();
 
 
 

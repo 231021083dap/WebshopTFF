@@ -13,7 +13,7 @@ namespace WebshopAPI.DB.Entities
         public int UserId { get; set; }
 
         [ForeignKey("Role.RoleId")]
-        public int UserRoleId { get; set; }
+        public int RoleId { get; set; }
 
         public Role UserRole { get; set; }
 
