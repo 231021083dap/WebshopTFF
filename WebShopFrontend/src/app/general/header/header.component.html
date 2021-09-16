@@ -1,40 +1,52 @@
 <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand is-spaced">
-        <figure class="image is-128x128 is-centered">
-            <img src="https://bulma.io/images/placeholders/256x256.png">
-          </figure>
-        <a class="navbar-item is-hoverable" routerLink="/">Home</a>
-        <a class="navbar-item is-hoverable" routerLink="/items">All Items - Lav til dropdown</a>
-        <div class="navbar-item is-hoverable has-dropdown">
-            
-            <a class="navbar-link">
-                Item Categories
-            </a>
+  <div class="navbar-brand is-spaced">
+    <figure class="image is-128x128 is-centered">
+      <img
+        src="../../../assets/Pics/WebsitePics/Friendly-Fire_ColoredBlack.png"
+      />
+    </figure>
+    
+    <a class="navbar-item is-hoverable" routerLink="/">Home</a>
+    <a class="navbar-item is-hoverable" routerLink="/items"
+      >All Items - Lav til dropdown</a
+    >
 
-            <div class="navbar-dropdown">
-                <a class="navbar-item is-hoverable">
-                    test1
-                </a>
-                <a class="navbar-item is-hoverable">
-                    test2
-                </a>
-                <a class="navbar-item is-hoverable">
-                    test3
-                </a>
-                <a class="navbar-item is-hoverable">
-                    test4
-                </a>
+    <div class="navbar-item has-dropdown is-hoverable">
+      <a class="navbar-link"> Item Categories </a>
+      <div class="navbar-dropdown">
+        <div class="nested navbar-item dropdown">
+          <div class="dropdown-trigger">
+            <button
+              class="button"
+              aria-haspopup="true"
+              aria-controls="dropdown-menu"
+            >
+              <span>Hardware</span>
+              <span class="icon is-small">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </button>
+          </div>                    
+          <div class="dropdown-menu" id="dropdown-menu" role="menu">
+            <div class="dropdown-content">
+              <a href="#" class="dropdown-item"> Dropdown item </a>
+              <a class="dropdown-item"> Other dropdown item </a>
+              <a href="#" class="dropdown-item is-active">
+                Active dropdown item
+              </a>
+              <a href="#" class="dropdown-item"> Other dropdown item </a>
             </div>
-
+          </div>
         </div>
-        <a class="navbar-item is-hoverable" routerLink="/Authentication/Login">Login/Register</a>
-        <a class="navbar-item is-hoverable" routerLink="/MySite">My Site</a>
-        <a class="navbar-item is-hoverable" routerLink="/MyCart">My Cart</a>        
-        <a class="navbar-item is-hoverable" routerLink="/Orders">Orders</a>
-        <a class="navbar-item is-hoverable" routerLink="/Admin/AdminSite">Admin</a>
-        
+      </div>
     </div>
 
+    <a class="navbar-item is-hoverable" routerLink="/Authentication/Login"
+      >Login/Register</a
+    >
+    <a class="navbar-item is-hoverable" routerLink="/MySite">My Site</a>
+    <a class="navbar-item is-hoverable" routerLink="/MyCart">My Cart</a>
+    <a class="navbar-item is-hoverable" routerLink="/Orders">Orders</a>
+    <a class="navbar-item is-hoverable" routerLink="/Admin/AdminSite">Admin</a>
+  </div>
 </nav>
-
-
