@@ -33,6 +33,7 @@ namespace WebshopAPI.Repositories
         public async Task<User> GetById(int UserId)
         {
             return await _context.User
+                .Include(r => r.UserRole)
                 .FirstOrDefaultAsync(u => u.UserId == UserId);
         }
 

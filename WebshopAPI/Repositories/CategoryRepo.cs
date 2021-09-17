@@ -32,6 +32,7 @@ namespace WebshopAPI.Repositories
         public async Task<Category> GetById(int CategoryId)
         {
             return await _context.Category
+            .Include(c => c.SubCategory)
             .FirstOrDefaultAsync(c => c.CategoryId == CategoryId);
         }
     }

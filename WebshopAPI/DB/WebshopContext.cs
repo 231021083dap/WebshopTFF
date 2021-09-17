@@ -53,13 +53,13 @@ namespace WebshopAPI.DB
                     UserId = 1,
                     RoleId = 1,
                     Email = "Test@gmail.com",
-                    Phone = 20202020,
+                    Phone = "20202020",
                     Password = "TestTest",
                     FirstName = "Anders",
                     MiddleName = "Er",
                     LastName = "Noob",
                     Address = "Noobstreet",
-                    PostalCode = 1337
+                    PostalCode = "1337"
                 });
 
 

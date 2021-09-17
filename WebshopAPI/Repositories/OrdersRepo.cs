@@ -36,6 +36,7 @@ namespace WebshopAPI.Repositories
         public async Task<Orders> GetById(int OrderId)
         {
             return await _context.Orders
+                .Include(u => u.User)
                 .FirstOrDefaultAsync(u => u.OrderId == OrderId);
         }
 

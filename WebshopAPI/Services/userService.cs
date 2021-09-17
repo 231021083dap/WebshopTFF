@@ -24,6 +24,7 @@ namespace WebshopAPI.Services
     public class UserService : IUserService
     {
         private readonly IUserRepo _UserRepo;
+      
         //CTOR
         public UserService(IUserRepo UserRepo)
         {
@@ -51,7 +52,8 @@ namespace WebshopAPI.Services
                 PostalCode = u.PostalCode,
                 UserRole = new UserRoleResponse
                 {
-                    RoleName = u.UserRole.RoleName
+                    RoleName = u.UserRole.RoleName,
+                    RoleId = u.UserRole.RoleId
                 }
 
             }).ToList();
@@ -75,14 +77,15 @@ namespace WebshopAPI.Services
                 PostalCode = user.PostalCode,
                 UserRole = new UserRoleResponse
                 {
-                    RoleName = user.UserRole.RoleName
+                    RoleName = user.UserRole.RoleName,
+                    RoleId = user.UserRole.RoleId
                 }
 
             };
         }
         public async Task<UserResponse> Create(NewUser newUser)
         {
-            User user = new User
+            User user = new()
             {
                 RoleId = newUser.RoleId,
                 Email = newUser.Email,
@@ -95,8 +98,6 @@ namespace WebshopAPI.Services
                 PostalCode = newUser.PostalCode
             };
             user = await _UserRepo.Create(user);
-
-            //Turnary operator, hvis værdien er null -> return, hvis værdien IKKE er null -> continue
             return user == null ? null : new UserResponse
             {
                 UserId = user.UserId,
@@ -111,7 +112,8 @@ namespace WebshopAPI.Services
                 PostalCode = user.PostalCode,
                 UserRole = new UserRoleResponse
                 {
-                    RoleName = user.UserRole.RoleName
+                    RoleName = user.UserRole.RoleName,
+                    RoleId = user.UserRole.RoleId
                 }
 
             };
@@ -147,7 +149,8 @@ namespace WebshopAPI.Services
                 PostalCode = user.PostalCode,
                 UserRole = new UserRoleResponse
                 {
-                    RoleName = user.UserRole.RoleName
+                    RoleName = user.UserRole.RoleName,
+                    RoleId = user.UserRole.RoleId
                 }
             };
         }

@@ -22,10 +22,11 @@ namespace WebshopAPI.Services
     public class OrdersService : IOrdersService
     {
         private readonly IOrdersRepo _orderRepo;
-
-        public OrdersService(IOrdersRepo OrderRepo)
+        private readonly IUserRepo _userRepo;
+        public OrdersService(IOrdersRepo OrderRepo, IUserRepo UserRepo)
         {
             _orderRepo = OrderRepo;
+            _userRepo = UserRepo;
         }
 
         public async Task<List<OrderResponse>> GetAllOrders()
@@ -75,7 +76,7 @@ namespace WebshopAPI.Services
 
         public async Task<OrderResponse> Create(NewOrder newOrder)
         {
-            Orders Order = new Orders
+            Orders Order = new()
             {
                 UserId = newOrder.UserId,
                 OrderStatus = newOrder.OrderStatus
@@ -83,23 +84,29 @@ namespace WebshopAPI.Services
 
             Order = await _orderRepo.Create(Order);
 
-            return Order == null ? null : new OrderResponse
+            if (Order != null)
             {
-                OrderId = Order.OrderId,
-                UserId = Order.UserId,
-                OrderStatus = Order.OrderStatus,
-                User = new OrderUserResponse
+
+                Order.User = await _userRepo.GetById(Order.UserId);   
+                return new OrderResponse
                 {
-                    RoleId = Order.User.RoleId,
-                    Email = Order.User.Email,
-                    Phone = Order.User.Phone,
-                    FirstName = Order.User.FirstName,
-                    MiddleName = Order.User.MiddleName,
-                    LastName = Order.User.LastName,
-                    Address = Order.User.Address,
-                    PostalCode = Order.User.PostalCode
-                }
-            };
+                    OrderId = Order.OrderId,
+                    UserId = Order.UserId,
+                    OrderStatus = Order.OrderStatus,
+                    User = new OrderUserResponse
+                    {
+                        RoleId = Order.User.RoleId,
+                        Email = Order.User.Email,
+                        Phone = Order.User.Phone,
+                        FirstName = Order.User.FirstName,
+                        MiddleName = Order.User.MiddleName,
+                        LastName = Order.User.LastName,
+                        Address = Order.User.Address,
+                        PostalCode = Order.User.PostalCode
+                    }
+                };
+            }
+            return null;
         }
 
         public async Task<OrderResponse> Update(int OrderId, UpdateOrder updateOrder)
@@ -111,26 +118,32 @@ namespace WebshopAPI.Services
             };
             Order = await _orderRepo.Update(OrderId, Order);
 
-            return Order == null ? null : new OrderResponse
+            if (Order != null)
             {
-                OrderId = Order.OrderId,
-                UserId = Order.UserId,
-                OrderStatus = Order.OrderStatus,
-                User = new OrderUserResponse
+
+                Order.User = await _userRepo.GetById(Order.UserId);
+                return new OrderResponse
                 {
-                    RoleId = Order.User.RoleId,
-                    Email = Order.User.Email,
-                    Phone = Order.User.Phone,
-                    FirstName = Order.User.FirstName,
-                    MiddleName = Order.User.MiddleName,
-                    LastName = Order.User.LastName,
-                    Address = Order.User.Address,
-                    PostalCode = Order.User.PostalCode
-                }
-            };
+                    OrderId = Order.OrderId,
+                    UserId = Order.UserId,
+                    OrderStatus = Order.OrderStatus,
+                    User = new OrderUserResponse
+                    {
+                        RoleId = Order.User.RoleId,
+                        Email = Order.User.Email,
+                        Phone = Order.User.Phone,
+                        FirstName = Order.User.FirstName,
+                        MiddleName = Order.User.MiddleName,
+                        LastName = Order.User.LastName,
+                        Address = Order.User.Address,
+                        PostalCode = Order.User.PostalCode
+                    }
+                };
+            }
+            return null;
         }
 
-        public async Task<bool> Delete(int OrderId)
+            public async Task<bool> Delete(int OrderId)
         {
             var result = await _orderRepo.Delete(OrderId);
             return true;
