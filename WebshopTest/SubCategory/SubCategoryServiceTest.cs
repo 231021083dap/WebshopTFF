@@ -8,42 +8,22 @@ using WebshopAPI.Repositories;
 using WebshopAPI.Services;
 using Xunit;
 
-namespace WebshopTest.Item
+namespace WebshopTest.SubCategory
 {
-    public class itemServiceTest
+    public class SubCategoryServiceTest
     {
-        private readonly ItemService _sut;
-        private readonly Mock<IItemRepo> _itemRepo = new();
+        private readonly SubService _sut;
+        private readonly Mock<ISubRepo> _subRepo = new();
 
-        public itemServiceTest()
+        public SubCategoryServiceTest()
         {
-            _sut = new ItemService(_itemRepo.Object);
+            _sut = new SubService(_subRepo.Object);
+
+            //Implementering af categoryRepo i subrepo error. 
         }
 
         [Fact]
-        public async void GetAll_ShouldReturnListOfItemResponse_WhenItemsExists()
-        {
-            //Arrange
-
-            //Act
-
-            //Assert
-
-        }
-        [Fact]
-        public async void GetAll_ShouldReturnEmptyListOfItemResponse_WhenNoItemExists()
-        {
-            //Arrange
-
-            //Act
-
-            //Assert
-
-        }
-
-
-        [Fact]
-        public async void GetById_ShouldReturnItemResponse_WhenItemExists()
+        public async void GetAll_ShouldReturnListOfSubCategoryResponse_WhenSubCategoriesExists()
         {
             //Arrange
 
@@ -53,7 +33,7 @@ namespace WebshopTest.Item
 
         }
         [Fact]
-        public async void GetById_ShouldReturnNull_WhenItemDoesNotExists()
+        public async void GetAll_ShouldReturnEmptyListOfSubCategoryResponse_WhenNoSubCategoriesExists()
         {
             //Arrange
 
@@ -65,7 +45,29 @@ namespace WebshopTest.Item
 
 
         [Fact]
-        public async void Create_ShouldReturnItemResponse_WhenCreateIsSuccessful()
+        public async void GetById_ShouldReturnSubCategoryResponse_WhenSubCategoryExists()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+
+        }
+        [Fact]
+        public async void GetById_ShouldReturnNull_WhenSubCategoryDoesNotExists()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+
+        }
+
+
+        [Fact]
+        public async void Create_ShouldReturnSubCategoryResponse_WhenCreateIsSuccessful()
         {
             //Arrange
 
@@ -79,7 +81,7 @@ namespace WebshopTest.Item
 
 
         [Fact]
-        public async void Update_ShouldReturnUpdatedItemResponse_WhenUpdateIsSuccessful()
+        public async void Update_ShouldReturnUpdatedSubCategoryResponse_WhenUpdateIsSuccessful()
         {
             //Arrange
 
@@ -110,6 +112,5 @@ namespace WebshopTest.Item
             //Assert
 
         }
-
     }
 }

@@ -8,18 +8,17 @@ using WebshopAPI.Controllers;
 using WebshopAPI.Services;
 using Xunit;
 
-namespace WebshopTest.User
+namespace WebshopTest.Order
 {
-    public class UserControllerTest
+    public class OrderControllerTest
     {
-        private readonly UserController _sut;
-        private readonly Mock<IUserService> _userService = new();
+        private readonly OrdersController _sut;
+        private readonly Mock<IOrdersService> _ordersService = new();
 
-        public UserControllerTest()
+        public OrderControllerTest()
         {
-            _sut = new UserController(_userService.Object);
+            _sut = new OrdersController(_ordersService.Object);
         }
-
 
         [Fact]
         public async void GetAll_ShouldReturnStatusCode200_WhenDataExists()
