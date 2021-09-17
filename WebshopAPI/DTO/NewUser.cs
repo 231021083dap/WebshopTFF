@@ -16,8 +16,9 @@ namespace WebshopAPI.DTO
         [Required]
         public string Email { get; set; }
 
-        [Range(8, 8, ErrorMessage = "Danish phone-numbers only")]
-        public int Phone { get; set; }
+        [MinLength(8, ErrorMessage = "Unexpected Phone length")]
+        [MaxLength(24, ErrorMessage = "Unexpected Phone length")]
+        public string Phone { get; set; }
 
         [Required]
         [MinLength(6, ErrorMessage = "Password must be atleast 6 characters")]
@@ -37,8 +38,9 @@ namespace WebshopAPI.DTO
         public string Address { get; set; }
 
         [Required(ErrorMessage = "Postal code is required")]
-        [Range(4, 4, ErrorMessage = "Danish postal codes only")]
-        public int PostalCode { get; set; }
+        [MinLength(3, ErrorMessage = "Unexpected Postal Code length")]
+        [MaxLength(4, ErrorMessage = "Unexpected Postal Code length")]
+        public string PostalCode { get; set; }
 
 
     }
