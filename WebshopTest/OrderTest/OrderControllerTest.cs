@@ -8,7 +8,7 @@ using WebshopAPI.Controllers;
 using WebshopAPI.Services;
 using Xunit;
 
-namespace WebshopTest.Order
+namespace WebshopTest.OrderTest
 {
     public class OrderControllerTest
     {

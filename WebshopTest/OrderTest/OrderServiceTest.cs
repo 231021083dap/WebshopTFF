@@ -8,42 +8,20 @@ using WebshopAPI.Repositories;
 using WebshopAPI.Services;
 using Xunit;
 
-namespace WebshopTest.User
+namespace WebshopTest.OrderTest
 {
-    public class UserServiceTest
+    public class OrderServiceTest
     {
-        private readonly UserService _sut;
-        private readonly Mock<IUserRepo> _userRepo = new();
+        private readonly OrdersService _sut;
+        private readonly Mock<IOrdersRepo> _orderRepo = new();
 
-        public UserServiceTest()
+        public OrderServiceTest()
         {
-            _sut = new UserService(_userRepo.Object);
+            _sut = new OrdersService(_orderRepo.Object);
         }
 
         [Fact]
-        public async void GetAll_ShouldReturnListOfUsersResponse_WhenUsersExists()
-        {
-            //Arrange
-
-            //Act
-
-            //Assert
-
-        }
-        [Fact]
-        public async void GetAll_ShouldReturnEmptyListOfUsersResponse_WhenNoUsersExists()
-        {
-            //Arrange
-
-            //Act
-
-            //Assert
-
-        }
-
-
-        [Fact]
-        public async void GetById_ShouldReturnUserResponse_WhenUserExists()
+        public async void GetAll_ShouldReturnListOfOrdersResponse_WhenOrdersExists()
         {
             //Arrange
 
@@ -53,7 +31,7 @@ namespace WebshopTest.User
 
         }
         [Fact]
-        public async void GetById_ShouldReturnNull_WhenUserDoesNotExists()
+        public async void GetAll_ShouldReturnEmptyListOfOrdersResponse_WhenNoOrdersExists()
         {
             //Arrange
 
@@ -65,7 +43,29 @@ namespace WebshopTest.User
 
 
         [Fact]
-        public async void Create_ShouldReturnUserResponse_WhenCreateIsSuccessful()
+        public async void GetById_ShouldReturnOrderResponse_WhenOrderExists()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+
+        }
+        [Fact]
+        public async void GetById_ShouldReturnNull_WhenOrderDoesNotExists()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+
+        }
+
+
+        [Fact]
+        public async void Create_ShouldReturnOrderResponse_WhenCreateIsSuccessful()
         {
             //Arrange
 
@@ -79,7 +79,7 @@ namespace WebshopTest.User
 
 
         [Fact]
-        public async void Update_ShouldReturnUpdatedUserResponse_WhenUpdateIsSuccessful()
+        public async void Update_ShouldReturnUpdatedOrderResponse_WhenUpdateIsSuccessful()
         {
             //Arrange
 
@@ -110,5 +110,7 @@ namespace WebshopTest.User
             //Assert
 
         }
+
+
     }
 }

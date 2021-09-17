@@ -8,42 +8,20 @@ using WebshopAPI.Repositories;
 using WebshopAPI.Services;
 using Xunit;
 
-namespace WebshopTest.Item
+namespace WebshopTest.UserTest
 {
-    public class itemServiceTest
+    public class UserServiceTest
     {
-        private readonly ItemService _sut;
-        private readonly Mock<IItemRepo> _itemRepo = new();
+        private readonly UserService _sut;
+        private readonly Mock<IUserRepo> _userRepo = new();
 
-        public itemServiceTest()
+        public UserServiceTest()
         {
-            _sut = new ItemService(_itemRepo.Object);
+            _sut = new UserService(_userRepo.Object);
         }
 
         [Fact]
-        public async void GetAll_ShouldReturnListOfItemResponse_WhenItemsExists()
-        {
-            //Arrange
-
-            //Act
-
-            //Assert
-
-        }
-        [Fact]
-        public async void GetAll_ShouldReturnEmptyListOfItemResponse_WhenNoItemExists()
-        {
-            //Arrange
-
-            //Act
-
-            //Assert
-
-        }
-
-
-        [Fact]
-        public async void GetById_ShouldReturnItemResponse_WhenItemExists()
+        public async void GetAll_ShouldReturnListOfUsersResponse_WhenUsersExists()
         {
             //Arrange
 
@@ -53,7 +31,7 @@ namespace WebshopTest.Item
 
         }
         [Fact]
-        public async void GetById_ShouldReturnNull_WhenItemDoesNotExists()
+        public async void GetAll_ShouldReturnEmptyListOfUsersResponse_WhenNoUsersExists()
         {
             //Arrange
 
@@ -65,7 +43,29 @@ namespace WebshopTest.Item
 
 
         [Fact]
-        public async void Create_ShouldReturnItemResponse_WhenCreateIsSuccessful()
+        public async void GetById_ShouldReturnUserResponse_WhenUserExists()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+
+        }
+        [Fact]
+        public async void GetById_ShouldReturnNull_WhenUserDoesNotExists()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+
+        }
+
+
+        [Fact]
+        public async void Create_ShouldReturnUserResponse_WhenCreateIsSuccessful()
         {
             //Arrange
 
@@ -79,7 +79,7 @@ namespace WebshopTest.Item
 
 
         [Fact]
-        public async void Update_ShouldReturnUpdatedItemResponse_WhenUpdateIsSuccessful()
+        public async void Update_ShouldReturnUpdatedUserResponse_WhenUpdateIsSuccessful()
         {
             //Arrange
 
@@ -110,6 +110,5 @@ namespace WebshopTest.Item
             //Assert
 
         }
-
     }
 }

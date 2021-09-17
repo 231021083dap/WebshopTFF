@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +8,15 @@ using WebshopAPI.DB;
 using WebshopAPI.Repositories;
 using Xunit;
 
-namespace WebshopTest
+namespace WebshopTest.SubCategoryTest
 {
-    public class itemRepoTest
+    public class SubCategoryRepoTest
     {
         private readonly DbContextOptions<WebshopContext> _options;
         private readonly WebshopContext _context;
-        private readonly ItemRepo _sut;
+        private readonly SubRepo _sut;
 
-        public itemRepoTest()
+        public SubCategoryRepoTest()
         {
             _options = new DbContextOptionsBuilder<WebshopContext>()
                 .UseInMemoryDatabase(databaseName: "Webshop")
@@ -24,11 +24,11 @@ namespace WebshopTest
 
             _context = new WebshopContext(_options);
 
-            _sut = new ItemRepo(_context);
+            _sut = new SubRepo(_context);
         }
 
         [Fact]
-        public async Task GetAllItems_ShouldReturnListOfItems_WhenItemsExists()
+        public async Task GetAllSubCategories_ShouldReturnListOfSubCategories_WhenSubCategoriesExists()
         {
             //Arrange
 
@@ -38,29 +38,7 @@ namespace WebshopTest
 
         }
         [Fact]
-        public async Task GetAllItems_ShouldReturnEmptyList_WhenNoItemsExists()
-        {
-            //Arrange
-
-            //Act
-
-            //Assert
-
-        }
-
-
-        [Fact]
-        public async Task GetItemById_ShouldReturnItemObject_WhenItemExists()
-        {
-            //Arrange
-
-            //Act
-
-            //Assert
-
-        }
-        [Fact]
-        public async Task GetItemById_ShouldReturnNull_WhenItemDoesNotExists()
+        public async Task GetAllSubCategories_ShouldReturnEmptyList_WhenNoSubCategoriesExists()
         {
             //Arrange
 
@@ -72,7 +50,7 @@ namespace WebshopTest
 
 
         [Fact]
-        public async Task Create_ShouldAddIdToItem_WhenSavingDataToDatabase()
+        public async Task GetSubCategoryById_ShouldReturnSubCategoryObject_WhenSubCategoryExists()
         {
             //Arrange
 
@@ -82,29 +60,7 @@ namespace WebshopTest
 
         }
         [Fact]
-        public async Task Create_ShouldFail_WhenAddingItemWithExistingId()
-        {
-            //Arrange
-
-            //Act
-
-            //Assert
-
-        }
-
-
-        [Fact]
-        public async Task Update_ShouldChangeValuesOnItemById_WhenItemExists()
-        {
-            //Arrange
-
-            //Act
-
-            //Assert
-
-        }
-        [Fact]
-        public async Task Update_ShouldReturnNull_WhenItemDoesNotExists()
+        public async Task GetSubCategoryById_ShouldReturnNull_WhenSubCategoryDoesNotExists()
         {
             //Arrange
 
@@ -116,7 +72,7 @@ namespace WebshopTest
 
 
         [Fact]
-        public async Task Delete_ShouldReturnDeletedItem_WhenItemIsDeleted()
+        public async Task Create_ShouldAddIdToSubCategory_WhenSavingDataToDatabase()
         {
             //Arrange
 
@@ -126,7 +82,7 @@ namespace WebshopTest
 
         }
         [Fact]
-        public async Task Delete_ShouldReturnNull_WhenItemDoesNotExist()
+        public async Task Create_ShouldFail_WhenAddingSubCategoryWithExistingId()
         {
             //Arrange
 
@@ -135,5 +91,51 @@ namespace WebshopTest
             //Assert
 
         }
+
+
+        [Fact]
+        public async Task Update_ShouldChangeValuesOnSubCategoryById_WhenSubCategoryExists()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+
+        }
+        [Fact]
+        public async Task Update_ShouldReturnNull_WhenSubCategoryDoesNotExists()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+
+        }
+
+
+        [Fact]
+        public async Task Delete_ShouldReturnDeletedSubCategory_WhenSubCategoryIsDeleted()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+
+        }
+        [Fact]
+        public async Task Delete_ShouldReturnNull_WhenSubCategoryDoesNotExist()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+
+        }
+
+
     }
 }

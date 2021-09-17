@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebshopTest.Order
+namespace WebshopTest.UserTest
 {
-    class OrderRepoTest
+    class UserRepoTest
     {
     }
 }

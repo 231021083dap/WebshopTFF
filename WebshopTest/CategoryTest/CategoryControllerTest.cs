@@ -10,7 +10,7 @@ using WebshopAPI.Responses;
 using WebshopAPI.Services;
 using Xunit;
 
-namespace WebshopTest.Category
+namespace WebshopTest.CategoryTest
 {
     public class CategoryControllerTest
     {

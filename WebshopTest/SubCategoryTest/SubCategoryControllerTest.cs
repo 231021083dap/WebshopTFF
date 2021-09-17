@@ -11,7 +11,7 @@ using WebshopAPI.Responses;
 using WebshopAPI.Services;
 using Xunit;
 
-namespace WebshopTest.SubCategory
+namespace WebshopTest.SubCategoryTest
 {
     public class SubCategoryControllerTest
     {

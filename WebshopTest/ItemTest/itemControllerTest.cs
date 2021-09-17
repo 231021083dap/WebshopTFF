@@ -11,7 +11,7 @@ using WebshopAPI.Responses;
 using WebshopAPI.Services;
 using Xunit;
 
-namespace WebshopTest.Item
+namespace WebshopTest.ItemTest
 {
     public class itemControllerTest
     {

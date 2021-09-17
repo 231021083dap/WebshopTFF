@@ -8,7 +8,7 @@ using WebshopAPI.Controllers;
 using WebshopAPI.Services;
 using Xunit;
 
-namespace WebshopTest.User
+namespace WebshopTest.UserTest
 {
     public class UserControllerTest
     {
