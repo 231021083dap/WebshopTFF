@@ -145,6 +145,39 @@ namespace WebshopAPI.DB
                     RoleName = "SuperUser"
                 });
 
+            modelBuilder.Entity<Orders>().HasData(
+                new Orders
+                {
+                    OrderId = 1,
+                    UserId = 1,
+                    OrderStatus = "In Shipping"
+                },
+                new Orders
+                {
+                    OrderId = 2,
+                    UserId = 1,
+                    OrderStatus = "In Cart"
+                });
+
+            modelBuilder.Entity<OrderItems>().HasData(
+                new OrderItems
+                {
+                    OrderItemId = 1,
+                    OrderId = 1,
+                    ItemId = 1,
+                    Amount = 5,
+                    CurrentPrice = 500
+
+                },
+                 new OrderItems
+                 {
+                     OrderItemId = 2,
+                     OrderId = 2,
+                     ItemId = 2,
+                     Amount = 2,
+                     CurrentPrice = 1000
+                 });
+
         }
     }
 }
