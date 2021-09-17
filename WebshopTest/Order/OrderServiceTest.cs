@@ -8,42 +8,20 @@ using WebshopAPI.Repositories;
 using WebshopAPI.Services;
 using Xunit;
 
-namespace WebshopTest.Item
+namespace WebshopTest.Order
 {
-    public class itemServiceTest
+    public class OrderServiceTest
     {
-        private readonly ItemService _sut;
-        private readonly Mock<IItemRepo> _itemRepo = new();
+        private readonly OrdersService _sut;
+        private readonly Mock<IOrdersRepo> _orderRepo = new();
 
-        public itemServiceTest()
+        public OrderServiceTest()
         {
-            _sut = new ItemService(_itemRepo.Object);
+            _sut = new OrdersService(_orderRepo.Object);
         }
 
         [Fact]
-        public async void GetAll_ShouldReturnListOfItemResponse_WhenItemsExists()
-        {
-            //Arrange
-
-            //Act
-
-            //Assert
-
-        }
-        [Fact]
-        public async void GetAll_ShouldReturnEmptyListOfItemResponse_WhenNoItemExists()
-        {
-            //Arrange
-
-            //Act
-
-            //Assert
-
-        }
-
-
-        [Fact]
-        public async void GetById_ShouldReturnItemResponse_WhenItemExists()
+        public async void GetAll_ShouldReturnListOfOrdersResponse_WhenOrdersExists()
         {
             //Arrange
 
@@ -53,7 +31,7 @@ namespace WebshopTest.Item
 
         }
         [Fact]
-        public async void GetById_ShouldReturnNull_WhenItemDoesNotExists()
+        public async void GetAll_ShouldReturnEmptyListOfOrdersResponse_WhenNoOrdersExists()
         {
             //Arrange
 
@@ -65,7 +43,29 @@ namespace WebshopTest.Item
 
 
         [Fact]
-        public async void Create_ShouldReturnItemResponse_WhenCreateIsSuccessful()
+        public async void GetById_ShouldReturnOrderResponse_WhenOrderExists()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+
+        }
+        [Fact]
+        public async void GetById_ShouldReturnNull_WhenOrderDoesNotExists()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+
+        }
+
+
+        [Fact]
+        public async void Create_ShouldReturnOrderResponse_WhenCreateIsSuccessful()
         {
             //Arrange
 
@@ -79,7 +79,7 @@ namespace WebshopTest.Item
 
 
         [Fact]
-        public async void Update_ShouldReturnUpdatedItemResponse_WhenUpdateIsSuccessful()
+        public async void Update_ShouldReturnUpdatedOrderResponse_WhenUpdateIsSuccessful()
         {
             //Arrange
 
@@ -110,6 +110,7 @@ namespace WebshopTest.Item
             //Assert
 
         }
+
 
     }
 }
