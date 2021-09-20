@@ -15,7 +15,7 @@ namespace WebshopTest.CategoryTest
     public class CategoryControllerTest
     {
         private readonly CategoryController _sut;
-        private readonly Mock<CategoryService> _categoryService = new();
+        private readonly Mock<ICategoryService> _categoryService = new();
 
         public CategoryControllerTest()
         {
@@ -131,7 +131,7 @@ namespace WebshopTest.CategoryTest
 
         }
         [Fact]
-        public async void GetById_ShouldReturnStatusCode400_WhenDataDoesNotExist()
+        public async void GetById_ShouldReturnStatusCode404_WhenDataDoesNotExist()
         {
             //Arrange
             int categoryid = 1;
@@ -144,9 +144,9 @@ namespace WebshopTest.CategoryTest
             var result = await _sut.GetById(categoryid);
 
             //Assert
-            var StatusCodeResult = (IStatusCodeActionResult)result;
+            var statusCodeResult = (IStatusCodeActionResult)result;
 
-            Assert.Equal(400, StatusCodeResult.StatusCode);
+            Assert.Equal(404, statusCodeResult.StatusCode);
 
         }
         [Fact]

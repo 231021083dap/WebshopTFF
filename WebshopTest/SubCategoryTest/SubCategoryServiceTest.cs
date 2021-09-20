@@ -17,10 +17,11 @@ namespace WebshopTest.SubCategoryTest
     {
         private readonly SubService _sut;
         private readonly Mock<ISubRepo> _subRepo = new();
+        private readonly Mock<ICategoryRepo> _categoryRepo = new();
 
         public SubCategoryServiceTest()
         {
-            _sut = new SubService(_subRepo.Object);
+            _sut = new SubService(_subRepo.Object, _categoryRepo.Object);
 
             //Implementering af categoryRepo i subrepo error. 
         }
@@ -35,14 +36,24 @@ namespace WebshopTest.SubCategoryTest
             {
                 SubId = 1,
                 SubName = "SmartWatches",
-                CategoryId = 5
+                CategoryId = 5,
+                Category = new()
+                {
+                    CategoryId = 5,
+                    CategoryName = "Test"
+                }
             });
 
             sub.Add(new SubCategory
             {
                 SubId = 2,
                 SubName = "MobilePhones",
-                CategoryId = 5
+                CategoryId = 5,
+                Category = new()
+                {
+                    CategoryId = 5,
+                    CategoryName = "Test"
+                }
             });
 
             _subRepo
@@ -88,7 +99,12 @@ namespace WebshopTest.SubCategoryTest
             {
                 SubId = subid,
                 SubName = "MobilePhones",
-                CategoryId = 5
+                CategoryId = 5,
+                Category = new()
+                {
+                    CategoryId = 5,
+                    CategoryName = "Test"
+                }
             };
 
             _subRepo
@@ -129,8 +145,8 @@ namespace WebshopTest.SubCategoryTest
             //Arrange
             NewSubCategory newSub = new()
             {
-                SubName = "MobilePhones",
-                CategoryId = 5
+                SubName = "SmartWatches",
+                CategoryId = 1
             };
 
             int subid = 1;
@@ -139,12 +155,23 @@ namespace WebshopTest.SubCategoryTest
             {
                 SubId = subid,
                 SubName = "SmartWatches",
-                CategoryId = 5
+                CategoryId = 1
             };
 
             _subRepo
                 .Setup(s => s.Create(It.IsAny<SubCategory>()))
                 .ReturnsAsync(sub);
+
+            Category cat = new()
+            {
+                CategoryId = 1,
+                CategoryName = "test"
+            };
+
+            _categoryRepo
+                .Setup(s => s.GetById(It.IsAny<int>()))
+                .ReturnsAsync(cat);
+
 
             //Act
             var result = await _sut.Create(newSub);
@@ -175,13 +202,23 @@ namespace WebshopTest.SubCategoryTest
             SubCategory sub = new()
             {
                 SubId = subid,
-                SubName = "MobilePhones",
+                SubName = "SmartWatches",
                 CategoryId = 5
             };
 
             _subRepo
                 .Setup(s => s.Update(It.IsAny<int>(), It.IsAny<SubCategory>()))
                 .ReturnsAsync(sub);
+
+            Category cat = new()
+            {
+                CategoryId = 5,
+                CategoryName = "test"
+            };
+
+            _categoryRepo
+                .Setup(s => s.GetById(It.IsAny<int>()))
+                .ReturnsAsync(cat);
 
             //Act
             var result = await _sut.Update(subid, updateSub);
