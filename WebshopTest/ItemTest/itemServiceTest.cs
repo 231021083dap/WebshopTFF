@@ -17,10 +17,12 @@ namespace WebshopTest.ItemTest
     {
         private readonly ItemService _sut;
         private readonly Mock<IItemRepo> _itemRepo = new();
+        private readonly Mock<ISubRepo> _subRepo = new();
 
         public itemServiceTest()
         {
-            _sut = new ItemService(_itemRepo.Object);
+            _sut = new ItemService(_itemRepo.Object, _subRepo.Object);
+            
         }
 
         [Fact]
@@ -37,7 +39,13 @@ namespace WebshopTest.ItemTest
                 ItemPrice = 5999,
                 ItemDiscount = 0,
                 ItemAmount = 20,
-                ItemStatus = "In Stock"
+                ItemStatus = "In Stock",
+                SubCategory = new()
+                {
+                    SubId = 1,
+                    SubName = "test",
+                    CategoryId = 1
+                }
             });
 
             item.Add(new Item
@@ -48,7 +56,13 @@ namespace WebshopTest.ItemTest
                 ItemPrice = 2999,
                 ItemDiscount = 0,
                 ItemAmount = 5,
-                ItemStatus = "In Stock"
+                ItemStatus = "In Stock",
+                SubCategory = new()
+                {
+                    SubId = 1,
+                    SubName = "test",
+                    CategoryId = 1
+                }
             });
 
             _itemRepo
@@ -101,7 +115,13 @@ namespace WebshopTest.ItemTest
                 ItemPrice = 2999,
                 ItemDiscount = 0,
                 ItemAmount = 5,
-                ItemStatus = "In Stock"
+                ItemStatus = "In Stock",
+                SubCategory = new()
+                {
+                    SubId = 1,
+                    SubName = "test",
+                    CategoryId = 1
+                }
             };
 
             _itemRepo
@@ -147,9 +167,9 @@ namespace WebshopTest.ItemTest
             //Arrange
             NewItem newItem = new()
             {
-                ItemName = "Acer Laptop",
+                ItemName = "MSI Laptop",
                 SubCategoryId = 1,
-                ItemPrice = 2999,
+                ItemPrice = 5999,
                 ItemDiscount = 0,
                 ItemAmount = 5,
                 ItemStatus = "In Stock"
@@ -171,6 +191,18 @@ namespace WebshopTest.ItemTest
             _itemRepo
                 .Setup(s => s.Create(It.IsAny<Item>()))
                 .ReturnsAsync(item);
+
+            SubCategory sub = new()
+            {
+                SubId = 1,
+                SubName = "test",
+                CategoryId = 1
+            };
+
+            _subRepo
+                .Setup(s => s.GetById(It.IsAny<int>()))
+                .ReturnsAsync(sub);
+
 
             //Act
             var result = await _sut.Create(newItem);
@@ -221,6 +253,18 @@ namespace WebshopTest.ItemTest
             _itemRepo
                 .Setup(s => s.Update(It.IsAny<int>(), It.IsAny<Item>()))
                 .ReturnsAsync(item);
+
+            SubCategory sub = new()
+            {
+                SubId = 1,
+                SubName = "test",
+                CategoryId = 1
+            };
+
+            _subRepo
+                .Setup(s => s.GetById(It.IsAny<int>()))
+                .ReturnsAsync(sub);
+
 
             //Act
             var result = await _sut.Update(itemid, updateItem);

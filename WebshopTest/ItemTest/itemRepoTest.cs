@@ -20,7 +20,7 @@ namespace WebshopTest.ItemTest
         public itemRepoTest()
         {
             _options = new DbContextOptionsBuilder<WebshopContext>()
-                .UseInMemoryDatabase(databaseName: "Webshop")
+                .UseInMemoryDatabase(databaseName: "WebshopItems")
                 .Options;
 
             _context = new WebshopContext(_options);
@@ -33,6 +33,15 @@ namespace WebshopTest.ItemTest
         {
             //Arrange
             await _context.Database.EnsureDeletedAsync();
+
+            _context.SubCategory.Add(
+            new SubCategory
+            {
+                SubId = 1,
+                SubName = "test",
+                CategoryId = 1
+            });
+            await _context.SaveChangesAsync();
 
             _context.Item.Add(
             new Item
@@ -91,6 +100,16 @@ namespace WebshopTest.ItemTest
             await _context.Database.EnsureDeletedAsync();
 
             int itemid = 1;
+
+            _context.SubCategory.Add(
+            new SubCategory
+            {
+                SubId = 1,
+                SubName = "test",
+                CategoryId = 1
+            });
+            await _context.SaveChangesAsync();
+
 
             _context.Item.Add(
             new Item
@@ -193,9 +212,58 @@ namespace WebshopTest.ItemTest
         {
             //Arrange
             await _context.Database.EnsureDeletedAsync();
+
+            int itemid = 1;
+
+            _context.SubCategory.Add(
+            new SubCategory
+            {
+                SubId = 1,
+                SubName = "test",
+                CategoryId = 1
+            });
+            await _context.SaveChangesAsync();
+
+
+            Item item = new()
+            {
+                ItemId = 1,
+                ItemName = "Acer Laptop",
+                SubCategoryId = 1,
+                ItemPrice = 2999,
+                ItemDiscount = 0,
+                ItemAmount = 5,
+                ItemStatus = "In Stock"
+            };
+
+            _context.Item.Add(item);
+
+            await _context.SaveChangesAsync();
+
+            Item updateItem = new()
+            {
+                ItemId = itemid,
+                ItemName = "MSI Laptop",
+                SubCategoryId = 1,
+                ItemPrice = 5999,
+                ItemDiscount = 0,
+                ItemAmount = 50,
+                ItemStatus = "In Stock"
+            };
+
             //Act
+            var result = await _sut.Update(itemid, updateItem);
 
             //Assert
+            Assert.NotNull(result);
+            Assert.IsType<Item>(result);
+            Assert.Equal(itemid, result.ItemId);
+            Assert.Equal(updateItem.ItemName, result.ItemName);
+            Assert.Equal(updateItem.SubCategoryId, result.SubCategoryId);
+            Assert.Equal(updateItem.ItemPrice, result.ItemPrice);
+            Assert.Equal(updateItem.ItemDiscount, result.ItemDiscount);
+            Assert.Equal(updateItem.ItemAmount, result.ItemAmount);
+            Assert.Equal(updateItem.ItemStatus, result.ItemStatus);
 
         }
         [Fact]
@@ -208,11 +276,20 @@ namespace WebshopTest.ItemTest
 
             Item updatedItem = new()
             {
+                ItemId = itemid,
+                ItemName = "MSI Laptop",
+                SubCategoryId = 1,
+                ItemPrice = 5999,
+                ItemDiscount = 0,
+                ItemAmount = 50,
+                ItemStatus = "In Stock"
+            };
 
-            }
             //Act
+            var result = await _sut.Update(itemid, updatedItem);
 
             //Assert
+            Assert.Null(result);
 
         }
 

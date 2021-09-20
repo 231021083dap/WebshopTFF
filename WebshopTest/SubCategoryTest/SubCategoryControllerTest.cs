@@ -148,7 +148,7 @@ namespace WebshopTest.SubCategoryTest
             //Assert
             var statusCodeResult = (IStatusCodeActionResult)result;
 
-            Assert.Equal(500, statusCodeResult.StatusCode);
+            Assert.Equal(404, statusCodeResult.StatusCode);
         }
         [Fact]
         public async void GetById_ShouldReturnStatusCode500_WhenExceptionIsRaised()
@@ -296,7 +296,7 @@ namespace WebshopTest.SubCategoryTest
             //Assert
             var statusCodeResult = (IStatusCodeActionResult)result;
 
-            Assert.Equal(200, statusCodeResult.StatusCode);
+            Assert.Equal(204, statusCodeResult.StatusCode);
         }
         [Fact]
         public async void Delete_ShouldReturnStatusCode500_WhenExceptionIsRaised()

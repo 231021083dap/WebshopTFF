@@ -165,7 +165,7 @@ namespace WebshopTest.ItemTest
             //Assert
             var statusCodeResult = (IStatusCodeActionResult)result;
 
-            Assert.Equal(500, statusCodeResult.StatusCode);
+            Assert.Equal(404, statusCodeResult.StatusCode);
 
         }
         [Fact]
@@ -325,7 +325,7 @@ namespace WebshopTest.ItemTest
 
 
         [Fact]
-        public async void Delete_ShouldReturnStatusCode200_WhenDataIsDeleted()
+        public async void Delete_ShouldReturnStatusCode204_WhenDataIsDeleted()
         {
             //Arrange
             int itemid = 1;
@@ -340,7 +340,7 @@ namespace WebshopTest.ItemTest
             //Assert
             var statusCodeResult = (IStatusCodeActionResult)result;
 
-            Assert.Equal(200, statusCodeResult.StatusCode);
+            Assert.Equal(204, statusCodeResult.StatusCode);
 
         }
         [Fact]

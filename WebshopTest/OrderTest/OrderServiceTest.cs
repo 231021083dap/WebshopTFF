@@ -14,10 +14,11 @@ namespace WebshopTest.OrderTest
     {
         private readonly OrdersService _sut;
         private readonly Mock<IOrdersRepo> _orderRepo = new();
+        private readonly Mock<IUserRepo> _userRepo = new();
 
         public OrderServiceTest()
         {
-            _sut = new OrdersService(_orderRepo.Object);
+            _sut = new OrdersService(_orderRepo.Object, _userRepo.Object);
         }
 
         [Fact]
