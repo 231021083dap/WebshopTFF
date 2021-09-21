@@ -11,6 +11,7 @@ namespace WebshopAPI.Repositories
     public interface IItemRepo 
     { 
     Task<List<Item>> GetAllItems();
+    Task<List<Item>> GetAllOnSale();
     Task<Item> GetById(int ItemId);
     Task<Item> Create(Item item);
     Task<Item> Update(int ItemId, Item item);
@@ -28,6 +29,13 @@ namespace WebshopAPI.Repositories
         public async Task<List<Item>> GetAllItems()
         {
             return await _context.Item
+                .Include(s => s.SubCategory)
+                .ToListAsync();
+        }
+        public async Task<List<Item>> GetAllOnSale()
+        {
+            return await _context.Item
+                .Where(x => x.ItemDiscount > 0)
                 .Include(s => s.SubCategory)
                 .ToListAsync();
         }

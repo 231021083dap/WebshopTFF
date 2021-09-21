@@ -48,6 +48,7 @@ namespace WebshopTest.ItemTest
             {
                 ItemId = 1,
                 ItemName = "MSI Laptop",
+                ItemDescription = "Top teir gaming laptop, instant teamkill",
                 SubCategoryId = 1,
                 ItemPrice = 5999,
                 ItemDiscount = 0,
@@ -60,6 +61,7 @@ namespace WebshopTest.ItemTest
             {
                 ItemId = 2,
                 ItemName = "Acer Laptop",
+                ItemDescription = "No teamkills here",
                 SubCategoryId = 1,
                 ItemPrice = 2999,
                 ItemDiscount = 0,
@@ -116,6 +118,7 @@ namespace WebshopTest.ItemTest
             {
                 ItemId = 1,
                 ItemName = "Acer Laptop",
+                ItemDescription = "No teamkills here",
                 SubCategoryId = 1,
                 ItemPrice = 2999,
                 ItemDiscount = 0,
@@ -162,6 +165,7 @@ namespace WebshopTest.ItemTest
             Item item = new()
             {
                 ItemName = "Acer Laptop",
+                ItemDescription = "No teamkills here",
                 SubCategoryId = 1,
                 ItemPrice = 2999,
                 ItemDiscount = 0,
@@ -188,6 +192,7 @@ namespace WebshopTest.ItemTest
             {
                 ItemId = 1,
                 ItemName = "Acer Laptop",
+                ItemDescription = "No teamkills here",
                 SubCategoryId = 1,
                 ItemPrice = 2999,
                 ItemDiscount = 0,
@@ -229,6 +234,7 @@ namespace WebshopTest.ItemTest
             {
                 ItemId = 1,
                 ItemName = "Acer Laptop",
+                ItemDescription = "No teamkills here",
                 SubCategoryId = 1,
                 ItemPrice = 2999,
                 ItemDiscount = 0,
@@ -244,6 +250,7 @@ namespace WebshopTest.ItemTest
             {
                 ItemId = itemid,
                 ItemName = "MSI Laptop",
+                ItemDescription = "Top teir gaming laptop, instant teamkill",
                 SubCategoryId = 1,
                 ItemPrice = 5999,
                 ItemDiscount = 0,
@@ -278,6 +285,7 @@ namespace WebshopTest.ItemTest
             {
                 ItemId = itemid,
                 ItemName = "MSI Laptop",
+                ItemDescription = "Top teir gaming laptop, instant teamkill",
                 SubCategoryId = 1,
                 ItemPrice = 5999,
                 ItemDiscount = 0,
@@ -306,6 +314,7 @@ namespace WebshopTest.ItemTest
             {
                 ItemId = 1,
                 ItemName = "Acer Laptop",
+                ItemDescription = "No teamkills here",
                 SubCategoryId = 1,
                 ItemPrice = 2999,
                 ItemDiscount = 0,

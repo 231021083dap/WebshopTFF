@@ -9,6 +9,7 @@ namespace WebshopAPI.Responses
     {       
         public int ItemId { get; set; }
         public string ItemName { get; set; }
+        public string ItemDescription { get; set; }
         public int SubCategoryId { get; set; }
         public ItemSubResponse SubCategory { get; set; }
         public int ItemPrice { get; set; }

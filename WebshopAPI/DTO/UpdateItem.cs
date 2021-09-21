@@ -13,6 +13,8 @@ namespace WebshopAPI.DTO
         [MinLength(1, ErrorMessage = "Item name can not be blank")]
         public string ItemName { get; set; }
 
+        public string ItemDescription { get; set; }
+
         [ForeignKey("SubCategory.SubId")]
         [Required]
         public int SubCategoryId { get; set; }

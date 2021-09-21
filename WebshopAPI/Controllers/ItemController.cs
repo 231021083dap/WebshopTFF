@@ -51,6 +51,35 @@ namespace WebshopAPI.Controllers
             }
         }
 
+        [HttpGet("OnSale")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetAllOnSale()
+        {
+            try
+            {
+                //Return 500 code
+                List<ItemResponse> Items = await _itemService.GetAllOnSale();
+                if (Items == null)
+                {
+                    return Problem("Got Nothing.. Unexpected");
+                }
+                //Return 204 code
+                if (Items.Count == 0)
+                {
+                    return NoContent();
+                }
+
+                //Return 200 code
+                return Ok(Items);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
         //GetById
         [HttpGet("{ItemId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
