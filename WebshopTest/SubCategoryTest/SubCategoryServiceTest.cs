@@ -17,12 +17,12 @@ namespace WebshopTest.SubCategoryTest
     {
         private readonly SubService _sut;
         private readonly Mock<ISubRepo> _subRepo = new();
+        private readonly Mock<ICategoryRepo> _categoryRepo = new();
 
         public SubCategoryServiceTest()
         {
-            _sut = new SubService(_subRepo.Object);
-
-            //Implementering af categoryRepo i subrepo error. 
+            _sut = new SubService(_subRepo.Object, _categoryRepo.Object);
+         
         }
 
         [Fact]

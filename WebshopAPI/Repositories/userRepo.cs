@@ -16,6 +16,7 @@ namespace WebshopAPI.Repositories
         Task<User> Create(User user);
         Task<User> Update(int UserId, User user);
         Task<User> Delete(int UserId);
+        //Task<Role> GetByRoleId(int RoleId);
     }
     public class UserRepo : IUserRepo
     {
@@ -73,5 +74,15 @@ namespace WebshopAPI.Repositories
             }
             return NewUser;
         }
+
+
+        // ROLES //
+
+        //public async Task<Role> GetByRoleId(int RoleId)
+        //{
+        //    return await _context.Role                
+        //        .FirstOrDefaultAsync(u => u.RoleId == RoleId);
+        //}
+
     }
 }

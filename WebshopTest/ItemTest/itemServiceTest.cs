@@ -17,10 +17,11 @@ namespace WebshopTest.ItemTest
     {
         private readonly ItemService _sut;
         private readonly Mock<IItemRepo> _itemRepo = new();
+        private readonly Mock<ISubRepo> _subRepo = new();
 
         public itemServiceTest()
         {
-            _sut = new ItemService(_itemRepo.Object);
+            _sut = new ItemService(_itemRepo.Object, _subRepo.Object);
         }
 
         [Fact]

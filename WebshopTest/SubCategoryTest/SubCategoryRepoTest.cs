@@ -31,7 +31,7 @@ namespace WebshopTest.SubCategoryTest
         public async Task GetAllSubCategories_ShouldReturnListOfSubCategories_WhenSubCategoriesExists()
         {
             //Arrange
-
+            
             //Act
 
             //Assert

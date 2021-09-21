@@ -17,6 +17,7 @@ namespace WebshopAPI.Services
         Task<UserResponse> Create(NewUser newUser);
         Task<UserResponse> Update(int UserId, UpdateUser updateUser);
         Task<bool> Delete(int UserId);
+        //Task<UserRoleResponse> GetByRoleId(int RoleId);
     }
 
 
@@ -24,7 +25,7 @@ namespace WebshopAPI.Services
     public class UserService : IUserService
     {
         private readonly IUserRepo _UserRepo;
-      
+
         //CTOR
         public UserService(IUserRepo UserRepo)
         {
@@ -160,6 +161,23 @@ namespace WebshopAPI.Services
             var result = await _UserRepo.Delete(UserId);
             return true;
         }
+
+        // ROLE //
+
+        //public async Task<UserRoleResponse> GetByRoleId(int RoleId)
+        //{
+        //    Role role = await _UserRepo.GetByRoleId(RoleId);
+
+        //    return role == null ? null : new UserRoleResponse
+
+
+        //    {
+        //        RoleName = role.RoleName,
+        //        RoleId = role.RoleId
+        //    };
+
+
+        //}
     }
 }
 

@@ -209,7 +209,7 @@ namespace WebshopTest.ItemTest
             Item updatedItem = new()
             {
 
-            }
+            };
             //Act
 
             //Assert
