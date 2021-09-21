@@ -29,7 +29,7 @@ namespace WebshopTest.UserTest
         public async void GetAll_ShouldReturnListOfUsersResponse_WhenUsersExists()
         {
             //Arrange
-            List<User> user = new List<User>();
+            List<User> user = new();
 
             user.Add(new User
             {
@@ -203,15 +203,15 @@ namespace WebshopTest.UserTest
                 .Setup(s => s.Create(It.IsAny<User>()))
                 .ReturnsAsync(user);
 
-            //Role role = new()
-            //{
-            //    RoleId = 1,
-            //    RoleName = "Customer"
-            //};
+            Role role = new()
+            {
+                RoleId = 1,
+                RoleName = "Customer"
+            };
 
-            //_userRepo
-            //    .Setup(s => s.GetByRoleId(It.IsAny<int>()))
-            //    .ReturnsAsync(role);
+            _userRepo
+                .Setup(s => s.GetByRoleId(It.IsAny<int>()))
+                .ReturnsAsync(role);
 
             //Act
             var result = await _sut.Create(newUser);
@@ -275,8 +275,12 @@ namespace WebshopTest.UserTest
                 RoleId = 1,
                 RoleName = "Customer"
             };
-            
-            
+
+            _userRepo
+                .Setup(s => s.GetByRoleId(It.IsAny<int>()))
+                .ReturnsAsync(role);
+
+
 
             //Act
             var result = await _sut.Update(userid, updateUser);

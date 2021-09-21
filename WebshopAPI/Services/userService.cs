@@ -36,8 +36,8 @@ namespace WebshopAPI.Services
 
         public async Task<List<UserResponse>> GetAllUsers()
         {
-            List<UserResponse> Users = new();
-            List<User> User = await _UserRepo.GetAllUsers();
+            
+            List<User> Users = await _UserRepo.GetAllUsers();
             //lambda
             return Users.Select(u => new UserResponse
             {
@@ -99,25 +99,30 @@ namespace WebshopAPI.Services
                 PostalCode = newUser.PostalCode
             };
             user = await _UserRepo.Create(user);
-            return user == null ? null : new UserResponse
+            if (user != null)
             {
-                UserId = user.UserId,
-                RoleId = user.RoleId,
-                Email = user.Email,
-                Phone = user.Phone,
-                Password = user.Password,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                MiddleName = user.MiddleName,
-                Address = user.Address,
-                PostalCode = user.PostalCode,
-                UserRole = new UserRoleResponse
-                {
-                    RoleName = user.UserRole.RoleName,
-                    RoleId = user.UserRole.RoleId
-                }
+                user.UserRole = await _UserRepo.GetByRoleId(user.RoleId);
 
-            };
+                return new UserResponse
+                {
+                    UserId = user.UserId,
+                    RoleId = user.RoleId,
+                    Email = user.Email,
+                    Phone = user.Phone,
+                    Password = user.Password,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    MiddleName = user.MiddleName,
+                    Address = user.Address,
+                    PostalCode = user.PostalCode,
+                    UserRole = new UserRoleResponse
+                    {
+                        RoleName = user.UserRole.RoleName,
+                        RoleId = user.UserRole.RoleId
+                    }
+                };
+            }
+            return null;
         }
 
 
@@ -136,24 +141,29 @@ namespace WebshopAPI.Services
                 PostalCode = updateUser.PostalCode
             };
             user = await _UserRepo.Update(UserId, user);
-
-            return user == null ? null : new UserResponse
+            if (user != null)
             {
-                RoleId = user.RoleId,
-                Email = user.Email,
-                Phone = user.Phone,
-                Password = user.Password,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                MiddleName = user.MiddleName,
-                Address = user.Address,
-                PostalCode = user.PostalCode,
-                UserRole = new UserRoleResponse
+                user.UserRole = await _UserRepo.GetByRoleId(user.RoleId);
+                return new UserResponse
                 {
-                    RoleName = user.UserRole.RoleName,
-                    RoleId = user.UserRole.RoleId
-                }
-            };
+                    UserId = user.UserId,
+                    RoleId = user.RoleId,
+                    Email = user.Email,
+                    Phone = user.Phone,
+                    Password = user.Password,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    MiddleName = user.MiddleName,
+                    Address = user.Address,
+                    PostalCode = user.PostalCode,
+                    UserRole = new UserRoleResponse
+                    {
+                        RoleName = user.UserRole.RoleName,
+                        RoleId = user.UserRole.RoleId
+                    }
+                };
+            }
+            return null;
         }
 
         public async Task<bool> Delete(int UserId)
