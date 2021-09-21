@@ -22,7 +22,7 @@ namespace WebshopTest.ItemTest
         public itemServiceTest()
         {
             _sut = new ItemService(_itemRepo.Object, _subRepo.Object);
-            
+
         }
 
         [Fact]

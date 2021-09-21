@@ -32,6 +32,7 @@ namespace WebshopTest.SubCategoryTest
         public async Task GetAllSubCategories_ShouldReturnListOfSubCategories_WhenSubCategoriesExists()
         {
             //Arrange
+
             await _context.Database.EnsureDeletedAsync();
 
             _context.Category.Add(
@@ -58,6 +59,7 @@ namespace WebshopTest.SubCategoryTest
             });
 
             await _context.SaveChangesAsync();
+
 
             //Act
             var result = await _sut.GetAllSubs();

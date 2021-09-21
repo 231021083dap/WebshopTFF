@@ -146,7 +146,9 @@ namespace WebshopTest.CategoryTest
             //Assert
             var statusCodeResult = (IStatusCodeActionResult)result;
 
+
             Assert.Equal(404, statusCodeResult.StatusCode);
+
 
         }
         [Fact]
