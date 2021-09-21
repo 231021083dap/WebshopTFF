@@ -2,14 +2,15 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 import { Observable } from "rxjs";
-import { Category } from "../models";
+import { Category, SubCategory } from "../models";
 
 @Injectable({
     providedIn : 'root'
 })
 
 export class CategoryService{
-    private apiUrl = 'Https://Localhost:5001/api/category';
+    private catapiUrl = 'Https://Localhost:5001/api/category';
+    private subapiUrl = 'https://localhost:5001/api/Sub';
 
     httpOptions = 
     {
@@ -23,6 +24,11 @@ export class CategoryService{
 
     GetAllCategories() : Observable<Category[]>
     {
-        return this.http.get<Category[]>(this.apiUrl);
+        return this.http.get<Category[]>(this.catapiUrl);
+    }
+
+    GetAllSubCategories() : Observable<SubCategory[]>
+    {
+        return this.http.get<SubCategory[]>(this.subapiUrl);
     }
 }

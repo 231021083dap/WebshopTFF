@@ -30,6 +30,7 @@ namespace WebshopAPI.DB
                 {
                     ItemId = 1,
                     ItemName = "Acer 15.6 tommer laptop",
+                    ItemDescription = "Shitty bærbar, minimal teamkilling ability with this one.",
                     SubCategoryId = 1,
                     ItemPrice = 4999,
                     ItemDiscount = 5,
@@ -39,6 +40,7 @@ namespace WebshopAPI.DB
                 {
                     ItemId = 2,
                     ItemName = "SteelSeries Arctic 7 Wireless",
+                    ItemDescription = "Top teir audio to own your teammates",
                     SubCategoryId = 2,
                     ItemPrice = 999,
                     ItemDiscount = 0,

@@ -2,7 +2,7 @@
 
 namespace WebshopAPI.Migrations
 {
-    public partial class EndTest : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -60,13 +60,13 @@ namespace WebshopAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<int>(type: "int", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Phone = table.Column<int>(type: "int", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(24)", maxLength: 24, nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PostalCode = table.Column<int>(type: "int", nullable: false)
+                    PostalCode = table.Column<string>(type: "nvarchar(4)", maxLength: 4, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -86,6 +86,7 @@ namespace WebshopAPI.Migrations
                     ItemId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ItemName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ItemDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SubCategoryId = table.Column<int>(type: "int", nullable: false),
                     ItemPrice = table.Column<int>(type: "int", nullable: false),
                     ItemDiscount = table.Column<int>(type: "int", nullable: false),
@@ -183,17 +184,35 @@ namespace WebshopAPI.Migrations
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "UserId", "Address", "Email", "FirstName", "LastName", "MiddleName", "Password", "Phone", "PostalCode", "RoleId" },
-                values: new object[] { 1, "Noobstreet", "Test@gmail.com", "Anders", "Noob", "Er", "TestTest", 20202020, 1337, 1 });
+                values: new object[] { 1, "Noobstreet", "Test@gmail.com", "Anders", "Noob", "Er", "TestTest", "20202020", "1337", 1 });
 
             migrationBuilder.InsertData(
                 table: "Item",
-                columns: new[] { "ItemId", "ItemAmount", "ItemDiscount", "ItemName", "ItemPrice", "ItemStatus", "SubCategoryId" },
-                values: new object[] { 1, 10, 5, "Acer 15.6 tommer laptop", 4999, "In Stock", 1 });
+                columns: new[] { "ItemId", "ItemAmount", "ItemDescription", "ItemDiscount", "ItemName", "ItemPrice", "ItemStatus", "SubCategoryId" },
+                values: new object[,]
+                {
+                    { 1, 10, "Shitty bærbar, minimal teamkilling ability with this one.", 5, "Acer 15.6 tommer laptop", 4999, "In Stock", 1 },
+                    { 2, 2, "Top teir audio to own your teammates", 0, "SteelSeries Arctic 7 Wireless", 999, "In Stock", 2 }
+                });
 
             migrationBuilder.InsertData(
-                table: "Item",
-                columns: new[] { "ItemId", "ItemAmount", "ItemDiscount", "ItemName", "ItemPrice", "ItemStatus", "SubCategoryId" },
-                values: new object[] { 2, 2, 0, "SteelSeries Arctic 7 Wireless", 999, "In Stock", 2 });
+                table: "Orders",
+                columns: new[] { "OrderId", "OrderStatus", "UserId" },
+                values: new object[,]
+                {
+                    { 1, "In Shipping", 1 },
+                    { 2, "In Cart", 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "OrderItems",
+                columns: new[] { "OrderItemId", "Amount", "CurrentPrice", "ItemId", "OrderId" },
+                values: new object[] { 1, 5, 500, 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "OrderItems",
+                columns: new[] { "OrderItemId", "Amount", "CurrentPrice", "ItemId", "OrderId" },
+                values: new object[] { 2, 2, 1000, 2, 2 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Item_SubCategoryId",

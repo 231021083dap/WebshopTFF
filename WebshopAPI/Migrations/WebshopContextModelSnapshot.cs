@@ -71,6 +71,9 @@ namespace WebshopAPI.Migrations
                     b.Property<int>("ItemAmount")
                         .HasColumnType("int");
 
+                    b.Property<string>("ItemDescription")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("ItemDiscount")
                         .HasColumnType("int");
 
@@ -98,6 +101,7 @@ namespace WebshopAPI.Migrations
                         {
                             ItemId = 1,
                             ItemAmount = 10,
+                            ItemDescription = "Shitty bærbar, minimal teamkilling ability with this one.",
                             ItemDiscount = 5,
                             ItemName = "Acer 15.6 tommer laptop",
                             ItemPrice = 4999,
@@ -108,6 +112,7 @@ namespace WebshopAPI.Migrations
                         {
                             ItemId = 2,
                             ItemAmount = 2,
+                            ItemDescription = "Top teir audio to own your teammates",
                             ItemDiscount = 0,
                             ItemName = "SteelSeries Arctic 7 Wireless",
                             ItemPrice = 999,
@@ -140,6 +145,24 @@ namespace WebshopAPI.Migrations
                     b.HasIndex("ItemId");
 
                     b.ToTable("OrderItems");
+
+                    b.HasData(
+                        new
+                        {
+                            OrderItemId = 1,
+                            Amount = 5,
+                            CurrentPrice = 500,
+                            ItemId = 1,
+                            OrderId = 1
+                        },
+                        new
+                        {
+                            OrderItemId = 2,
+                            Amount = 2,
+                            CurrentPrice = 1000,
+                            ItemId = 2,
+                            OrderId = 2
+                        });
                 });
 
             modelBuilder.Entity("WebshopAPI.DB.Entities.Orders", b =>
@@ -160,6 +183,20 @@ namespace WebshopAPI.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Orders");
+
+                    b.HasData(
+                        new
+                        {
+                            OrderId = 1,
+                            OrderStatus = "In Shipping",
+                            UserId = 1
+                        },
+                        new
+                        {
+                            OrderId = 2,
+                            OrderStatus = "In Cart",
+                            UserId = 1
+                        });
                 });
 
             modelBuilder.Entity("WebshopAPI.DB.Entities.Role", b =>
@@ -282,11 +319,14 @@ namespace WebshopAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Phone")
-                        .HasColumnType("int");
+                    b.Property<string>("Phone")
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
 
-                    b.Property<int>("PostalCode")
-                        .HasColumnType("int");
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasMaxLength(4)
+                        .HasColumnType("nvarchar(4)");
 
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
@@ -307,8 +347,8 @@ namespace WebshopAPI.Migrations
                             LastName = "Noob",
                             MiddleName = "Er",
                             Password = "TestTest",
-                            Phone = 20202020,
-                            PostalCode = 1337,
+                            Phone = "20202020",
+                            PostalCode = "1337",
                             RoleId = 1
                         });
                 });
