@@ -21,7 +21,7 @@ namespace WebshopTest.UserTest
         public UserRepoTest()
         {
             _options = new DbContextOptionsBuilder<WebshopContext>()
-                .UseInMemoryDatabase(databaseName: "WebshopSubCategory")
+                .UseInMemoryDatabase(databaseName: "WebshopUserTest")
                 .Options;
 
             _context = new WebshopContext(_options);

@@ -20,7 +20,7 @@ namespace WebshopTest.CategoryTest
         public CategoryRepoTest()
         {
             _options = new DbContextOptionsBuilder<WebshopContext>()
-                .UseInMemoryDatabase(databaseName: "WebshopCategory")
+                .UseInMemoryDatabase(databaseName: "WebshopCategoryTest")
                 .Options;
 
             _context = new WebshopContext(_options);
