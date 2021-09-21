@@ -19,6 +19,7 @@ import { AdminSubCategoryComponent } from './admin/admin-sub-category/admin-sub-
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminItemsComponent } from './admin/admin-items/admin-items.component';
+import { ItembyidComponent } from './itembyid/itembyid.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { AdminItemsComponent } from './admin/admin-items/admin-items.component';
     AdminSubCategoryComponent,
     AdminOrdersComponent,
     AdminUsersComponent,
-    AdminItemsComponent
+    AdminItemsComponent,
+    ItembyidComponent
   ],
   imports: [
     BrowserModule,

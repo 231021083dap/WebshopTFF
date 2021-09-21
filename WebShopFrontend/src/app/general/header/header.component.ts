@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Category, SubCategory } from 'src/app/models';
+import { CategoryService } from 'src/app/Services/CategoryService';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -7,12 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  Categories : Category[] = [];
+  SubCategories : SubCategory[] = [];
+
+  constructor(private categoryService:CategoryService) { }
 
   ngOnInit(): void {
-  }
+    this.categoryService.GetAllCategories()
+    .subscribe(a => this.Categories = a);
 
-  // Oninit funktion der henter alle kategorier,
-  // således at det kan vises i headeren. 
+    this.categoryService.GetAllSubCategories()
+    .subscribe(a => this.SubCategories = a)
+  }
 
 }

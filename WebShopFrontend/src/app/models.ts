@@ -4,6 +4,7 @@ export interface Item
 {
     ItemId: number;
     ItemName: string;
+    ItemDescription: string;
     ItemSubCategory: string;
     ItemPrice: number;    
     ItemDiscount: number;    
