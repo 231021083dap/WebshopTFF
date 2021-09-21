@@ -23,7 +23,7 @@ namespace WebshopTest.SubCategoryTest
         {
             _sut = new SubService(_subRepo.Object, _categoryRepo.Object);
 
-            //Implementering af categoryRepo i subrepo error. 
+
         }
 
         [Fact]
