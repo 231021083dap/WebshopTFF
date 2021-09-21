@@ -165,7 +165,7 @@ namespace WebshopTest.ItemTest
             //Assert
             var statusCodeResult = (IStatusCodeActionResult)result;
 
-            Assert.Equal(500, statusCodeResult.StatusCode);
+            Assert.Equal(404, statusCodeResult.StatusCode);
 
         }
         [Fact]

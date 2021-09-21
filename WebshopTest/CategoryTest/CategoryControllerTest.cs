@@ -144,9 +144,11 @@ namespace WebshopTest.CategoryTest
             var result = await _sut.GetById(categoryid);
 
             //Assert
-            var StatusCodeResult = (IStatusCodeActionResult)result;
+            var statusCodeResult = (IStatusCodeActionResult)result;
 
-            Assert.Equal(404, StatusCodeResult.StatusCode);
+
+            Assert.Equal(404, statusCodeResult.StatusCode);
+
 
         }
         [Fact]
