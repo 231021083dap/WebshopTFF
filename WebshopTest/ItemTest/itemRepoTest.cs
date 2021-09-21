@@ -20,11 +20,7 @@ namespace WebshopTest.ItemTest
         public itemRepoTest()
         {
             _options = new DbContextOptionsBuilder<WebshopContext>()
-<<<<<<< HEAD
                 .UseInMemoryDatabase(databaseName: "WebshopItemTest")
-=======
-                .UseInMemoryDatabase(databaseName: "WebshopItemsTest")
->>>>>>> master
                 .Options;
 
             _context = new WebshopContext(_options);
