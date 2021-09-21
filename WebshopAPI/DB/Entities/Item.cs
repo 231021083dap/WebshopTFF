@@ -16,6 +16,9 @@ namespace WebshopAPI.DB.Entities
         [MinLength(1, ErrorMessage ="Item name can not be blank")]
         public string ItemName { get; set; }
 
+        [MinLength(1, ErrorMessage ="Description can not be blank")]
+        public string ItemDescription { get; set; }
+
         [ForeignKey("{SubCategory.SubId}")]
         public int SubCategoryId { get; set; }
 

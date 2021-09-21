@@ -1,1 +1,33 @@
-<p>home works!</p>
+<section class="hero is-fullheight is-bold">
+
+    <div class="hero-body">
+
+        <div class="container has-text-centered">
+            <figure class="image is-centered is-3by1">
+                <img src="../../assets/Pics/WebsitePics/OnSale.png">
+            </figure>
+            
+
+            <div class="columns is-multiline">
+                <div *ngFor="let item of Items" class="column is-one-quarter is-clickable">
+                    <div class="column">
+                        <div class="box">
+                        <figure class="image is-1by1">
+                            <a routerLink="/Item/{{item.ItemId}}"><img src="../../assets/Pics/ItemPics/{{item.ItemName}}.jpg"></a>
+                        </figure>
+                            <p class="title is-4"><u><a routerLink="/Item/{{item.ItemName}}"></a></u></p>
+                            <p class="subtitle is-6"><b>Product Name :</b> {{item.ItemName}} </p>
+                            <br>
+                            <p class="subtitle is-6"><b>Product description :</b> {{item.ItemDescription}} </p>
+                            <p class="subtitle is-6"><b>Product price :</b> {{item.ItemPrice}} </p>
+                            <p class="subtitle is-6"><u><b>Product discount : {{item.ItemDiscount}}% </b></u></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

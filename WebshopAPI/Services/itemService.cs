@@ -13,6 +13,7 @@ namespace WebshopAPI.Services
     {
         //    //CRUD
         Task<List<ItemResponse>> GetAllItems();
+        Task<List<ItemResponse>> GetAllOnSale();
         Task<ItemResponse> GetById(int ItemId);
         Task<ItemResponse> Create(NewItem newItem);
         Task<ItemResponse> Update(int ItemId, UpdateItem updateItem);
@@ -41,6 +42,7 @@ namespace WebshopAPI.Services
             {
                 ItemId = i.ItemId,
                 ItemName = i.ItemName,
+                ItemDescription = i.ItemDescription,
                 SubCategoryId = i.SubCategoryId,
                 ItemPrice = i.ItemPrice,
                 ItemDiscount = i.ItemDiscount,
@@ -56,6 +58,29 @@ namespace WebshopAPI.Services
 
         }
 
+        public async Task<List<ItemResponse>> GetAllOnSale()
+        {
+            List<Item> Item = await _itemRepo.GetAllOnSale();
+
+            return Item.Select(i => new ItemResponse
+            {
+                ItemId = i.ItemId,
+                ItemName = i.ItemName,
+                ItemDescription = i.ItemDescription,
+                SubCategoryId = i.SubCategoryId,
+                ItemPrice = i.ItemPrice,
+                ItemDiscount = i.ItemDiscount,
+                ItemAmount = i.ItemAmount,
+                ItemStatus = i.ItemStatus,
+                SubCategory = new ItemSubResponse
+                {
+                    SubId = i.SubCategory.SubId,
+                    SubName = i.SubCategory.SubName,
+                    CategoryId = i.SubCategory.CategoryId
+                }
+            }).ToList();
+        }
+
 
         public async Task<ItemResponse> GetById(int ItemId)
         {
@@ -65,6 +90,7 @@ namespace WebshopAPI.Services
             {
                 ItemId = item.ItemId,
                 ItemName = item.ItemName,
+                ItemDescription = item.ItemDescription,
                 SubCategoryId = item.SubCategoryId,
                 ItemPrice = item.ItemPrice,
                 ItemDiscount = item.ItemDiscount,
@@ -84,6 +110,7 @@ namespace WebshopAPI.Services
             Item item = new Item
             {
                 ItemName = newItem.ItemName,
+                ItemDescription = newItem.ItemDescription,
                 SubCategoryId = newItem.SubCategoryId,
                 ItemPrice = newItem.ItemPrice,
                 ItemDiscount = newItem.ItemDiscount,
@@ -97,6 +124,7 @@ namespace WebshopAPI.Services
             {
                 ItemId = item.ItemId,
                 ItemName = item.ItemName,
+                ItemDescription = item.ItemDescription,
                 SubCategoryId = item.SubCategoryId,
                 ItemPrice = item.ItemPrice,
                 ItemDiscount = item.ItemDiscount,
@@ -110,6 +138,7 @@ namespace WebshopAPI.Services
             Item item = new()
             {
                 ItemName = updateItem.ItemName,
+                ItemDescription = updateItem.ItemDescription,
                 SubCategoryId = updateItem.SubCategoryId,
                 ItemPrice = updateItem.ItemPrice,
                 ItemDiscount = updateItem.ItemDiscount,
@@ -126,6 +155,7 @@ namespace WebshopAPI.Services
                 {
                     ItemId = item.ItemId,
                     ItemName = item.ItemName,
+                    ItemDescription = item.ItemDescription,
                     SubCategoryId = item.SubCategoryId,
                     ItemPrice = item.ItemPrice,
                     ItemDiscount = item.ItemDiscount,

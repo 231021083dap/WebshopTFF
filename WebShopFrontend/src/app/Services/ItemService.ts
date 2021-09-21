@@ -9,7 +9,9 @@ import { Item } from "../models";
 })
 
 export class ItemService{
+
     private apiUrl = 'Https://Localhost:5001/api/item';
+    private OnSaleItemsUrl = 'https://localhost:5001/api/Item/OnSale';
 
     httpOptions = 
     {
@@ -24,5 +26,10 @@ export class ItemService{
     GetAllItems() : Observable<Item[]>
     {
         return this.http.get<Item[]>(this.apiUrl);
+    }
+
+    GetAllOnSale() : Observable<Item[]>
+    {
+        return this.http.get<Item[]>(this.OnSaleItemsUrl);
     }
 }
