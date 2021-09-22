@@ -8,7 +8,6 @@
 
 <section class="section">
     <div class="container">
-
         <div class="tabs is-centered is-medium is-boxed is-rounded is-fullwidth">
             <ul>
                 <li class="is-active"><a routerLink="/authentication/login">Login</a></li>
@@ -18,28 +17,31 @@
 
         <form (ngSubmit)="Login()" #LoginForm="ngForm">
 
-            <div class="Field">
-                <div class="control">
-
-                    <label class="label">Email</label>
-                    <input class="input is-link is-rounded" type="text"
-                        placeholder="Email" [(ngModel)]="Email" required>
-                        
-                </div>
-            </div>
-
-            <p class="mt-6">
-            </p>
-
+            <label class="label">Email</label>                    
             <div class="Field">
                 <div class="control has-icons-left">
-                    <label class="label">Password</label>
-                    <input class="input is-link is-rounded" type="password"
-                        placeholder="Password" [(ngModel)]="Password" required>
+                    <input class="input is-link is-rounded" type="email"
+                        placeholder="Email" [(ngModel)]="Email" required/>
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                        </span>
                 </div>
             </div>
 
-            <p class="mt-6">
+            <p class="mt-4"></p>
+            
+            <label class="label">Password</label>
+            <div class="Field">
+                <p class="control is-expanded has-icons-left">
+                    <input class="input is-link is-rounded" type="password"
+                        placeholder="Password" [(ngModel)]="Password" required/>
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                </p>
+            </div>
+
+            <p class="mt-4">
             </p>
 
             <button class="button is-link is-rounded" type="button"  (click)="Login()">

@@ -44,8 +44,8 @@
         <p class="control is-expanded has-icons-right">
           <input
             class="input is-link is-rounded"
-            type="tel"
-            placeholder="Your phone number"
+            type="phone"
+            placeholder="Phone number"
           />
           <span class="icon is-small is-right">
             <i class="fas fa-phone"></i>
@@ -107,8 +107,25 @@
 <hr class="divider">
 <p class="mt-3"></p>
 
+
 <section class="section">
+  
   <div class="container">
+    <nav class="pagination" role="navigation" aria-label="pagination">
+      <a class="pagination-previous" title="This is the first page" disabled>Previous</a>
+      <a class="pagination-next">Next page</a>
+      <ul class="pagination-list">
+        <li>
+          <a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a>
+        </li>
+        <li>
+          <a class="pagination-link" aria-label="Goto page 2">2</a>
+        </li>
+        <li>
+          <a class="pagination-link" aria-label="Goto page 3">3</a>
+        </li>
+      </ul>
+    </nav>
     <table class="table is-striped is-hoverable is-fullwidth is-bordered">
       <thead>
         <tr>
