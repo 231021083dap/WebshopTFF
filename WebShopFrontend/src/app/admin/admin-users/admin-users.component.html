@@ -1,1 +1,104 @@
-<p>admin-users works!</p>
+<section class="hero">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            User administration!
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+
+        <form (ngSubmit)="saveUser()" #RegisterUserForm="ngForm">
+
+            <div class="Field">
+                <div class="control">
+                    <label class="label">Email</label>
+                    <input class="input is-link is-rounded" type="text"
+                        [(ngModel)]="User.Email" required>  
+                </div>
+            </div>
+
+            <div class="Field">
+                <div class="control">
+                    <label class="label">Password</label>
+                    <input class="input is-link is-rounded" type="password"
+                        [(ngModel)]="User.Password" required>
+                </div>
+            </div>
+
+            <div class="Field">
+                <div class="control">
+                    <label class="label">Phone</label>
+                    <input class="input is-link is-rounded" type="text"
+                        [(ngModel)]="User.Phone" required>
+                </div>
+            </div>
+
+            <div class="Field">
+                <div class="control">
+                    <label class="label">Firstname</label>
+                    <input class="input is-link is-rounded" type="text"
+                        [(ngModel)]="User.FirstName" required>
+                </div>
+            </div>
+
+            <div class="Field">
+                <div class="control">
+                    <label class="label">Middlename</label>
+                    <input class="input is-link is-rounded" type="text"
+                        [(ngModel)]="User.MiddleName">
+                </div>
+            </div>
+
+            <div class="Field">
+                <div class="control">
+                    <label class="label">Lastname</label>
+                    <input class="input is-link is-rounded" type="text"
+                        [(ngModel)]="User.LastName" required>
+                </div>
+            </div>
+
+            <div class="Field">
+                <div class="control">
+                    <label class="label">Address</label>
+                    <input class="input is-link is-rounded" type="text"
+                        [(ngModel)]="User.Address" required>
+                </div>
+            </div>
+
+            <div class="Field">
+                <div class="control">
+                    <label class="label">Postal code</label>
+                    <input class="input is-link is-rounded" type="text"
+                        [(ngModel)]="User.PostalCode" required>
+                </div>
+            </div>
+
+            <p class="mt-4">
+            </p>
+
+            <button class="button is-link is-rounded is-fullwidth" onclick="saveUser()">Save User</button>
+
+            <p class="mt-2">
+            </p>
+
+            <button class="button is-link is-rounded is-fullwidth" onclick="cancel()">Cancel</button>
+
+        </form>
+
+
+
+        <p class="mt-6">
+        </p>
+        
+        <p class="mt-6">
+        </p>
+
+
+        Noget ala tabel som i mysite, hvor man kan ændre / slette brugere. 
+        + en dropdown i formen til at vælge hvilken rolle brugeren skal have. 
+
+
+    </div>
+</section>

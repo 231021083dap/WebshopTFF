@@ -16,13 +16,13 @@ export class MySiteComponent implements OnInit {
     UserId: 0,
     UserRoleId: 0,
     Email: '',
-    Phone: 0,
+    Phone: '',
     Password: '',
     FirstName: '',
     LastName: '',
     MiddleName: '',
     Address: '',
-    PostalCode: 0
+    PostalCode: ''
 
   }
 

@@ -10,7 +10,7 @@ import { Item } from "../models";
 
 export class ItemService{
 
-    private apiUrl = 'Https://Localhost:5001/api/item';
+    private itemsapiUrl = 'Https://Localhost:5001/api/item';
     private OnSaleItemsUrl = 'https://localhost:5001/api/Item/OnSale';
 
     httpOptions = 
@@ -25,11 +25,26 @@ export class ItemService{
 
     GetAllItems() : Observable<Item[]>
     {
-        return this.http.get<Item[]>(this.apiUrl);
+        return this.http.get<Item[]>(this.itemsapiUrl);
     }
 
     GetAllOnSale() : Observable<Item[]>
     {
         return this.http.get<Item[]>(this.OnSaleItemsUrl);
+    }
+
+    GetItemById(itemid : number) : Observable<Item>
+    {
+        return this.http.get<Item>(`${this.itemsapiUrl}/${itemid}`);
+    }
+
+    RegisterItem(item: Item) : Observable<Item>
+    {
+        return this.http.post<Item>(this.itemsapiUrl, item, this.httpOptions);
+    }
+
+    UpdateItem(itemid : number, item : Item) : Observable<Item>
+    {
+        return this.http.put<Item>(`${this.itemsapiUrl}/${itemid}`, item, this.httpOptions);
     }
 }
