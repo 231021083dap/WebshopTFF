@@ -1,1 +1,75 @@
-<p>admin-items works!</p>
+<section class="hero">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            Item administration!
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+
+        <form (ngSubmit)="saveItem()" #RegisterItemForm="ngForm">
+
+            <div class="Field">
+                <div class="control">
+                    <label class="label">Product Name</label>
+                    <input class="input is-link is-rounded" type="text"
+                        [(ngModel)]="Item.ItemName" required>  
+                </div>
+            </div>
+
+            <div class="Field">
+                <div class="control">
+                    <label class="label">Product description</label>
+                    <input class="input is-link is-rounded" type="text"
+                        [(ngModel)]="Item.ItemDescription" required>  
+                </div>
+            </div>
+
+            <div class="Field">
+                <div class="control">
+                    <label class="label">Product subcategory id</label>
+                    <input class="input is-link is-rounded" type="text"
+                        [(ngModel)]="Item.ItemSubCategoryId" required>  
+                </div>
+            </div>
+
+            <div class="Field">
+                <div class="control">
+                    <label class="label">Product price</label>
+                    <input class="input is-link is-rounded" type="text"
+                        [(ngModel)]="Item.ItemPrice" required>  
+                </div>
+            </div>
+
+            <div class="Field">
+                <div class="control">
+                    <label class="label">Product discount</label>
+                    <input class="input is-link is-rounded" type="text"
+                        [(ngModel)]="Item.ItemDiscount" required>  
+                </div>
+            </div>
+
+            <div class="Field">
+                <div class="control">
+                    <label class="label">Products in stock</label>
+                    <input class="input is-link is-rounded" type="text"
+                        [(ngModel)]="Item.ItemAmount" required>  
+                </div>
+            </div>
+
+            <p class="mt-4">
+            </p>
+
+            <button class="button is-link is-rounded is-fullwidth" onclick="saveItem()">Save Item</button>
+
+            <p class="mt-2">
+            </p>
+
+            <button class="button is-link is-rounded is-fullwidth" onclick="cancel()">Cancel</button>
+
+        </form>
+
+    </div>
+</section>

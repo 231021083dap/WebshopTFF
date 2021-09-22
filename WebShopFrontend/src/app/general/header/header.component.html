@@ -25,7 +25,7 @@
                 <div class="dropdown-menu" id="dropdown-menu" role="menu">
                   <div class="dropdown-content">
                     <div *ngFor="let sub og SubCategories">
-                      <a routerLink="/Item/SubCategory/{{sub.SubName}}" class="dropdown-item is-hoverable">
+                      <a routerLink="/item/subcategory/{{sub.SubName}}" class="dropdown-item is-hoverable">
                         {{sub.SubName}}
                       </a>
                     </div>
@@ -44,11 +44,11 @@
   </div>
 
   <div class="navbar-end">
-    <a class="navbar-item is-hoverable is-size-4" routerLink="/Authentication/Login">Login/Register</a>
-    <a class="navbar-item is-hoverable is-size-4" routerLink="/MySite">My Site</a>
-    <a class="navbar-item is-hoverable is-size-4" routerLink="/MyCart">My Cart</a>
-    <a class="navbar-item is-hoverable is-size-4" routerLink="/Orders">Orders</a>
-    <a class="navbar-item is-hoverable is-size-4" routerLink="/Admin/AdminSite">Admin</a>
+    <a class="navbar-item is-hoverable is-size-4" routerLink="/authentication/login">Login/Register</a>
+    <a class="navbar-item is-hoverable is-size-4" routerLink="/mysite">My Site</a>
+    <a class="navbar-item is-hoverable is-size-4" routerLink="/mycart">My Cart</a>
+    <a class="navbar-item is-hoverable is-size-4" routerLink="/orders">Orders</a>
+    <a class="navbar-item is-hoverable is-size-4" routerLink="/admin/adminsite">Admin</a>
   </div>
   
 </nav>

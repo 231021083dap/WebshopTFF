@@ -5,7 +5,7 @@ export interface Item
     ItemId: number;
     ItemName: string;
     ItemDescription: string;
-    ItemSubCategory: string;
+    ItemSubCategoryId: number;
     ItemPrice: number;    
     ItemDiscount: number;    
     ItemAmount: number;
@@ -17,13 +17,13 @@ export interface User
     UserId: number;
     UserRoleId: number;
     Email: string;
-    Phone: number;
+    Phone: string;
     Password: string;
     FirstName: string;
     LastName: string;
     MiddleName?: string;
     Address: string;
-    PostalCode: number; 
+    PostalCode: string; 
     Token?: string;
 };
 
