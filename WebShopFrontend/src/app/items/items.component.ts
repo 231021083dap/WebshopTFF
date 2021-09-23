@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+
+import { Category, SubCategory, Item } from '../models';
+import { CategoryService } from '../Services/CategoryService';
+import { ItemService } from '../Services/ItemService';
+
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
@@ -7,9 +12,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemsComponent implements OnInit {
 
-  constructor() { }
+  Categories : Category[] = [];
+  SubCategories : SubCategory[] = [];
+  Items: Item[] = [];
+
+  constructor
+  (
+    private categoryService:CategoryService,
+    private itemService:ItemService
+  ) { }
 
   ngOnInit(): void {
+    this.categoryService.GetAllCategories()
+    .subscribe(a => this.Categories = a);
+
+    this.categoryService.GetAllSubCategories()
+    .subscribe(b => this.SubCategories = b);
+
+    this.itemService.GetAllItems()
+    .subscribe(i => this.Items = i);
   }
 
 }

@@ -1,0 +1,10 @@
+,
+  styles: [`
+    .hero
+    {
+      background-image: url('../../assets/Pics/WebsitePics/GrayPattern.jpg') !important;
+      background-size: cover;
+      background-position: center center;
+    }
+    `
+  ]

@@ -1,0 +1,16 @@
+                        <div class="column is-one-third">
+                            <div class="box">
+                                <div *ngFor="let cat in Categories">
+                                    <div *ngFor="let sub in SubCategories">
+                                        <label class="checkbox">
+                                            <input type="checkbox">
+                                            {{cat.CategoryName}}
+                                        </label>
+                                        <label class="checkbox">
+                                            <input type="checkbox">
+                                            {{sub.SubName}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
