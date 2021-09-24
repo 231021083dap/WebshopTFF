@@ -13,6 +13,7 @@ namespace WebshopAPI.Services
     {
         //    //CRUD
         Task<List<UserResponse>> GetAllUsers();
+        Task<List<UserRoleResponse>> GetUserRoles();
         Task<UserResponse> GetById(int UserId);
         Task<UserResponse> Create(NewUser newUser);
         Task<UserResponse> Update(int UserId, UpdateUser updateUser);
@@ -36,7 +37,7 @@ namespace WebshopAPI.Services
 
         public async Task<List<UserResponse>> GetAllUsers()
         {
-            
+
             List<User> Users = await _UserRepo.GetAllUsers();
             //lambda
             return Users.Select(u => new UserResponse
@@ -59,6 +60,20 @@ namespace WebshopAPI.Services
 
             }).ToList();
         }
+
+        public async Task<List<UserRoleResponse>> GetUserRoles()
+        {
+
+            List<Role> Roles = await _UserRepo.GetUserRoles();
+            //lambda
+            return Roles.Select(u => new UserRoleResponse
+            {
+                RoleName = u.RoleName,
+                RoleId = u.RoleId
+
+            }).ToList();
+        }
+
 
         public async Task<UserResponse> GetById(int UserId)
         {

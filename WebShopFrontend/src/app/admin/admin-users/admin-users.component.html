@@ -9,96 +9,197 @@
 <section class="section">
     <div class="container">
 
-        <form (ngSubmit)="saveUser()" #RegisterUserForm="ngForm">
-
-            <div class="Field">
-                <div class="control">
-                    <label class="label">Email</label>
-                    <input class="input is-link is-rounded" type="text"
-                        [(ngModel)]="User.Email" required>  
-                </div>
+        <div class="Field">
+            <div class="control">
+                <input type="text" 
+                        name="Email"
+                        id="Email"
+                        class="input is-link is-rounded" 
+                        placeholder="Email" 
+                        [(ngModel)]="User.Email" 
+                        #RegisterUserForm="ngModel"
+                        required>  
             </div>
+        </div>
 
-            <div class="Field">
-                <div class="control">
-                    <label class="label">Password</label>
-                    <input class="input is-link is-rounded" type="password"
-                        [(ngModel)]="User.Password" required>
-                </div>
+        <p class="mt-4">
+        </p>
+        
+        <div class="Field">
+            <div class="control">
+                <input type="password" 
+                        name="Password"
+                        id="Password"
+                        class="input is-link is-rounded"
+                        placeholder="Password" 
+                        [(ngModel)]="User.Password"
+                        #RegisterUserForm="ngModel"
+                        required>
             </div>
+        </div>
 
-            <div class="Field">
-                <div class="control">
-                    <label class="label">Phone</label>
-                    <input class="input is-link is-rounded" type="text"
-                        [(ngModel)]="User.Phone" required>
-                </div>
+        <p class="mt-4">
+        </p>
+        
+        <div class="Field">
+            <div class="control">
+                <input type="text" 
+                        name="Phone"
+                        id="Phone"
+                        class="input is-link is-rounded"
+                        placeholder="Phone" 
+                        [(ngModel)]="User.Phone"
+                        #RegisterUserForm="ngModel"
+                        required>
             </div>
-
-            <div class="Field">
-                <div class="control">
-                    <label class="label">Firstname</label>
-                    <input class="input is-link is-rounded" type="text"
-                        [(ngModel)]="User.FirstName" required>
-                </div>
+        </div>
+        
+        <p class="mt-4">
+        </p>
+        
+        <div class="Field">
+            <div class="control">
+                <input type="text" 
+                        name="FirstName"
+                        id="FirstName"
+                        class="input is-link is-rounded"
+                        placeholder="Firstname" 
+                        [(ngModel)]="User.FirstName"
+                        #RegisterUserForm="ngModel"
+                        required>
             </div>
-
-            <div class="Field">
-                <div class="control">
-                    <label class="label">Middlename</label>
-                    <input class="input is-link is-rounded" type="text"
-                        [(ngModel)]="User.MiddleName">
-                </div>
+        </div>
+        
+        <p class="mt-4">
+        </p>
+        
+        <div class="Field">
+            <div class="control">
+                <input type="text" 
+                        name="MiddleName"
+                        id="MiddleName"
+                        class="input is-link is-rounded"
+                        placeholder="Middlename" 
+                        [(ngModel)]="User.MiddleName"
+                        #RegisterUserForm="ngModel"
+                        >
             </div>
-
-            <div class="Field">
-                <div class="control">
-                    <label class="label">Lastname</label>
-                    <input class="input is-link is-rounded" type="text"
-                        [(ngModel)]="User.LastName" required>
-                </div>
+        </div>
+        
+        <p class="mt-4">
+        </p>
+        
+        <div class="Field">
+            <div class="control">
+                <input type="text" 
+                        name="LastName"
+                        id="LastName"
+                        class="input is-link is-rounded"
+                        placeholder="Lastname" 
+                        [(ngModel)]="User.LastName" 
+                        #RegisterUserForm="ngModel" 
+                        required>
             </div>
-
-            <div class="Field">
-                <div class="control">
-                    <label class="label">Address</label>
-                    <input class="input is-link is-rounded" type="text"
-                        [(ngModel)]="User.Address" required>
-                </div>
+        </div>
+        
+        <p class="mt-4">
+        </p>
+        
+        <div class="Field">
+            <div class="control">
+                <input type="text" 
+                        name="Address"
+                        id="Address"
+                        class="input is-link is-rounded"
+                        placeholder="Address" 
+                        [(ngModel)]="User.Address" 
+                        #RegisterUserForm="ngModel" 
+                        required>
             </div>
-
-            <div class="Field">
-                <div class="control">
-                    <label class="label">Postal code</label>
-                    <input class="input is-link is-rounded" type="text"
-                        [(ngModel)]="User.PostalCode" required>
-                </div>
+        </div>
+        
+        <p class="mt-4">
+        </p>
+        
+        <div class="Field">
+            <div class="control">
+                <input type="text" 
+                        name="Postal Code"
+                        id="Postal Code"
+                        class="input is-link is-rounded" 
+                        placeholder="Postal code" 
+                        [(ngModel)]="User.PostalCode" 
+                        #RegisterUserForm="ngModel" 
+                        required>
             </div>
+        </div>
 
-            <p class="mt-4">
-            </p>
+        <p class="mt-4">
+        </p>
 
-            <button class="button is-link is-rounded is-fullwidth" onclick="saveUser()">Save User</button>
+        <div class="select is-link is-rounded is-fullwidth">
+            <select [(ngModel)]="User.UserRoleId">
+                <option disabled value ="null" selected>Select Role</option>
+                <option *ngFor="let role og Roles" [value]="role.RoleId">
+                    {{role.RoleName}}
+                </option>
+            </select>
+        </div>
 
-            <p class="mt-2">
-            </p>
+        <p class="mt-4">
+        </p>
+        
+        <button class="button is-link is-rounded is-fullwidth" (click)="saveUser()">Save User</button>
+        
+        <p class="mt-2">
+        </p>
+        
+        <button class="button is-link is-rounded is-fullwidth" (click)="cancel()">Cancel</button>
+            
+        
+        <p class="mt-6">
+        </p>
+        <p class="mt-6">
+        </p>
+        <p class="pt-6">
+        </p>
+        <p class="pt-6">
+        </p>
 
-            <button class="button is-link is-rounded is-fullwidth" onclick="cancel()">Cancel</button>
 
-        </form>
-
-
-
+        <section class="hero is-centered is-bold">
+            <div class="table-container">
+                <table class="table is-striped is-hoverable is-fullwidth">
+                    <div *ngFor="let user of Users">
+                    <thead>
+                        <tr>
+                            <th><abbr title="FirstName">Firstname</abbr></th>
+                            <th><abbr title="MiddleName">Middlename</abbr></th>
+                            <th><abbr title="LastName">Lastname</abbr></th>
+                            <th><abbr title="Email">Email</abbr></th>
+                            <th><abbr title="Edit"></abbr></th>
+                            <th><abbr title="Delete"></abbr></th>
+                        </tr>
+                    </thead>    
+                    <tbody>
+                            <tr>
+                                <td>{{user.FirstName}}</td>
+                                <td>{{user.MiddleName}}</td>
+                                <td>{{user.LastName}}</td>
+                                <td>{{user.Email}}</td>
+                                <td><button class="button is-link is-rounded" (click)="editUser(user)">Edit user</button></td>
+                                <td><button class="button is-link is-rounded" (click)="deleteUser(user)">Delete user</button></td>
+                            </tr>
+                        </tbody>
+                    </div>
+                </table>
+            </div>
+        </section>
+        
         <p class="mt-6">
         </p>
         
         <p class="mt-6">
         </p>
-
-
-        Noget ala tabel som i mysite, hvor man kan ændre / slette brugere. 
-        + en dropdown i formen til at vælge hvilken rolle brugeren skal have. 
-
-
     </div>
 </section>

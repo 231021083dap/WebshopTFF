@@ -9,67 +9,129 @@
 <section class="section">
     <div class="container">
 
-        <form (ngSubmit)="saveItem()" #RegisterItemForm="ngForm">
-
-            <div class="Field">
-                <div class="control">
-                    <label class="label">Product Name</label>
-                    <input class="input is-link is-rounded" type="text"
-                        [(ngModel)]="Item.ItemName" required>  
-                </div>
+        <div class="Field">
+            <div class="control">
+                <input class="input is-link is-rounded" 
+                       type="text"
+                       placeholder="Product Name" 
+                       [(ngModel)]="Item.ItemName" 
+                       required>  
             </div>
+        </div>
 
-            <div class="Field">
-                <div class="control">
-                    <label class="label">Product description</label>
-                    <input class="input is-link is-rounded" type="text"
-                        [(ngModel)]="Item.ItemDescription" required>  
-                </div>
+        <p class="mt-4">
+        </p>
+
+        <div class="Field">
+            <div class="control">
+                <textarea class="textarea is-link" 
+                          placeholder="Item description"
+                          type="text"
+                          [(ngModel)]="Item.ItemDescription"
+                          required></textarea>
             </div>
+        </div>
+        
+        <p class="mt-4">
+        </p>
 
-            <div class="Field">
-                <div class="control">
-                    <label class="label">Product subcategory id</label>
-                    <input class="input is-link is-rounded" type="text"
-                        [(ngModel)]="Item.ItemSubCategoryId" required>  
-                </div>
+        <div class="Field">
+            <div class="control">
+                <input class="input is-link is-rounded" 
+                       type="number"
+                       placeholder="Product subcategory id" 
+                       [(ngModel)]="Item.ItemSubCategoryId" 
+                       required>  
             </div>
+        </div>
+        
+        <p class="mt-4">
+        </p>
 
-            <div class="Field">
-                <div class="control">
-                    <label class="label">Product price</label>
-                    <input class="input is-link is-rounded" type="text"
-                        [(ngModel)]="Item.ItemPrice" required>  
-                </div>
+        <div class="Field">
+            <div class="control">
+                <input class="input is-link is-rounded" 
+                       type="number"
+                       placeholder="Product price" 
+                       [(ngModel)]="Item.ItemPrice" 
+                       required>  
             </div>
+        </div>
+        
+        <p class="mt-4">
+        </p>
 
-            <div class="Field">
-                <div class="control">
-                    <label class="label">Product discount</label>
-                    <input class="input is-link is-rounded" type="text"
-                        [(ngModel)]="Item.ItemDiscount" required>  
-                </div>
+        <div class="Field">
+            <div class="control">
+                <input class="input is-link is-rounded" 
+                       type="number"
+                       placeholder="Product discount" 
+                       [(ngModel)]="Item.ItemDiscount" 
+                       required>  
             </div>
+        </div>
+        
+        <p class="mt-4">
+        </p>
 
-            <div class="Field">
-                <div class="control">
-                    <label class="label">Products in stock</label>
-                    <input class="input is-link is-rounded" type="text"
-                        [(ngModel)]="Item.ItemAmount" required>  
-                </div>
+        <div class="Field">
+            <div class="control">
+                <input class="input is-link is-rounded" 
+                       type="number"
+                       placeholder="Products in stock" 
+                       [(ngModel)]="Item.ItemAmount" 
+                       required>  
             </div>
+        </div>
 
-            <p class="mt-4">
-            </p>
+        <p class="mt-4">
+        </p>
 
-            <button class="button is-link is-rounded is-fullwidth" onclick="saveItem()">Save Item</button>
+        <button class="button is-link is-rounded is-fullwidth" (click)="saveItem()">Save Item</button>
 
-            <p class="mt-2">
-            </p>
+        <p class="mt-2">
+        </p>
 
-            <button class="button is-link is-rounded is-fullwidth" onclick="cancel()">Cancel</button>
+        <button class="button is-link is-rounded is-fullwidth" (click)="cancel()">Cancel</button>
 
-        </form>
+        <p class="mt-6">
+        </p>
+        <p class="mt-6">
+        </p>
+        <p class="pt-6">
+        </p>
+        <p class="pt-6">
+        </p>
+
+        <section class="hero is-centered is-bold">
+            <div class="table-container">
+                <table class="table is-striped is-hoverable is-fullwidth">
+                    <div *ngFor="let item of Items">
+                    <thead>
+                        <tr>
+                            <th><abbr title="ItemName">Product Name</abbr></th>
+                            <th><abbr title="ItemDescription">Item Description</abbr></th>
+                            <th><abbr title="ItemPrice">Item Price</abbr></th>
+                            <th><abbr title="ItemSubCategoryId">Item Subcategory Id</abbr></th>
+                            <th><abbr title="ItemSubName">Item Subcategory Name</abbr></th>
+                            <th><abbr title="Edit"></abbr></th>
+                            <th><abbr title="Delete"></abbr></th>
+                        </tr>
+                    </thead>    
+                    <tbody>
+                            <tr>
+                                <td>{{item.ItemName}}</td>
+                                <td>{{item.ItemDescription}}</td>
+                                <td>{{item.ItemPrice}},-</td>
+                                <td>{{item.ItemSubCategoryId}}</td>
+                                <td>Item Sub Name</td>
+                                <td><button class="button is-link is-rounded" (click)="editItem(item)">Edit item</button></td>
+                            </tr>
+                        </tbody>
+                    </div>
+                </table>
+            </div>
+        </section>
 
     </div>
 </section>

@@ -24,7 +24,9 @@ export class AdminItemsComponent implements OnInit {
 
   constructor(private itemService:ItemService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
+    this.getAllItems();
   }
 
   getAllItems(): void

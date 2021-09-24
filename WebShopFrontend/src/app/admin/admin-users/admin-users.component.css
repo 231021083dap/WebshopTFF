@@ -1,0 +1,13 @@
+table, td, th {
+    text-align:center;
+    width: 20%;
+    padding:5px;
+  }
+  th
+  {
+     background: hsl(171, 100%, 41%);;
+  }
+  table {
+    width: 400px;
+    border-collapse: collapse;
+  }

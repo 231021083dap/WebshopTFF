@@ -20,7 +20,9 @@ export class AdminSubCategoryComponent implements OnInit {
 
   constructor(private categoryService:CategoryService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
+    this.getSubs();
   }
 
 

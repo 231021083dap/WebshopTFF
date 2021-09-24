@@ -53,6 +53,35 @@ namespace WebshopAPI.Controllers
             }
         }
 
+        [HttpGet("Roles")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetUserRoles()
+        {
+            try
+            {
+                //Return 500 code
+                List<UserRoleResponse> Roles = await _userService.GetUserRoles();
+                if (Roles == null)
+                {
+                    return Problem("Got Nothing.. Unexpected");
+                }
+                //Return 204 code
+                if (Roles.Count == 0)
+                {
+                    return NoContent();
+                }
+
+                //Return 200 code
+                return Ok(Roles);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
         //GetById
         [HttpGet("{UserId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

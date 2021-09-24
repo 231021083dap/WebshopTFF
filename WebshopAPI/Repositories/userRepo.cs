@@ -12,6 +12,7 @@ namespace WebshopAPI.Repositories
     public interface IUserRepo
     {
         Task<List<User>> GetAllUsers();
+        Task<List<Role>> GetUserRoles();
         Task<User> GetById(int UserId);
         Task<User> Create(User user);
         Task<User> Update(int UserId, User user);
@@ -31,6 +32,13 @@ namespace WebshopAPI.Repositories
                 .Include(r => r.UserRole)
                 .ToListAsync();
         }
+
+        public async Task<List<Role>> GetUserRoles()
+        {
+            return await _context.Role
+                .ToListAsync();
+        }
+
         public async Task<User> GetById(int UserId)
         {
             return await _context.User
