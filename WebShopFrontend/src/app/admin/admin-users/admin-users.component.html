@@ -8,135 +8,127 @@
 
 <section class="section">
     <div class="container">
-
+        <label class="label">Email</label>
         <div class="Field">
             <div class="control">
                 <input type="text" 
                         name="Email"
                         id="Email"
-                        class="input is-link is-rounded" 
-                        placeholder="Email" 
+                        class="input is-link is-rounded"
                         [(ngModel)]="User.Email" 
                         #RegisterUserForm="ngModel"
                         required>  
             </div>
         </div>
 
-        <p class="mt-4">
+        <p class="mt-3">
         </p>
-        
+        <label class="label">Password</label>
         <div class="Field">
             <div class="control">
                 <input type="password" 
                         name="Password"
                         id="Password"
                         class="input is-link is-rounded"
-                        placeholder="Password" 
                         [(ngModel)]="User.Password"
                         #RegisterUserForm="ngModel"
                         required>
             </div>
         </div>
 
-        <p class="mt-4">
+        <p class="mt-3">
         </p>
-        
+        <label class="label">Phone number</label>
         <div class="Field">
             <div class="control">
                 <input type="text" 
                         name="Phone"
                         id="Phone"
                         class="input is-link is-rounded"
-                        placeholder="Phone" 
                         [(ngModel)]="User.Phone"
                         #RegisterUserForm="ngModel"
                         required>
             </div>
         </div>
         
-        <p class="mt-4">
+        <p class="mt-3">
         </p>
-        
+        <label class="label">First name</label>
         <div class="Field">
             <div class="control">
                 <input type="text" 
                         name="FirstName"
                         id="FirstName"
                         class="input is-link is-rounded"
-                        placeholder="Firstname" 
                         [(ngModel)]="User.FirstName"
                         #RegisterUserForm="ngModel"
                         required>
             </div>
         </div>
         
-        <p class="mt-4">
+        <p class="mt-3">
         </p>
-        
+        <label class="label">Middle name</label>
         <div class="Field">
             <div class="control">
                 <input type="text" 
                         name="MiddleName"
                         id="MiddleName"
                         class="input is-link is-rounded"
-                        placeholder="Middlename" 
                         [(ngModel)]="User.MiddleName"
                         #RegisterUserForm="ngModel"
                         >
             </div>
         </div>
         
-        <p class="mt-4">
+        <p class="mt-3">
         </p>
-        
+        <label class="label">Last name</label>
         <div class="Field">
             <div class="control">
                 <input type="text" 
                         name="LastName"
                         id="LastName"
                         class="input is-link is-rounded"
-                        placeholder="Lastname" 
                         [(ngModel)]="User.LastName" 
                         #RegisterUserForm="ngModel" 
                         required>
             </div>
         </div>
         
-        <p class="mt-4">
+        <p class="mt-3">
         </p>
-        
+        <label class="label">Address</label>
         <div class="Field">
             <div class="control">
                 <input type="text" 
                         name="Address"
                         id="Address"
                         class="input is-link is-rounded"
-                        placeholder="Address" 
                         [(ngModel)]="User.Address" 
                         #RegisterUserForm="ngModel" 
                         required>
             </div>
         </div>
         
-        <p class="mt-4">
+        <p class="mt-3">
         </p>
-        
+        <label class="label">Postal Code</label>
         <div class="Field">
             <div class="control">
                 <input type="text" 
                         name="Postal Code"
                         id="Postal Code"
                         class="input is-link is-rounded" 
-                        placeholder="Postal code" 
                         [(ngModel)]="User.PostalCode" 
                         #RegisterUserForm="ngModel" 
                         required>
             </div>
         </div>
 
-        <p class="mt-4">
+        <p class="mt-3">
         </p>
-
+        <label class="label">User Role</label>
         <div class="select is-link is-rounded is-fullwidth">
             <select [(ngModel)]="User.UserRoleId">
                 <option disabled value ="null" selected>Select Role</option>
@@ -146,7 +138,7 @@
             </select>
         </div>
 
-        <p class="mt-4">
+        <p class="mt-3">
         </p>
         
         <button class="button is-link is-rounded is-fullwidth" (click)="saveUser()">Save User</button>

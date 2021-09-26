@@ -14,90 +14,90 @@
                 <li class="is-active"><a routerLink="/authentication/register">Register</a></li>
             </ul>
         </div>       
-
+        <p class="mt-3"></p>
         <form (ngSubmit)="RegisterUser()" #RegisterUserForm="ngForm">
 
             <label class="label">Email*</label>
             <div class="Field">
                 <div class="control has-icons-left">
-                    <input class="input is-link is-rounded" type="text" placeholder="Email"
+                    <input class="input is-link is-rounded" type="text"
                         [(ngModel)]="User.Email" required>
                         <span class="icon is-small is-left">
                             <i class="fas fa-envelope"></i>
                         </span>  
                 </div>
             </div>
-
+            <p class="mt-3"></p>
             <label class="label">Password*</label>
             <div class="Field">
                 <div class="control has-icons-left">
-                    <input class="input is-link is-rounded" type="password" placeholder="Password"
+                    <input class="input is-link is-rounded" type="password"
                         [(ngModel)]="User.Password" required>
                         <span class="icon is-small is-left">
                             <i class="fas fa-lock"></i>
                         </span>
                 </div>
             </div>
-
+            <p class="mt-3"></p>
             <label class="label">Phone</label>
             <div class="Field">
                 <div class="control has-icons-left">
-                    <input class="input is-link is-rounded" type="text" placeholder="Phone number"
+                    <input class="input is-link is-rounded" type="text"
                         [(ngModel)]="User.Phone" required>
                         <span class="icon is-small is-left">
                             <i class="fas fa-phone"></i>
                         </span>
                 </div>
             </div>
-
+            <p class="mt-3"></p>
             <label class="label">Firstname*</label>
             <div class="Field">
                 <div class="control has-icons-left">
-                    <input class="input is-link is-rounded" type="text" placeholder="First name"
+                    <input class="input is-link is-rounded" type="text"
                         [(ngModel)]="User.FirstName" required>
                         <span class="icon is-small is-left">
                             <i class="fas fa-user"></i>
                         </span>
                 </div>
             </div>
-
+            <p class="mt-3"></p>
             <label class="label">Middlename</label>
             <div class="Field">
                 <div class="control has-icons-left">
-                    <input class="input is-link is-rounded" type="text" placeholder="Middle name"
+                    <input class="input is-link is-rounded" type="text"
                         [(ngModel)]="User.MiddleName">
                         <span class="icon is-small is-left">
                             <i class="fas fa-user"></i>
                         </span>
                 </div>
             </div>
-
+            <p class="mt-3"></p>
             <label class="label">Lastname*</label>
             <div class="Field">
                 <div class="control has-icons-left">
-                    <input class="input is-link is-rounded" type="text" placeholder="Last name"
+                    <input class="input is-link is-rounded" type="text"
                         [(ngModel)]="User.LastName" required>
                         <span class="icon is-small is-left">
                             <i class="fas fa-user"></i>
                         </span>
                 </div>
             </div>
-
+            <p class="mt-3"></p>
             <label class="label">Address*</label>
             <div class="Field">
                 <div class="control has-icons-left">
-                    <input class="input is-link is-rounded" type="text" placeholder="Address"
+                    <input class="input is-link is-rounded" type="text"
                         [(ngModel)]="User.Address" required>
                         <span class="icon is-small is-left">
                             <i class="fas fa-home"></i>
                         </span>
                 </div>
             </div>
-
+            <p class="mt-3"></p>
             <label class="label">Postal code*</label>
             <div class="Field">
                 <div class="control has-icons-left">
-                    <input class="input is-link is-rounded" type="text" placeholder="Postal code"
+                    <input class="input is-link is-rounded" type="text"
                         [(ngModel)]="User.PostalCode" required>
                         <span class="icon is-small is-left">
                             <i class="fas fa-home"></i>
