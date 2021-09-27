@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from 'src/app/Services/my-cartService';
 
 @Component({
   selector: 'app-my-cart',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-cart.component.css']
 })
 export class MyCartComponent implements OnInit {
+  // localStorageChanges$ = this.localStorageService.changes$;
 
-  constructor() { }
+  constructor(private localStorageService: LocalStorageService) { }  
+  // persist(key: string, value: any) {
+  //   this.localStorageService.set(key, value);
+  // }
 
   ngOnInit(): void {
   }
 
 }
+
+
