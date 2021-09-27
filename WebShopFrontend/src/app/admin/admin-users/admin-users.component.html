@@ -10,12 +10,12 @@
     <div class="container">
 
         <div class="Field">
+            <label class="label">User Email</label>
             <div class="control">
                 <input type="text" 
                         name="Email"
                         id="Email"
-                        class="input is-link is-rounded" 
-                        placeholder="Email" 
+                        class="input is-link is-rounded"
                         [(ngModel)]="User.Email" 
                         #RegisterUserForm="ngModel"
                         required>  
@@ -26,12 +26,12 @@
         </p>
         
         <div class="Field">
+            <label class="label">User Password</label>
             <div class="control">
                 <input type="password" 
                         name="Password"
                         id="Password"
-                        class="input is-link is-rounded"
-                        placeholder="Password" 
+                        class="input is-link is-rounded" 
                         [(ngModel)]="User.Password"
                         #RegisterUserForm="ngModel"
                         required>
@@ -42,12 +42,12 @@
         </p>
         
         <div class="Field">
+            <label class="label">User Phone number</label>
             <div class="control">
                 <input type="text" 
                         name="Phone"
                         id="Phone"
                         class="input is-link is-rounded"
-                        placeholder="Phone" 
                         [(ngModel)]="User.Phone"
                         #RegisterUserForm="ngModel"
                         required>
@@ -58,12 +58,12 @@
         </p>
         
         <div class="Field">
+            <label class="label">User Firstname</label>
             <div class="control">
                 <input type="text" 
                         name="FirstName"
                         id="FirstName"
                         class="input is-link is-rounded"
-                        placeholder="Firstname" 
                         [(ngModel)]="User.FirstName"
                         #RegisterUserForm="ngModel"
                         required>
@@ -74,12 +74,12 @@
         </p>
         
         <div class="Field">
+            <label class="label">User Middlename</label>
             <div class="control">
                 <input type="text" 
                         name="MiddleName"
                         id="MiddleName"
                         class="input is-link is-rounded"
-                        placeholder="Middlename" 
                         [(ngModel)]="User.MiddleName"
                         #RegisterUserForm="ngModel"
                         >
@@ -90,12 +90,12 @@
         </p>
         
         <div class="Field">
+            <label class="label">User Lastname</label>
             <div class="control">
                 <input type="text" 
                         name="LastName"
                         id="LastName"
                         class="input is-link is-rounded"
-                        placeholder="Lastname" 
                         [(ngModel)]="User.LastName" 
                         #RegisterUserForm="ngModel" 
                         required>
@@ -106,12 +106,12 @@
         </p>
         
         <div class="Field">
+            <label class="label">User Address</label>
             <div class="control">
                 <input type="text" 
                         name="Address"
                         id="Address"
                         class="input is-link is-rounded"
-                        placeholder="Address" 
                         [(ngModel)]="User.Address" 
                         #RegisterUserForm="ngModel" 
                         required>
@@ -122,12 +122,12 @@
         </p>
         
         <div class="Field">
+            <label class="label">User Postal code</label>
             <div class="control">
                 <input type="text" 
                         name="Postal Code"
                         id="Postal Code"
-                        class="input is-link is-rounded" 
-                        placeholder="Postal code" 
+                        class="input is-link is-rounded"
                         [(ngModel)]="User.PostalCode" 
                         #RegisterUserForm="ngModel" 
                         required>
@@ -137,6 +137,7 @@
         <p class="mt-4">
         </p>
 
+        <label class="label">User Role</label>
         <div class="select is-link is-rounded is-fullwidth">
             <select [(ngModel)]="User.UserRoleId">
                 <option disabled value ="null" selected>Select Role</option>
@@ -148,6 +149,8 @@
 
         <p class="mt-4">
         </p>
+
+        
         
         <button class="button is-link is-rounded is-fullwidth" (click)="saveUser()">Save User</button>
         

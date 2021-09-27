@@ -16,7 +16,7 @@ export class AdminItemsComponent implements OnInit {
     ItemId: 0,
     ItemName: '',
     ItemDescription: '',
-    ItemSubCategoryId: 0,
+    SubCategoryId: 0,
     ItemPrice: 0,    
     ItemDiscount: 0,    
     ItemAmount: 0,
@@ -47,11 +47,15 @@ export class AdminItemsComponent implements OnInit {
       this.itemService.RegisterItem(this.Item)
         .subscribe(a => {
           this.Items.push(a);
+          console.log(this.Item);
           this.cancel();
         });
     }else{
       this.itemService.UpdateItem(this.Item.ItemId, this.Item)
-        .subscribe(() => {this.cancel()})
+        .subscribe(() => {
+          console.log(this.Item);
+          this.cancel();
+        })
     }
   }
 
@@ -63,7 +67,7 @@ export class AdminItemsComponent implements OnInit {
       ItemId: 0,
       ItemName: '',
       ItemDescription: '',
-      ItemSubCategoryId: 0,
+      SubCategoryId: 0,
       ItemPrice: 0,    
       ItemDiscount: 0,    
       ItemAmount: 0,

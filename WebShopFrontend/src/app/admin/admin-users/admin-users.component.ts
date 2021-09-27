@@ -74,6 +74,7 @@ export class AdminUsersComponent implements OnInit {
       this.userService.RegisterUser(this.User)
         .subscribe(a => {
           this.Users.push(a);
+          console.log(this.User);
           this.cancel();
         });
     }else{

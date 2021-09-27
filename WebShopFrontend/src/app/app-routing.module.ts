@@ -26,7 +26,7 @@ const routes: Routes =
   { path : 'admin/user', component: AdminUsersComponent},
   { path : 'admin/subcategory', component: AdminSubCategoryComponent },
   { path : 'admin/items', component: AdminItemsComponent},
-  { path : 'admin/orders', component: AdminOrdersComponent},
+  { path : 'admin/orders', component: AdminOrdersComponent}
 
 ];
 

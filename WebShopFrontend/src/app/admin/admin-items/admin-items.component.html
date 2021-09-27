@@ -10,10 +10,10 @@
     <div class="container">
 
         <div class="Field">
+            <label class="label">Product Name</label>
             <div class="control">
                 <input class="input is-link is-rounded" 
                        type="text"
-                       placeholder="Product Name" 
                        [(ngModel)]="Item.ItemName" 
                        required>  
             </div>
@@ -23,9 +23,9 @@
         </p>
 
         <div class="Field">
+            <label class="label">Product description</label>
             <div class="control">
                 <textarea class="textarea is-link" 
-                          placeholder="Item description"
                           type="text"
                           [(ngModel)]="Item.ItemDescription"
                           required></textarea>
@@ -36,11 +36,11 @@
         </p>
 
         <div class="Field">
+            <label class="label">Product subcategory id</label>
             <div class="control">
                 <input class="input is-link is-rounded" 
                        type="number"
-                       placeholder="Product subcategory id" 
-                       [(ngModel)]="Item.ItemSubCategoryId" 
+                       [(ngModel)]="Item.SubCategoryId" 
                        required>  
             </div>
         </div>
@@ -49,10 +49,10 @@
         </p>
 
         <div class="Field">
+            <label class="label">Product price</label>
             <div class="control">
                 <input class="input is-link is-rounded" 
                        type="number"
-                       placeholder="Product price" 
                        [(ngModel)]="Item.ItemPrice" 
                        required>  
             </div>
@@ -62,10 +62,10 @@
         </p>
 
         <div class="Field">
+            <label class="label">Product discount</label>
             <div class="control">
                 <input class="input is-link is-rounded" 
                        type="number"
-                       placeholder="Product discount" 
                        [(ngModel)]="Item.ItemDiscount" 
                        required>  
             </div>
@@ -75,6 +75,7 @@
         </p>
 
         <div class="Field">
+            <label class="label">Amount in storage</label>
             <div class="control">
                 <input class="input is-link is-rounded" 
                        type="number"
@@ -123,7 +124,7 @@
                                 <td>{{item.ItemName}}</td>
                                 <td>{{item.ItemDescription}}</td>
                                 <td>{{item.ItemPrice}},-</td>
-                                <td>{{item.ItemSubCategoryId}}</td>
+                                <td>{{item.SubCategoryId}}</td>
                                 <td>Item Sub Name</td>
                                 <td><button class="button is-link is-rounded" (click)="editItem(item)">Edit item</button></td>
                             </tr>

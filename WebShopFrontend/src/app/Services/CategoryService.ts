@@ -36,6 +36,11 @@ export class CategoryService{
     {
       return this.http.get<SubCategory>(`${this.subapiUrl}/${subid}`);
     }
+
+    GetCatById(catid : Category) : Observable<Category>
+    {
+      return this.http.get<Category>(`${this.subapiUrl}/${catid}`);
+    }
   
     RegisterSub(sub: SubCategory) : Observable<SubCategory>
     {

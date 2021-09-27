@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SubCategory } from 'src/app/models';
+import { Category, SubCategory } from 'src/app/models';
 import { CategoryService } from 'src/app/Services/CategoryService';
 
 @Component({
@@ -17,12 +17,22 @@ export class AdminSubCategoryComponent implements OnInit {
     CategoryId: 0
   }
 
+  Categories : Category[] = [];
+  Cat : Category = 
+  {
+    CategoryId: 0,
+    CategoryName: ''
+  }
+
 
   constructor(private categoryService:CategoryService) { }
 
   ngOnInit(): void 
   {
     this.getSubs();
+
+    this.getCategory();
+
   }
 
 
@@ -30,6 +40,12 @@ export class AdminSubCategoryComponent implements OnInit {
   {
     this.categoryService.GetAllSubCategories()
     .subscribe(a => this.Subs = a);
+  }
+
+  getCategory() : void
+  {
+    this.categoryService.GetAllCategories()
+    .subscribe(b => this.Categories = b);
   }
 
   editSub(sub : SubCategory) : void

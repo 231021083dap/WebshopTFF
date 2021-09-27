@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from "rxjs";
 import { Item } from "../models";
@@ -11,7 +13,7 @@ import { Item } from "../models";
 export class ItemService{
 
     private itemsapiUrl = 'Https://Localhost:5001/api/item';
-    private OnSaleItemsUrl = 'https://localhost:5001/api/Item/OnSale';
+    private OnSaleItemsUrl = 'https://localhost:5001/api/item/OnSale';
 
     httpOptions = 
     {
@@ -19,8 +21,11 @@ export class ItemService{
 
     }
 
-    constructor(
-        private http:HttpClient
+    constructor
+    (
+        private http:HttpClient,
+        private route: ActivatedRoute,
+        private router: Router
     ){}
 
     GetAllItems() : Observable<Item[]>

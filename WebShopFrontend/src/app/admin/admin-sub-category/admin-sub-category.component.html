@@ -9,36 +9,35 @@
 <section class="section">
     <div class="container">
 
-        <form (ngSubmit)="saveSub()" #RegisterItemFrom="ngForm">
 
-            <div class="Field">
-                <div class="control">
-                    <input class="input is-link is-rounded" type="text"
-                        placeholder="SubCategory Name" [(ngModel)]="Sub.SubName" required>  
-                </div>
+        <div class="Field">
+            <label class="label">Subcategory Name</label>
+            <div class="control">
+                <input class="input is-link is-rounded" type="text"
+                    [(ngModel)]="Sub.SubName" required>  
             </div>
-            
-            <p class="mt-4">
-            </p>
+        </div>
+        
+        <p class="mt-4">
+        </p>
 
-            <div class="Field">
-                <div class="control">
-                    <input class="input is-link is-rounded" type="text"
-                        placeholder="Category Id" [(ngModel)]="Sub.CategoryId" required>  
-                </div>
+        <div class="Field">
+            <label class="label">Category id</label>
+            <div class="control">
+                <input class="input is-link is-rounded" type="text"
+                    [(ngModel)]="Sub.CategoryId" required>  
             </div>
-            
-            <p class="mt-4">
-            </p>
+        </div>
+        
+        <p class="mt-4">
+        </p>
 
-            <button class="button is-link is-rounded is-fullwidth" (click)="saveSub()">Save SubCategory</button>
+        <button class="button is-link is-rounded is-fullwidth" (click)="saveSub()">Save SubCategory</button>
 
-            <p class="mt-2">
-            </p>
+        <p class="mt-2">
+        </p>
 
-            <button class="button is-link is-rounded is-fullwidth" (click)="cancel()">Cancel</button>
-
-        </form>
+        <button class="button is-link is-rounded is-fullwidth" (click)="cancel()">Cancel</button>
 
         <p class="mt-6">
         </p>

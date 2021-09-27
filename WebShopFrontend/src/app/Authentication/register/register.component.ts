@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  RegisterUser(): void
+  registerUser(): void
   {
     if(this.User.UserId == 0)
     {
@@ -42,17 +42,18 @@ export class RegisterComponent implements OnInit {
       .subscribe(a => 
         {
           this.Users.push(a);
-          this.Cancel();
+          console.log(this.User);
+          this.cancel();
         });
     }
     else
     {
       this.userService.UpdateUser(this.User.UserId, this.User)
-      .subscribe(() => { this.Cancel()})
+      .subscribe(() => { this.cancel()})
     }
   }
 
-  Cancel(): void
+  cancel(): void
   {
     this.User = 
     { 
