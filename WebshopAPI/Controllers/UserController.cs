@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebshopAPI.DTO;
+using WebshopAPI.Helpers;
 using WebshopAPI.Responses;
 using WebshopAPI.Services;
+using WebshopAPI.Authorization;
 
 namespace WebshopAPI.Controllers
 {
@@ -53,36 +55,8 @@ namespace WebshopAPI.Controllers
             }
         }
 
-        [HttpGet("Roles")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetUserRoles()
-        {
-            try
-            {
-                //Return 500 code
-                List<UserRoleResponse> Roles = await _userService.GetUserRoles();
-                if (Roles == null)
-                {
-                    return Problem("Got Nothing.. Unexpected");
-                }
-                //Return 204 code
-                if (Roles.Count == 0)
-                {
-                    return NoContent();
-                }
-
-                //Return 200 code
-                return Ok(Roles);
-            }
-            catch (Exception ex)
-            {
-                return Problem(ex.Message);
-            }
-        }
-
         //GetById
+        [Authorize(Role.Employee)]
         [HttpGet("{UserId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -93,6 +67,11 @@ namespace WebshopAPI.Controllers
         {
             try
             {
+                var currentUser = (UserResponse)HttpContext.Items["User"];
+                if (currentUser == null || (UserId != currentUser.UserId && currentUser.Role != Role.Employee))
+                {
+                    return Unauthorized(new { message = "Unauthorized" });
+                }
                 UserResponse User = await _userService.GetById(UserId);
                 if (User == null)
                 {
@@ -174,7 +153,30 @@ namespace WebshopAPI.Controllers
             }
         }
 
+        [AllowAnonymous]
+        [HttpPost("authenticate")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Authenticate(NewLogin login)
+        {
+            try
+            {
+                LoginResponse response = await _userService.Authenticate(login);
 
+                if (response == null)
+                {
+                    return Unauthorized();
+                }
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
 
     }
 }

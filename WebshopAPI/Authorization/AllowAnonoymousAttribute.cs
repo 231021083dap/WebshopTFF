@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace WebshopAPI.Authorization
 {
     [AttributeUsage(AttributeTargets.Method)]
-    public class AnonymousAttribute : Attribute
+    public class AllowAnonymousAttribute : Attribute
     {
        
     }

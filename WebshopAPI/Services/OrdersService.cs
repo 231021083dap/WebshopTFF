@@ -41,7 +41,7 @@ namespace WebshopAPI.Services
                 User = new OrderUserResponse
                 {
                     UserId = i.User.UserId,
-                    RoleId = i.User.RoleId,
+                    Role = i.User.Role,
                     Email = i.User.Email,
                     Phone = i.User.Phone,
                     FirstName = i.User.FirstName,
@@ -64,7 +64,7 @@ namespace WebshopAPI.Services
                 User = new OrderUserResponse
                 {
                     UserId = Order.User.UserId,
-                    RoleId = Order.User.RoleId,
+                    Role = Order.User.Role,
                     Email = Order.User.Email,
                     Phone = Order.User.Phone,
                     FirstName = Order.User.FirstName,
@@ -98,7 +98,7 @@ namespace WebshopAPI.Services
                     User = new OrderUserResponse
                     {
                         UserId = Order.User.UserId,
-                        RoleId = Order.User.RoleId,
+                        Role = Order.User.Role,
                         Email = Order.User.Email,
                         Phone = Order.User.Phone,
                         FirstName = Order.User.FirstName,
@@ -133,7 +133,7 @@ namespace WebshopAPI.Services
                     User = new OrderUserResponse
                     {
                         UserId = Order.User.UserId,
-                        RoleId = Order.User.RoleId,
+                        Role = Order.User.Role,
                         Email = Order.User.Email,
                         Phone = Order.User.Phone,
                         FirstName = Order.User.FirstName,

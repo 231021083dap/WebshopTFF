@@ -12,7 +12,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebshopAPI.Authorization;
 using WebshopAPI.DB;
+using WebshopAPI.Helpers;
 using WebshopAPI.Repositories;
 using WebshopAPI.Services;
 
@@ -21,9 +23,10 @@ namespace WebshopAPI
     public class Startup
     {
         private readonly string CORSRules = "_CORSRules";
+        private readonly IConfiguration _configuration;
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -51,8 +54,10 @@ namespace WebshopAPI
 
             //Opsætning af vores SQL server.
             services.AddDbContext<WebshopContext>(
-               o => o.UseSqlServer(Configuration.GetConnectionString("Default")));
+               o => o.UseSqlServer(_configuration.GetConnectionString("Default")));
 
+            services.Configure<AppSettings>(_configuration.GetSection("AppSettings"));
+            services.AddScoped<IJwtUtils, JwtUtils>();
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepo, UserRepo>();

@@ -4,18 +4,16 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using WebshopAPI.Helpers;
 
 namespace WebshopAPI.DB.Entities
 {
     public class User
     {
         [Key]
-        public int UserId { get; set; }
+        public int UserId { get; set; }     
 
-        [ForeignKey("Role.RoleId")]
-        public int RoleId { get; set; }
-
-        public Role UserRole { get; set; }
+        public Role Role { get; set; }
 
         [Required]
         public string Email { get; set; }

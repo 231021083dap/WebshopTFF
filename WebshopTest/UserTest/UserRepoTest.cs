@@ -34,20 +34,13 @@ namespace WebshopTest.UserTest
         {
             //Arrange
             await _context.Database.EnsureDeletedAsync();
-
-            _context.Role.Add(
-            new Role
-            {
-                RoleId = 1,
-                RoleName = "Customer"
-            
-            });
+           
             await _context.SaveChangesAsync();
 
             _context.User.Add(
             new User
             {
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Customer,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -60,7 +53,7 @@ namespace WebshopTest.UserTest
             _context.User.Add(
             new User
             {
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Employee,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -107,20 +100,14 @@ namespace WebshopTest.UserTest
             await _context.Database.EnsureDeletedAsync();
 
             int userid = 1;
-
-            _context.Role.Add(
-            new Role
-            {
-                RoleId = 1,
-                RoleName = "Customer"
-            });
+           
             await _context.SaveChangesAsync();
 
             _context.User.Add(
             new User
             {
                 UserId = 1,
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Employee,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -168,7 +155,7 @@ namespace WebshopTest.UserTest
 
             User user = new()
             {
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Employee,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -198,8 +185,8 @@ namespace WebshopTest.UserTest
 
             User user = new()
             {
-                RoleId = 1,
-                Email = "Test@gmail.com",
+                Role = WebshopAPI.Helpers.Role.Employee,
+                Email = "Test23@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
                 FirstName = "Test",
@@ -227,11 +214,12 @@ namespace WebshopTest.UserTest
             //Arrange
             await _context.Database.EnsureDeletedAsync();
 
-            int roleid = 1;
+            int userid = 1;
 
             User user = new()
             {
-                RoleId = 2,
+                UserId = userid,
+                Role = WebshopAPI.Helpers.Role.Employee,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -246,7 +234,8 @@ namespace WebshopTest.UserTest
 
             User updateUser = new()
             {
-                RoleId = roleid,
+                UserId = 2,
+                Role = WebshopAPI.Helpers.Role.Employee,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -258,12 +247,12 @@ namespace WebshopTest.UserTest
             };
 
             //Act
-            var result = await _sut.Update(roleid, updateUser);
+            var result = await _sut.Update(userid, updateUser);
 
             //Assert
             Assert.NotNull(result);
             Assert.IsType<User>(result);
-            Assert.Equal(roleid, result.RoleId);
+            Assert.Equal(userid, result.UserId);
             Assert.Equal(updateUser.Email, result.Email);
             Assert.Equal(updateUser.Phone, result.Phone);
             Assert.Equal(updateUser.Password , result.Password);
@@ -284,7 +273,7 @@ namespace WebshopTest.UserTest
             User updateUser = new()
             {
                 UserId = userid,
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Employee,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -315,7 +304,7 @@ namespace WebshopTest.UserTest
             User user = new()
             {
                 UserId = userid,
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Employee,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",

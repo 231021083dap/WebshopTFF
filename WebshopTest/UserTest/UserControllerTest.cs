@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Infrastructure;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace WebshopTest.UserTest
         public UserControllerTest()
         {
             _sut = new UserController(_userService.Object);
+            _sut.ControllerContext.HttpContext = new DefaultHttpContext() { };
         }
 
 
@@ -33,7 +35,7 @@ namespace WebshopTest.UserTest
             user.Add(new UserResponse
             {
                 UserId = 1,
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Employee,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -48,7 +50,7 @@ namespace WebshopTest.UserTest
             user.Add(new UserResponse
             {
                 UserId = 2,
-                RoleId = 2,
+                Role = WebshopAPI.Helpers.Role.Customer,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -131,7 +133,7 @@ namespace WebshopTest.UserTest
             UserResponse user = new()
             {
                 UserId = userid,
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Employee,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -192,7 +194,7 @@ namespace WebshopTest.UserTest
 
             NewUser newuser = new()
             {
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Customer,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -205,7 +207,7 @@ namespace WebshopTest.UserTest
             UserResponse user = new()
             {
                 UserId = userid,
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Customer,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -233,7 +235,7 @@ namespace WebshopTest.UserTest
             //Arrange
             NewUser newuser = new()
             {
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Customer,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -260,11 +262,12 @@ namespace WebshopTest.UserTest
         public async void Update_ShouldReturnStatusCode200_WhenDataIsUpdated()
         {
             //Arrange
-            int roleid = 1;
+            int userId = 1;
 
             UpdateUser updateUser = new()
             {
-                RoleId = 2,
+                
+                Role = WebshopAPI.Helpers.Role.Employee,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -277,7 +280,7 @@ namespace WebshopTest.UserTest
             UserResponse user = new()
             {
                 
-                RoleId = roleid,
+                Role = WebshopAPI.Helpers.Role.Customer,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -293,7 +296,7 @@ namespace WebshopTest.UserTest
                 .ReturnsAsync(user);
 
             //Act
-            var result = await _sut.Update(roleid, updateUser);
+            var result = await _sut.Update(userId, updateUser);
 
             //Assert
             var statusCodeResult = (IStatusCodeActionResult)result;
@@ -303,11 +306,11 @@ namespace WebshopTest.UserTest
         public async void Update_ShouldReturnStatusCode500_WhenExceptionIsRaised()
         {
             //Arrange
-            int userrole = 1;
+            int userId = 1;
 
             UpdateUser updateUser = new()
             {
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Employee,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -322,7 +325,7 @@ namespace WebshopTest.UserTest
                 .Setup(s => s.Update(It.IsAny<int>(), It.IsAny<UpdateUser>()))
                 .ReturnsAsync(() => throw new Exception("This is an Exception"));
             //Act
-            var result = await _sut.Update(userrole, updateUser);
+            var result = await _sut.Update(userId, updateUser);
 
             //Assert
             var statusCodeResult = (IStatusCodeActionResult)result;
@@ -361,6 +364,51 @@ namespace WebshopTest.UserTest
             //Assert
             var statusCodeResult = (IStatusCodeActionResult)result;
             Assert.Equal(500, statusCodeResult.StatusCode);
+        }
+
+        [Fact]
+        public async void GetById_ShouldReturnUnAuthorized_WhenUserIsNotLoggedOn()
+        {
+            // Arrange
+            _sut.ControllerContext.HttpContext.Items["Customer"] = null;
+
+            // Act
+            var result = await _sut.GetById(1);
+
+            // Assert
+            var statusCodeResult = (IStatusCodeActionResult)result;
+            Assert.Equal(401, statusCodeResult.StatusCode);
+        }
+        [Fact]
+        public async void GetById_ShouldReturnUser_WhenUserIsLoggedOnAsUser()
+        {
+            // Arrange
+            _sut.ControllerContext.HttpContext.Items["Employee"] = new UserResponse
+            {
+                UserId = 2,
+                Role = WebshopAPI.Helpers.Role.Employee
+            };
+
+            UserResponse user = new UserResponse
+            {
+                UserId = 2,
+                FirstName = "Benny",
+                MiddleName = "Lenny",
+                LastName = "Genny",
+                Email = "benny@mail.dk",
+                Role = WebshopAPI.Helpers.Role.Employee
+            };
+
+            _userService
+                .Setup(u => u.GetById(It.IsAny<int>()))
+                .ReturnsAsync(user);
+
+            // Act
+            var result = await _sut.GetById(2);
+
+            // Assert
+            var statusCodeResult = (IStatusCodeActionResult)result;
+            Assert.Equal(200, statusCodeResult.StatusCode);
         }
     }
 }

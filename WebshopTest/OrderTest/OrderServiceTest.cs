@@ -38,7 +38,7 @@ namespace WebshopTest.OrderTest
                 User = new()
                 {
                     UserId = 1,
-                    RoleId = 1,
+                    Role = WebshopAPI.Helpers.Role.Customer,
                     Email = "Test@gmail.com",
                     Phone = "20202020",
                     Password = "TestTest",
@@ -58,7 +58,7 @@ namespace WebshopTest.OrderTest
                 User = new()
                 {
                     UserId = 1,
-                    RoleId = 1,
+                    Role = WebshopAPI.Helpers.Role.Customer,
                     Email = "Test@gmail.com",
                     Phone = "20202020",
                     Password = "TestTest",
@@ -140,7 +140,7 @@ namespace WebshopTest.OrderTest
                 User = new()
                 {
                     UserId = 1,
-                    RoleId = 1,
+                    Role = WebshopAPI.Helpers.Role.Customer,
                     Email = "Test@gmail.com",
                     Phone = "20202020",
                     Password = "TestTest",
@@ -213,7 +213,7 @@ namespace WebshopTest.OrderTest
             User user = new()
             {
                 UserId = 1,
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Customer,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -270,7 +270,7 @@ namespace WebshopTest.OrderTest
             User user = new()
             {
                 UserId = 1,
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Customer,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTestTest",
