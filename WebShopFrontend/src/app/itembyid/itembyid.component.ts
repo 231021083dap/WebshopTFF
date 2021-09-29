@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Item } from '../models';
+import { Item, CartItem } from '../models';
 import { ItemService } from '../Services/ItemService';
-import { SubCategory } from '../models';
-import { Category } from '../models';
 import { CategoryService } from '../Services/CategoryService';
+import { CartService } from '../Services/CartService';
 
 @Component({
   selector: 'app-itembyid',
@@ -14,6 +13,7 @@ import { CategoryService } from '../Services/CategoryService';
 })
 export class ItembyidComponent implements OnInit {
 
+  Items: Item[] = [];
   Item: Item =
     {
       ItemId: 0,
@@ -25,6 +25,14 @@ export class ItembyidComponent implements OnInit {
       ItemAmount: 0,
     }
 
+  CartItem: CartItem = 
+  {
+    ItemId: 0,
+    ItemName: '',
+    ItemPrice: 0,
+    AmountInCart: 0,
+  }
+
   public itemid: any = 0;
   public catid: number = 0;
 
@@ -32,16 +40,16 @@ export class ItembyidComponent implements OnInit {
     (
       private itemService: ItemService,
       private categoryService: CategoryService,
+      private cartService : CartService,
       private http: HttpClient,
       private route: ActivatedRoute
     ) { }
+
 
   ngOnInit(): void {
     this.itemid = this.route.snapshot.paramMap.get("itemid") || 0;
 
     this.getitembyid();
-
-    console.log(this.route.snapshot.paramMap);
   }
 
   getitembyid(): void {
@@ -53,10 +61,8 @@ export class ItembyidComponent implements OnInit {
 
   }
 
-  addtoCart() : void
+  addtoCart()
   {
-    
+    this.cartService.additemtocart(this.CartItem);
   }
-
-
 }

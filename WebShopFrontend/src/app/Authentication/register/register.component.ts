@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models';
 import { UserService } from 'src/app/Services/UserService';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-register',
@@ -45,6 +46,7 @@ export class RegisterComponent implements OnInit {
           console.log(this.User);
           this.cancel();
         });
+
     }
     else
     {

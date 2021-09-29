@@ -8,22 +8,28 @@
                 <div class="column is-full">
                     <div class="columns">
 
-                        <div class="column is-one-third">
-                            <div class="box">
+                        <div class="column is-one-quarter">
+                            <div class="box has-text-left">
                                 <div *ngFor="let cat of Categories">
                                     <div class="control">
                                         <label class="radio">
-                                            <input type="radio" name="rsvp">
+                                            <input type="radio" (click)="adjustSearch()" name="cat{{cat.CategoryName}}">
                                             {{cat.CategoryName}}
                                         </label>     
                                     </div>
                                 </div>
                             </div>
+                            <div class="box">
+                                <h2>Price: </h2>
+                                <br/>
+                                <ng5-slider [(value)]="minPrice" [(highValue)]="maxPrice" [options]="options"></ng5-slider>
+                            </div>
                         </div>
 
-                        <div class="column is-two-third">
-                            <div class="columns is-multiline">
-                                <div class="column" *ngFor="let item of Items">
+                        <div class="column">
+                            <div class="columns is-multiline is-mobile">
+                                <div class="column is-one-third"  *ngFor="let item of Items">
+                                    <div *ngIf="item.ItemPrice < maxPrice && item.ItemPrice > minPrice">
                                     <div class="box">
                                         <figure class="image is-1by1">
                                             <a routerLink="/item/{{item.ItemId}}"><img src="../../assets/Pics/ItemPics/{{item.ItemName}}.jpg"></a>
@@ -31,7 +37,8 @@
                                             <p class="title is-4"><u><a routerLink="/Item/{{item.ItemName}}"></a></u></p>
                                             <p class="subtitle is-6"><b>Product Name :</b> {{item.ItemName}} </p>
                                             <p class="subtitle is-6"><b>Product price :</b> {{item.ItemPrice}} </p>
-                                        </div>
+                                    </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

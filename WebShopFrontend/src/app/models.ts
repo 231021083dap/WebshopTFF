@@ -1,5 +1,3 @@
-// import { DeclarationListEmitMode } from "@angular/compiler";
-
 export interface Item
 {
     ItemId: number;
@@ -11,6 +9,14 @@ export interface Item
     ItemAmount: number;
 
 };
+
+export interface CartItem
+{
+    ItemId: number;
+    ItemName: string;
+    AmountInCart: number;
+    ItemPrice: number;
+}
 
 export interface User
 {
