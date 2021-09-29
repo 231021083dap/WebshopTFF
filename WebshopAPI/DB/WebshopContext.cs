@@ -18,8 +18,8 @@ namespace WebshopAPI.DB
         public DbSet<Category> Category { get; set; }
         public DbSet<SubCategory> SubCategory { get; set; }
         public DbSet<Orders> Orders { get; set; }
-        public DbSet<OrderItems> OrderItems { get; set; } 
-        
+        public DbSet<OrderItems> OrderItems { get; set; }
+
 
 
 
@@ -46,7 +46,56 @@ namespace WebshopAPI.DB
                     ItemPrice = 999,
                     ItemDiscount = 0,
                     ItemAmount = 2
-                    
+                },
+                new Item
+                {
+                    ItemId = 3,
+                    ItemName = "Razor Naga Trinity mouse with detachables sides",
+                    ItemDescription = "Top tier MMO mouse, and bottom tier for friendly fire",
+                    SubCategoryId = 6,
+                    ItemPrice = 699,
+                    ItemDiscount = 10,
+                    ItemAmount = 10
+                },
+                new Item
+                {
+                    ItemId = 4,
+                    ItemName = "Logitech Office Mouse",
+                    ItemDescription = "Great for your wrist, and for your teammates survivabillity ",
+                    SubCategoryId = 6,
+                    ItemPrice = 150,
+                    ItemDiscount = 0,
+                    ItemAmount = 250
+                },
+                new Item
+                {
+                    ItemId = 5,
+                    ItemName = "Logitech G Pro Wireless",
+                    ItemDescription = "Top tier mouse in every aspect",
+                    SubCategoryId = 6,
+                    ItemPrice = 899,
+                    ItemDiscount = 15,
+                    ItemAmount = 15
+                },
+                new Item
+                {
+                    ItemId = 6,
+                    ItemName = "Acer Extensa 15 EX215-54 15,5 FHD",
+                    ItemDescription = "Some good shit if i may say so myself.",
+                    SubCategoryId = 1,
+                    ItemPrice = 5999,
+                    ItemDiscount = 20,
+                    ItemAmount = 15
+                },
+                new Item
+                {
+                    ItemId = 1,
+                    ItemName = "Garmin Vivoactive 4s GPS smartur, hvid-rose guld",
+                    ItemDescription = "Bling bling for your run",
+                    SubCategoryId = 5,
+                    ItemPrice = 1799,
+                    ItemDiscount = 0,
+                    ItemAmount = 40
                 });
 
 
@@ -62,6 +111,32 @@ namespace WebshopAPI.DB
                     MiddleName = "Er",
                     LastName = "Noob",
                     Address = "Noobstreet",
+                    PostalCode = "1337"
+                },
+                new User
+                {
+                    UserId = 2,
+                    Role = Helpers.Role.Admin,
+                    Email = "Alex@gmail.com",
+                    Phone = "10101010",
+                    Password = "Test1234",
+                    FirstName = "Alex",
+                    MiddleName = "Er",
+                    LastName = "Gud",
+                    Address = "NewWorldChamp 1337",
+                    PostalCode = "7331"
+                },
+                new User
+                {
+                    UserId = 1,
+                    Role = Helpers.Role.Customer,
+                    Email = "Mathias@gmail.com",
+                    Phone = "80088008",
+                    Password = "Test4321",
+                    FirstName = "Mathias",
+                    MiddleName = "Er",
+                    LastName = "Noob",
+                    Address = "Noobstreet 7331",
                     PostalCode = "1337"
                 });
 
@@ -112,7 +187,7 @@ namespace WebshopAPI.DB
                     SubId = 3,
                     SubName = "Monitors",
                     CategoryId = 1
-                }, 
+                },
                 new SubCategory
                 {
                     SubId = 4,
@@ -124,7 +199,7 @@ namespace WebshopAPI.DB
                     SubId = 5,
                     SubName = "SmartWatches",
                     CategoryId = 5
-                });            
+                });
 
             modelBuilder.Entity<Orders>().HasData(
                 new Orders
