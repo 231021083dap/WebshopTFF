@@ -26,6 +26,7 @@ namespace WebshopAPI.Controllers
 
 
         //Get Request
+        [Authorize(Role.Admin)]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -56,7 +57,7 @@ namespace WebshopAPI.Controllers
         }
 
         //GetById
-        [Authorize(Role.Employee)]
+        [Authorize(Role.Customer, Role.Employee, Role.Admin, Role.SuperUser)]
         [HttpGet("{UserId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -68,7 +69,9 @@ namespace WebshopAPI.Controllers
             try
             {
                 var currentUser = (UserResponse)HttpContext.Items["User"];
-                if (currentUser == null || (UserId != currentUser.UserId && currentUser.Role != Role.Employee))
+                if (currentUser == null                    
+                    || (UserId != currentUser.UserId && currentUser.Role != Role.Admin)
+                    || (UserId != currentUser.UserId && currentUser.Role != Role.SuperUser))
                 {
                     return Unauthorized(new { message = "Unauthorized" });
                 }

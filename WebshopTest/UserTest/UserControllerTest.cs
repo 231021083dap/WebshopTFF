@@ -130,10 +130,16 @@ namespace WebshopTest.UserTest
             //Arrange
             int userid = 1;
 
+            _sut.ControllerContext.HttpContext.Items["User"] = new UserResponse
+            {
+                UserId = userid,
+                Role = WebshopAPI.Helpers.Role.Customer
+            };
+
             UserResponse user = new()
             {
                 UserId = userid,
-                Role = WebshopAPI.Helpers.Role.Employee,
+                Role = WebshopAPI.Helpers.Role.Admin,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -161,6 +167,12 @@ namespace WebshopTest.UserTest
             //Arrange
             int userid = 1;
 
+            _sut.ControllerContext.HttpContext.Items["User"] = new UserResponse
+            {
+                UserId = userid,
+                Role = WebshopAPI.Helpers.Role.Admin
+            };
+
             _userService
                 .Setup(s => s.GetById(It.IsAny<int>()))
                 .ReturnsAsync(() => null);
@@ -175,6 +187,12 @@ namespace WebshopTest.UserTest
         public async void GetById_ShouldReturnStatusCode500_WhenExceptionIsRaised()
         {
             //Arrange
+            _sut.ControllerContext.HttpContext.Items["User"] = new UserResponse
+            {
+                UserId = 1,
+                Role = WebshopAPI.Helpers.Role.Admin
+            };
+
             _userService
                 .Setup(s => s.GetById(It.IsAny<int>()))
                 .ReturnsAsync(() => throw new Exception("This is an Exception"));
@@ -380,13 +398,13 @@ namespace WebshopTest.UserTest
             Assert.Equal(401, statusCodeResult.StatusCode);
         }
         [Fact]
-        public async void GetById_ShouldReturnUser_WhenUserIsLoggedOnAsUser()
+        public async void GetById_ShouldReturnCustomer_WhenCustomerIsLoggedOnAsCustomer()
         {
             // Arrange
-            _sut.ControllerContext.HttpContext.Items["Employee"] = new UserResponse
+            _sut.ControllerContext.HttpContext.Items["User"] = new UserResponse
             {
                 UserId = 2,
-                Role = WebshopAPI.Helpers.Role.Employee
+                Role = WebshopAPI.Helpers.Role.Customer
             };
 
             UserResponse user = new UserResponse
@@ -396,7 +414,7 @@ namespace WebshopTest.UserTest
                 MiddleName = "Lenny",
                 LastName = "Genny",
                 Email = "benny@mail.dk",
-                Role = WebshopAPI.Helpers.Role.Employee
+                Role = WebshopAPI.Helpers.Role.Customer
             };
 
             _userService

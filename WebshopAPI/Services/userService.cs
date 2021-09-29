@@ -156,7 +156,14 @@ namespace WebshopAPI.Services
             {
                 UserId = user.UserId,
                 Email = user.Email,                
-                Role = user.Role
+                Role = user.Role,
+                Phone = user.Phone,
+                Password = user.Password,
+                FirstName = user.FirstName,
+                MiddleName = user.MiddleName,
+                LastName = user.LastName,
+                Address = user.Address,
+                PostalCode = user.PostalCode,
             };
         }
     }
