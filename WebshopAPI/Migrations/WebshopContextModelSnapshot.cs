@@ -118,6 +118,61 @@ namespace WebshopAPI.Migrations
                             ItemPrice = 999,
                             ItemStatus = "In Stock",
                             SubCategoryId = 2
+                        },
+                        new
+                        {
+                            ItemId = 3,
+                            ItemAmount = 10,
+                            ItemDescription = "Top tier MMO mouse, and bottom tier for friendly fire",
+                            ItemDiscount = 10,
+                            ItemName = "Razor Naga Trinity mouse with detachables sides",
+                            ItemPrice = 699,
+                            ItemStatus = "In Stock",
+                            SubCategoryId = 2
+                        },
+                        new
+                        {
+                            ItemId = 4,
+                            ItemAmount = 250,
+                            ItemDescription = "Great for your wrist, and for your teammates survivabillity ",
+                            ItemDiscount = 0,
+                            ItemName = "Logitech Office Mouse",
+                            ItemPrice = 150,
+                            ItemStatus = "In Stock",
+                            SubCategoryId = 6
+                        },
+                        new
+                        {
+                            ItemId = 5,
+                            ItemAmount = 15,
+                            ItemDescription = "Top tier mouse in every aspect",
+                            ItemDiscount = 15,
+                            ItemName = "Logitech G Pro Wireless",
+                            ItemPrice = 899,
+                            ItemStatus = "In Stock",
+                            SubCategoryId = 2
+                        },
+                        new
+                        {
+                            ItemId = 6,
+                            ItemAmount = 15,
+                            ItemDescription = "Some good shit if i may say so myself.",
+                            ItemDiscount = 20,
+                            ItemName = "Acer Extensa 15 EX215-54 15,5 FHD",
+                            ItemPrice = 5999,
+                            ItemStatus = "In Stock",
+                            SubCategoryId = 1
+                        },
+                        new
+                        {
+                            ItemId = 7,
+                            ItemAmount = 40,
+                            ItemDescription = "Bling bling for your run",
+                            ItemDiscount = 0,
+                            ItemName = "Garmin Vivoactive 4s GPS smartur, hvid-rose guld",
+                            ItemPrice = 1799,
+                            ItemStatus = "In Stock",
+                            SubCategoryId = 5
                         });
                 });
 
@@ -199,44 +254,6 @@ namespace WebshopAPI.Migrations
                         });
                 });
 
-            modelBuilder.Entity("WebshopAPI.DB.Entities.Role", b =>
-                {
-                    b.Property<int>("RoleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("RoleName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("RoleId");
-
-                    b.ToTable("Role");
-
-                    b.HasData(
-                        new
-                        {
-                            RoleId = 1,
-                            RoleName = "Customer"
-                        },
-                        new
-                        {
-                            RoleId = 2,
-                            RoleName = "Employee"
-                        },
-                        new
-                        {
-                            RoleId = 3,
-                            RoleName = "Admin"
-                        },
-                        new
-                        {
-                            RoleId = 4,
-                            RoleName = "SuperUser"
-                        });
-                });
-
             modelBuilder.Entity("WebshopAPI.DB.Entities.SubCategory", b =>
                 {
                     b.Property<int>("SubId")
@@ -262,6 +279,12 @@ namespace WebshopAPI.Migrations
                             SubId = 1,
                             CategoryId = 1,
                             SubName = "Laptop"
+                        },
+                        new
+                        {
+                            SubId = 6,
+                            CategoryId = 5,
+                            SubName = "Shitty office equipment"
                         },
                         new
                         {
@@ -328,12 +351,10 @@ namespace WebshopAPI.Migrations
                         .HasMaxLength(4)
                         .HasColumnType("nvarchar(4)");
 
-                    b.Property<int>("RoleId")
+                    b.Property<int>("Role")
                         .HasColumnType("int");
 
                     b.HasKey("UserId");
-
-                    b.HasIndex("RoleId");
 
                     b.ToTable("User");
 
@@ -349,7 +370,33 @@ namespace WebshopAPI.Migrations
                             Password = "TestTest",
                             Phone = "20202020",
                             PostalCode = "1337",
-                            RoleId = 1
+                            Role = 1
+                        },
+                        new
+                        {
+                            UserId = 2,
+                            Address = "NewWorldChamp 1337",
+                            Email = "Alex@gmail.com",
+                            FirstName = "Alex",
+                            LastName = "Gud",
+                            MiddleName = "Er",
+                            Password = "Test1234",
+                            Phone = "10101010",
+                            PostalCode = "7331",
+                            Role = 2
+                        },
+                        new
+                        {
+                            UserId = 3,
+                            Address = "Noobstreet 7331",
+                            Email = "Mathias@gmail.com",
+                            FirstName = "Mathias",
+                            LastName = "Noob",
+                            MiddleName = "Er",
+                            Password = "Test4321",
+                            Phone = "80088008",
+                            PostalCode = "1337",
+                            Role = 0
                         });
                 });
 
@@ -395,17 +442,6 @@ namespace WebshopAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("WebshopAPI.DB.Entities.User", b =>
-                {
-                    b.HasOne("WebshopAPI.DB.Entities.Role", "UserRole")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UserRole");
                 });
 
             modelBuilder.Entity("WebshopAPI.DB.Entities.Category", b =>
