@@ -2,7 +2,7 @@
 
 namespace WebshopAPI.Migrations
 {
-    public partial class test : Migration
+    public partial class AlexSucks : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -20,16 +20,24 @@ namespace WebshopAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Role",
+                name: "User",
                 columns: table => new
                 {
-                    RoleId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Role = table.Column<int>(type: "int", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(24)", maxLength: 24, nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PostalCode = table.Column<string>(type: "nvarchar(4)", maxLength: 4, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Role", x => x.RoleId);
+                    table.PrimaryKey("PK_User", x => x.UserId);
                 });
 
             migrationBuilder.CreateTable(
@@ -53,29 +61,22 @@ namespace WebshopAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Orders",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    OrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<int>(type: "int", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(24)", maxLength: 24, nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PostalCode = table.Column<string>(type: "nvarchar(4)", maxLength: 4, nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    OrderStatus = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.UserId);
+                    table.PrimaryKey("PK_Orders", x => x.OrderId);
                     table.ForeignKey(
-                        name: "FK_User_Role_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "Role",
-                        principalColumn: "RoleId",
+                        name: "FK_Orders_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -101,26 +102,6 @@ namespace WebshopAPI.Migrations
                         column: x => x.SubCategoryId,
                         principalTable: "SubCategory",
                         principalColumn: "SubId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    OrderId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    OrderStatus = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.OrderId);
-                    table.ForeignKey(
-                        name: "FK_Orders_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -159,14 +140,22 @@ namespace WebshopAPI.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Role",
-                columns: new[] { "RoleId", "RoleName" },
+                table: "User",
+                columns: new[] { "UserId", "Address", "Email", "FirstName", "LastName", "MiddleName", "Password", "Phone", "PostalCode", "Role" },
                 values: new object[,]
                 {
-                    { 1, "Customer" },
-                    { 2, "Employee" },
-                    { 3, "Admin" },
-                    { 4, "SuperUser" }
+                    { 1, "Noobstreet", "Test@gmail.com", "Anders", "Noob", "Er", "TestTest", "20202020", "1337", 1 },
+                    { 2, "NewWorldChamp 1337", "Alex@gmail.com", "Alex", "Gud", "Er", "Test1234", "10101010", "7331", 2 },
+                    { 3, "Noobstreet 7331", "Mathias@gmail.com", "Mathias", "Noob", "Er", "Test4321", "80088008", "1337", 0 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Orders",
+                columns: new[] { "OrderId", "OrderStatus", "UserId" },
+                values: new object[,]
+                {
+                    { 1, "In Shipping", 1 },
+                    { 2, "In Cart", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -177,31 +166,23 @@ namespace WebshopAPI.Migrations
                     { 1, 1, "Laptop" },
                     { 2, 1, "PC Audio" },
                     { 3, 1, "Monitors" },
+                    { 6, 5, "Shitty office equipment" },
                     { 4, 5, "MobilTelefoner" },
                     { 5, 5, "SmartWatches" }
                 });
-
-            migrationBuilder.InsertData(
-                table: "User",
-                columns: new[] { "UserId", "Address", "Email", "FirstName", "LastName", "MiddleName", "Password", "Phone", "PostalCode", "RoleId" },
-                values: new object[] { 1, "Noobstreet", "Test@gmail.com", "Anders", "Noob", "Er", "TestTest", "20202020", "1337", 1 });
 
             migrationBuilder.InsertData(
                 table: "Item",
                 columns: new[] { "ItemId", "ItemAmount", "ItemDescription", "ItemDiscount", "ItemName", "ItemPrice", "ItemStatus", "SubCategoryId" },
                 values: new object[,]
                 {
-                    { 1, 10, "Shitty bærbar, minimal teamkilling ability with this one.", 5, "Acer 15.6 tommer laptop", 4999, "In Stock", 1 },
-                    { 2, 2, "Top teir audio to own your teammates", 0, "SteelSeries Arctic 7 Wireless", 999, "In Stock", 2 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Orders",
-                columns: new[] { "OrderId", "OrderStatus", "UserId" },
-                values: new object[,]
-                {
-                    { 1, "In Shipping", 1 },
-                    { 2, "In Cart", 1 }
+                    { 1, 10, "Shitty bÃ¦rbar, minimal teamkilling ability with this one.", 5, "Acer 15.6 tommer laptop", 4999, "In Stock", 1 },
+                    { 6, 15, "Some good shit if i may say so myself.", 20, "Acer Extensa 15 EX215-54 15,5 FHD", 5999, "In Stock", 1 },
+                    { 2, 2, "Top teir audio to own your teammates", 0, "SteelSeries Arctic 7 Wireless", 999, "In Stock", 2 },
+                    { 3, 10, "Top tier MMO mouse, and bottom tier for friendly fire", 10, "Razor Naga Trinity mouse with detachables sides", 699, "In Stock", 2 },
+                    { 5, 15, "Top tier mouse in every aspect", 15, "Logitech G Pro Wireless", 899, "In Stock", 2 },
+                    { 4, 250, "Great for your wrist, and for your teammates survivabillity ", 0, "Logitech Office Mouse", 150, "In Stock", 6 },
+                    { 7, 40, "Bling bling for your run", 0, "Garmin Vivoactive 4s GPS smartur, hvid-rose guld", 1799, "In Stock", 5 }
                 });
 
             migrationBuilder.InsertData(
@@ -233,11 +214,6 @@ namespace WebshopAPI.Migrations
                 name: "IX_SubCategory_CategoryId",
                 table: "SubCategory",
                 column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_User_RoleId",
-                table: "User",
-                column: "RoleId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -256,9 +232,6 @@ namespace WebshopAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "SubCategory");
-
-            migrationBuilder.DropTable(
-                name: "Role");
 
             migrationBuilder.DropTable(
                 name: "Category");

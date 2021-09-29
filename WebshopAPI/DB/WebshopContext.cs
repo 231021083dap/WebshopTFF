@@ -31,7 +31,7 @@ namespace WebshopAPI.DB
                 {
                     ItemId = 1,
                     ItemName = "Acer 15.6 tommer laptop",
-                    ItemDescription = "Shitty bærbar, minimal teamkilling ability with this one.",
+                    ItemDescription = "Shitty bÃ¦rbar, minimal teamkilling ability with this one.",
                     SubCategoryId = 1,
                     ItemPrice = 4999,
                     ItemDiscount = 5,
@@ -52,7 +52,7 @@ namespace WebshopAPI.DB
                     ItemId = 3,
                     ItemName = "Razor Naga Trinity mouse with detachables sides",
                     ItemDescription = "Top tier MMO mouse, and bottom tier for friendly fire",
-                    SubCategoryId = 6,
+                    SubCategoryId = 2,
                     ItemPrice = 699,
                     ItemDiscount = 10,
                     ItemAmount = 10
@@ -72,7 +72,7 @@ namespace WebshopAPI.DB
                     ItemId = 5,
                     ItemName = "Logitech G Pro Wireless",
                     ItemDescription = "Top tier mouse in every aspect",
-                    SubCategoryId = 6,
+                    SubCategoryId = 2,
                     ItemPrice = 899,
                     ItemDiscount = 15,
                     ItemAmount = 15
@@ -89,7 +89,7 @@ namespace WebshopAPI.DB
                 },
                 new Item
                 {
-                    ItemId = 1,
+                    ItemId = 7,
                     ItemName = "Garmin Vivoactive 4s GPS smartur, hvid-rose guld",
                     ItemDescription = "Bling bling for your run",
                     SubCategoryId = 5,
@@ -128,7 +128,7 @@ namespace WebshopAPI.DB
                 },
                 new User
                 {
-                    UserId = 1,
+                    UserId = 3,
                     Role = Helpers.Role.Customer,
                     Email = "Mathias@gmail.com",
                     Phone = "80088008",
@@ -175,6 +175,12 @@ namespace WebshopAPI.DB
                     SubId = 1,
                     SubName = "Laptop",
                     CategoryId = 1
+                },
+                new SubCategory
+                {
+                    SubId = 6,
+                    SubName = "Shitty office equipment",
+                    CategoryId = 5
                 },
                 new SubCategory
                 {
