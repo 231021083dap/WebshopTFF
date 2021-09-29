@@ -4,14 +4,15 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using WebshopAPI.Helpers;
 
 namespace WebshopAPI.DTO
 {
     public class UpdateUser
     {
 
-        [ForeignKey("Role.RoleId")]
-        public int RoleId { get; set; }
+        [Required]
+        public Role Role { get; set; }
 
         [Required]
         public string Email { get; set; }

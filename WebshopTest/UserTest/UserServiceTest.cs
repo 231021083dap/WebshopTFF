@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebshopAPI.Authorization;
 using WebshopAPI.DB.Entities;
 using WebshopAPI.DTO;
 using WebshopAPI.Repositories;
@@ -17,11 +18,12 @@ namespace WebshopTest.UserTest
     {
         private readonly UserService _sut;
         private readonly Mock<IUserRepo> _userRepo = new();
+        private readonly Mock<IJwtUtils> _jwtUtils = new();
 
 
         public UserServiceTest()
         {
-            _sut = new UserService(_userRepo.Object);
+            _sut = new UserService(_userRepo.Object, _jwtUtils.Object);
 
         }
 
@@ -34,7 +36,7 @@ namespace WebshopTest.UserTest
             user.Add(new User
             {
                 UserId = 1,
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Employee,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -43,16 +45,12 @@ namespace WebshopTest.UserTest
                 LastName = "Noob",
                 Address = "Noobstreet",
                 PostalCode = "1337",
-                UserRole = new()
-                {
-                    RoleId = 1,
-                    RoleName = "Customer"
-                }
+               
             });
             user.Add(new User
             {
                 UserId = 2,
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Employee,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -61,11 +59,7 @@ namespace WebshopTest.UserTest
                 LastName = "Noob",
                 Address = "Noobstreet",
                 PostalCode = "1337",
-                UserRole = new()
-                {
-                    RoleId = 1,
-                    RoleName = "Customer"
-                }
+             
             });
 
             _userRepo
@@ -109,7 +103,7 @@ namespace WebshopTest.UserTest
             User user = new()
             {
                 UserId = userid,
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Employee,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -118,11 +112,7 @@ namespace WebshopTest.UserTest
                 LastName = "Noob",
                 Address = "Noobstreet",
                 PostalCode = "1337",
-                UserRole = new()
-                {
-                    RoleId = 1,
-                    RoleName = "Customer"
-                }
+               
             };
 
             _userRepo
@@ -136,7 +126,7 @@ namespace WebshopTest.UserTest
             Assert.NotNull(result);
             Assert.IsType<UserResponse>(result);
             Assert.Equal(user.UserId, result.UserId);
-            Assert.Equal(user.RoleId, result.RoleId);
+            Assert.Equal(user.Role, result.Role);
             Assert.Equal(user.Email , result.Email);
             Assert.Equal(user.Phone , result.Phone);
             Assert.Equal(user.Password , result.Password);
@@ -172,7 +162,7 @@ namespace WebshopTest.UserTest
             //Arrange
             NewUser newUser = new()
             {
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Customer,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -188,7 +178,7 @@ namespace WebshopTest.UserTest
             User user = new()
             {
                 UserId = userid,
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Customer,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -202,16 +192,7 @@ namespace WebshopTest.UserTest
             _userRepo
                 .Setup(s => s.Create(It.IsAny<User>()))
                 .ReturnsAsync(user);
-
-            Role role = new()
-            {
-                RoleId = 1,
-                RoleName = "Customer"
-            };
-
-            _userRepo
-                .Setup(s => s.GetByRoleId(It.IsAny<int>()))
-                .ReturnsAsync(role);
+          
 
             //Act
             var result = await _sut.Create(newUser);
@@ -220,7 +201,7 @@ namespace WebshopTest.UserTest
             Assert.NotNull(result);
             Assert.IsType<UserResponse>(result);
             Assert.Equal(userid, result.UserId);
-            Assert.Equal(newUser.RoleId, result.RoleId);
+            Assert.Equal(newUser.Role, result.Role);
             Assert.Equal(newUser.Email , result.Email);
             Assert.Equal(newUser.Phone , result.Phone);
             Assert.Equal(newUser.Password , result.Password);
@@ -240,7 +221,7 @@ namespace WebshopTest.UserTest
             //Arrange
             UpdateUser updateUser = new()
             {
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Customer,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -255,7 +236,7 @@ namespace WebshopTest.UserTest
             User user = new()
             {
                 UserId = userid,
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Customer,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -268,17 +249,7 @@ namespace WebshopTest.UserTest
 
             _userRepo
                 .Setup(s => s.Update(It.IsAny<int>(), It.IsAny<User>()))
-                .ReturnsAsync(user);
-
-            Role role = new()
-            {
-                RoleId = 1,
-                RoleName = "Customer"
-            };
-
-            _userRepo
-                .Setup(s => s.GetByRoleId(It.IsAny<int>()))
-                .ReturnsAsync(role);
+                .ReturnsAsync(user);         
 
 
 
@@ -289,7 +260,7 @@ namespace WebshopTest.UserTest
             Assert.NotNull(result);
             Assert.IsType<UserResponse>(result);
             Assert.Equal(userid, result.UserId);
-            Assert.Equal(updateUser.RoleId , result.RoleId);
+            Assert.Equal(updateUser.Role , result.Role);
             Assert.Equal(updateUser.Email , result.Email);
             Assert.Equal(updateUser.Phone , result.Phone);
             Assert.Equal(updateUser.Password , result.Password);
@@ -307,7 +278,7 @@ namespace WebshopTest.UserTest
             //Arrange
             UpdateUser updateUser = new()
             {
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Employee,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",
@@ -339,7 +310,7 @@ namespace WebshopTest.UserTest
             User user = new()
             {
                 UserId = userid,
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Customer,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",

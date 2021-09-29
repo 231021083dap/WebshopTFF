@@ -39,7 +39,7 @@ namespace WebshopTest.OrderTest
                 new User
                 {
                     UserId = 1,
-                    RoleId = 1,
+                    Role = WebshopAPI.Helpers.Role.Customer,
                     Email = "Test@gmail.com",
                     Phone = "20202020",
                     Password = "TestTest",
@@ -105,7 +105,7 @@ namespace WebshopTest.OrderTest
                 new User
                 {
                     UserId = 1,
-                    RoleId = 1,
+                    Role = WebshopAPI.Helpers.Role.Customer,
                     Email = "Test@gmail.com",
                     Phone = "20202020",
                     Password = "TestTest",
@@ -213,7 +213,7 @@ namespace WebshopTest.OrderTest
             new User
             {
                 UserId = 1,
-                RoleId = 1,
+                Role = WebshopAPI.Helpers.Role.Customer,
                 Email = "Test@gmail.com",
                 Phone = "20202020",
                 Password = "TestTest",

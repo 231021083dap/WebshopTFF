@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebshopAPI.Authorization;
 using WebshopAPI.DB.Entities;
 using WebshopAPI.DTO;
+using WebshopAPI.Helpers;
 using WebshopAPI.Repositories;
 using WebshopAPI.Responses;
 
@@ -12,13 +14,13 @@ namespace WebshopAPI.Services
     public interface IUserService
     {
         //    //CRUD
-        Task<List<UserResponse>> GetAllUsers();
-        Task<List<UserRoleResponse>> GetUserRoles();
+        Task<List<UserResponse>> GetAllUsers();        
         Task<UserResponse> GetById(int UserId);
         Task<UserResponse> Create(NewUser newUser);
         Task<UserResponse> Update(int UserId, UpdateUser updateUser);
         Task<bool> Delete(int UserId);
         //Task<UserRoleResponse> GetByRoleId(int RoleId);
+        Task<LoginResponse> Authenticate(NewLogin login);
     }
 
 
@@ -26,12 +28,13 @@ namespace WebshopAPI.Services
     public class UserService : IUserService
     {
         private readonly IUserRepo _UserRepo;
+        private readonly IJwtUtils _jwtUtils;
 
-        //CTOR
-        public UserService(IUserRepo UserRepo)
+        
+        public UserService(IUserRepo UserRepo, IJwtUtils jwtUtils)
         {
             _UserRepo = UserRepo;
-
+            _jwtUtils = jwtUtils;
         }
 
 
@@ -43,7 +46,7 @@ namespace WebshopAPI.Services
             return Users.Select(u => new UserResponse
             {
                 UserId = u.UserId,
-                RoleId = u.RoleId,
+                Role = u.Role,
                 Email = u.Email,
                 Phone = u.Phone,
                 Password = u.Password,
@@ -52,27 +55,10 @@ namespace WebshopAPI.Services
                 MiddleName = u.MiddleName,
                 Address = u.Address,
                 PostalCode = u.PostalCode,
-                UserRole = new UserRoleResponse
-                {
-                    RoleName = u.UserRole.RoleName,
-                    RoleId = u.UserRole.RoleId
-                }
+               
 
             }).ToList();
-        }
-
-        public async Task<List<UserRoleResponse>> GetUserRoles()
-        {
-
-            List<Role> Roles = await _UserRepo.GetUserRoles();
-            //lambda
-            return Roles.Select(u => new UserRoleResponse
-            {
-                RoleName = u.RoleName,
-                RoleId = u.RoleId
-
-            }).ToList();
-        }
+        }       
 
 
         public async Task<UserResponse> GetById(int UserId)
@@ -82,7 +68,7 @@ namespace WebshopAPI.Services
             return user == null ? null : new UserResponse
             {
                 UserId = user.UserId,
-                RoleId = user.RoleId,
+                Role = Helpers.Role.Employee,
                 Email = user.Email,
                 Phone = user.Phone,
                 Password = user.Password,
@@ -90,20 +76,14 @@ namespace WebshopAPI.Services
                 LastName = user.LastName,
                 MiddleName = user.MiddleName,
                 Address = user.Address,
-                PostalCode = user.PostalCode,
-                UserRole = new UserRoleResponse
-                {
-                    RoleName = user.UserRole.RoleName,
-                    RoleId = user.UserRole.RoleId
-                }
-
+                PostalCode = user.PostalCode,               
             };
         }
         public async Task<UserResponse> Create(NewUser newUser)
         {
             User user = new()
             {
-                RoleId = newUser.RoleId,
+                Role = Helpers.Role.Employee,
                 Email = newUser.Email,
                 Phone = newUser.Phone,
                 Password = newUser.Password,
@@ -114,30 +94,10 @@ namespace WebshopAPI.Services
                 PostalCode = newUser.PostalCode
             };
             user = await _UserRepo.Create(user);
-            if (user != null)
-            {
-                user.UserRole = await _UserRepo.GetByRoleId(user.RoleId);
 
-                return new UserResponse
-                {
-                    UserId = user.UserId,
-                    RoleId = user.RoleId,
-                    Email = user.Email,
-                    Phone = user.Phone,
-                    Password = user.Password,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    MiddleName = user.MiddleName,
-                    Address = user.Address,
-                    PostalCode = user.PostalCode,
-                    UserRole = new UserRoleResponse
-                    {
-                        RoleName = user.UserRole.RoleName,
-                        RoleId = user.UserRole.RoleId
-                    }
-                };
-            }
-            return null;
+            return userResponse(user);
+
+              
         }
 
 
@@ -145,7 +105,8 @@ namespace WebshopAPI.Services
         {
             User user = new User
             {
-                RoleId = updateUser.RoleId,
+                UserId = 1,
+                Role = updateUser.Role,
                 Email = updateUser.Email,
                 Phone = updateUser.Phone,
                 Password = updateUser.Password,
@@ -156,29 +117,9 @@ namespace WebshopAPI.Services
                 PostalCode = updateUser.PostalCode
             };
             user = await _UserRepo.Update(UserId, user);
-            if (user != null)
-            {
-                user.UserRole = await _UserRepo.GetByRoleId(user.RoleId);
-                return new UserResponse
-                {
-                    UserId = user.UserId,
-                    RoleId = user.RoleId,
-                    Email = user.Email,
-                    Phone = user.Phone,
-                    Password = user.Password,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    MiddleName = user.MiddleName,
-                    Address = user.Address,
-                    PostalCode = user.PostalCode,
-                    UserRole = new UserRoleResponse
-                    {
-                        RoleName = user.UserRole.RoleName,
-                        RoleId = user.UserRole.RoleId
-                    }
-                };
-            }
-            return null;
+
+            return userResponse(user);
+            
         }
 
         public async Task<bool> Delete(int UserId)
@@ -187,22 +128,44 @@ namespace WebshopAPI.Services
             return true;
         }
 
-        // ROLE //
+        public async Task<LoginResponse> Authenticate(NewLogin login)
+        {
+            User user = await _UserRepo.GetByEmail(login.Email);
+            if (user == null)
+            {
+                return null;
+            }
 
-        //public async Task<UserRoleResponse> GetByRoleId(int RoleId)
-        //{
-        //    Role role = await _UserRepo.GetByRoleId(RoleId);
+            if (user.Password == login.Password)
+            {
+                LoginResponse response = new LoginResponse
+                {
+                    Id = user.UserId,
+                    Email = user.Email,                    
+                    Role = user.Role,
+                    Token = _jwtUtils.GenerateJwtToken(user)
+                };
+                return response;
+            }
 
-        //    return role == null ? null : new UserRoleResponse
-
-
-        //    {
-        //        RoleName = role.RoleName,
-        //        RoleId = role.RoleId
-        //    };
-
-
-        //}
+            return null;
+        }
+        private UserResponse userResponse(User user)
+        {
+            return user == null ? null : new UserResponse
+            {
+                UserId = user.UserId,
+                Email = user.Email,                
+                Role = user.Role,
+                Phone = user.Phone,
+                Password = user.Password,
+                FirstName = user.FirstName,
+                MiddleName = user.MiddleName,
+                LastName = user.LastName,
+                Address = user.Address,
+                PostalCode = user.PostalCode,
+            };
+        }
     }
 }
 

@@ -19,7 +19,8 @@ namespace WebshopAPI.DB
         public DbSet<SubCategory> SubCategory { get; set; }
         public DbSet<Orders> Orders { get; set; }
         public DbSet<OrderItems> OrderItems { get; set; } 
-        public DbSet<Role> Role { get; set; }
+        
+
 
 
 
@@ -53,7 +54,7 @@ namespace WebshopAPI.DB
                 new User
                 {
                     UserId = 1,
-                    RoleId = 1,
+                    Role = Helpers.Role.Employee,
                     Email = "Test@gmail.com",
                     Phone = "20202020",
                     Password = "TestTest",
@@ -123,29 +124,7 @@ namespace WebshopAPI.DB
                     SubId = 5,
                     SubName = "SmartWatches",
                     CategoryId = 5
-                });
-
-            modelBuilder.Entity<Role>().HasData(
-                new Role
-                {
-                    RoleId = 1,
-                    RoleName = "Customer"
-                },
-                new Role
-                {
-                    RoleId = 2,
-                    RoleName = "Employee"
-                },
-                new Role
-                {
-                    RoleId = 3,
-                    RoleName = "Admin"
-                },
-                new Role
-                {
-                    RoleId = 4,
-                    RoleName = "SuperUser"
-                });
+                });            
 
             modelBuilder.Entity<Orders>().HasData(
                 new Orders

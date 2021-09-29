@@ -4,19 +4,19 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using WebshopAPI.Helpers;
 
 namespace WebshopAPI.DTO
 {
     public class NewUser
     {
 
-        [ForeignKey("Role.RoleId")]
-        public int RoleId { get; set; } = 1;
+        public Role Role { get; set; }
 
         [Required]
         public string Email { get; set; }
 
-        [MinLength(8, ErrorMessage = "Unexpected Phone length")]
+        [MinLength(8, ErrorMessage = "Invalid Phone length")]
         [MaxLength(24, ErrorMessage = "Unexpected Phone length")]
         public string Phone { get; set; }
 
