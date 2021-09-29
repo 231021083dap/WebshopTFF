@@ -15,8 +15,7 @@ export class MyCartComponent implements OnInit {
 
 
   constructor(private cartService : CartService) { }
-
-  constructor(private localStorageService: LocalStorageService) { }  
+ 
   // persist(key: string, value: any) {
   //   this.localStorageService.set(key, value);
   // }

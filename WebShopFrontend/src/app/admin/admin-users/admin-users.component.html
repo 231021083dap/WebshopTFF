@@ -137,15 +137,7 @@
         <p class="mt-4">
         </p>
 
-        <label class="label">User Role</label>
-        <div class="select is-link is-rounded is-fullwidth">
-            <select [(ngModel)]="User.UserRoleId">
-                <option disabled value ="0">Select Role</option>
-                <option *ngFor="let Role of Roles" [value]="User.UserRoleId">
-                    {{Role.RoleName}}
-                </option>
-            </select>
-        </div>
+     
 
         <p class="mt-4">
         </p>

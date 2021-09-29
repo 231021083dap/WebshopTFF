@@ -14,8 +14,7 @@ export class RegisterComponent implements OnInit {
 
   User: User = 
   { 
-    UserId: 0,
-    UserRoleId: 0,
+    UserId: 0,    
     Email: '',
     Phone: '',
     Password: '',
@@ -59,8 +58,7 @@ export class RegisterComponent implements OnInit {
   {
     this.User = 
     { 
-      UserId: 0,
-      UserRoleId: 0,
+      UserId: 0,     
       Email: '',
       Phone: '',
       Password: '',

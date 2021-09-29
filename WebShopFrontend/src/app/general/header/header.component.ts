@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
     this.categoryService.GetAllSubCategories()
     .subscribe(a => this.SubCategories = a)
   }
-  logout() {
+  LogOut() {
     if (confirm('Er du sikker på du vil logge ud')) {
       // ask authentication service to perform logout
       this.authenticationService.logout();
