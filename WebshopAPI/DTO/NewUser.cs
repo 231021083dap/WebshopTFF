@@ -11,7 +11,7 @@ namespace WebshopAPI.DTO
     public class NewUser
     {
 
-        public Role Role { get; set; }
+        public Role Role { get; set; } = Role.Customer;
 
         [Required]
         public string Email { get; set; }
