@@ -46,8 +46,8 @@
   <div class="navbar-end">
     <a class="navbar-item is-hoverable is-size-4" routerLink="/authentication/login" *ngIf="currentUser == null">Login/Register</a>
     <a class="navbar-item is-hoverable is-size-4" (click)='LogOut()' *ngIf="currentUser != null">Logout</a>
-    <a class="navbar-item is-hoverable is-size-4" routerLink="/mysite">My Site</a>    
-    <a class="navbar-item is-hoverable is-size-4" routerLink="/mycart">My Cart</a>    
+    <a class="navbar-item is-hoverable is-size-4" routerLink="/mysite" *ngIf="currentUser != null && currentUser.Role =='Customer'">My Site</a>    
+    <a class="navbar-item is-hoverable is-size-4" routerLink="/mycart" *ngIf="currentUser != null && currentUser.Role =='Customer'">My Cart</a>    
     <a class="navbar-item is-hoverable is-size-4" routerLink="/admin/adminsite" *ngIf="currentUser != null && currentUser.Role =='Admin' || currentUser != null && currentUser.Role =='SuperUser'">Admin</a>
   </div>
   

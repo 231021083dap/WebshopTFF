@@ -11,6 +11,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using WebshopAPI.Authorization;
 using WebshopAPI.DB;
@@ -50,6 +51,8 @@ namespace WebshopAPI
                 {
                     options.JsonSerializerOptions
                       .PropertyNamingPolicy = null;
+                    options.JsonSerializerOptions
+                    .Converters.Add(new JsonStringEnumConverter());
                 });
 
             //Opsætning af vores SQL server.
