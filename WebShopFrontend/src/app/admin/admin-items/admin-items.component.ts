@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from 'src/app/models';
+import { Item, SubCategory } from 'src/app/models';
+import { CategoryService } from 'src/app/Services/CategoryService';
 import { ItemService } from 'src/app/Services/ItemService';
 
 @Component({
@@ -22,17 +23,39 @@ export class AdminItemsComponent implements OnInit {
     ItemAmount: 0,
   }
 
-  constructor(private itemService:ItemService) { }
+  Sub: SubCategory = 
+  {
+    SubId: 0,
+    SubName: '',
+    CategoryId: 0
+  }
+
+  constructor
+  (
+    private itemService:ItemService,
+    private categoryService: CategoryService  
+  ) { }
 
   ngOnInit(): void 
   {
     this.getAllItems();
+
+    //this.getSubById(this.Item.SubCategoryId);
   }
 
   getAllItems(): void
   {
     this.itemService.GetAllItems()
     .subscribe(a => this.Items = a);
+  }
+
+  getSubById(subid : any) : void
+  {
+    this.categoryService.GetSubById(subid)
+    .subscribe(b => 
+      {
+        this.Sub = b;
+      });
   }
 
   editItem(item : Item) : void

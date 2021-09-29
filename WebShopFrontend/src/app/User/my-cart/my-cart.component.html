@@ -1,3 +1,14 @@
+
+<p class="mt-6"></p>
+<p class="pt-6"></p>
+
+
+<section class="section">
+
+      <div class="container">
+          <div class="buttons is-right">
+            <button class="button is-link is-rounded" (click)="deleteEntireCart()">Empty Cart</button>
+
 <section class="hero is-primary is-bold">
     <div class="hero-body">
       <div class="container has-text-centered">
@@ -12,6 +23,7 @@
       <div class="container">    
           <div class="buttons is-right">
             <button class="button is-link is-rounded" type="button">Empty Cart</button>    
+
           </div>
           <table class="table is-striped is-hoverable is-fullwidth">
               <thead>
@@ -25,6 +37,13 @@
                 </thead>
         <tbody>
           <tr>
+
+            <td><img src="../../assets/Pics/ItemPics/Item.ItemName.jpg"> Item.ItemName</td>
+            <th>Item.Description</th>
+            <th>Item.Amount</th>
+            <th>Item.ItemPrice</th>
+            <th>Item.ItemPrice X Item.ItemAmount</th>
+
             <td>Item.Img Item.ItemId Item.Description</td>
             <th>Item.Amount</th>
             <th>Item.ItemPrice</th>
@@ -36,6 +55,7 @@
             <th>Item.Amount</th>
             <th>Item.ItemPrice</th>
             <th>ItemPrice X ItemAmount</th>
+
             <th>X</th>
           </tr>
         </tbody>
@@ -48,6 +68,19 @@
       <p class="mt-3"></p>
 
       <div class="buttons is-right">
+
+        <button class="button is-link is-rounded" (click)="deleteEntireCart()">Go to payment</button>
+      </div>
+    </div>
+  </section>
+
+
+
+<p class="mt-6"></p>
+<p class="mt-6"></p>
+<p class="pt-6"></p>
+<p class="pt-6"></p>
+
         <button class="button is-link is-rounded" type="button">Go to payment</button>    
       </div>
     </div>

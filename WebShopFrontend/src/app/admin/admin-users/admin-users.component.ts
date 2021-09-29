@@ -50,7 +50,11 @@ export class AdminUsersComponent implements OnInit {
   getUserRoles() : void
   {
     this.userService.GetUserRoles()
-    .subscribe(b => this.Roles = b);
+    .subscribe(b => 
+      {
+        this.Roles = b;
+        console.log(this.Roles);
+      });
   }
 
   editUser(user : User) : void

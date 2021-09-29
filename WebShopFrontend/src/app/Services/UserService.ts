@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from "rxjs";
 import { Roles, User } from "../models";
@@ -12,6 +14,7 @@ import { Roles, User } from "../models";
 export class UserService{
     private apiUrl = 'Https://Localhost:5001/api/user';
     private RolesapiUrl = 'https://localhost:5001/api/User/Roles'
+    private GetUserByIdUrl = "https://localhost:5001/api/User/" + this.route.snapshot.paramMap.get("UserId") 
 
     httpOptions = 
     {
@@ -19,8 +22,11 @@ export class UserService{
 
     }
 
-    constructor(
-        private http:HttpClient
+    constructor
+    (
+        private http: HttpClient,
+        private route: ActivatedRoute,
+        private router: Router
     ){}
 
     GetAllUsers() : Observable<User[]>

@@ -26,6 +26,7 @@
             <label class="label">Product description</label>
             <div class="control">
                 <textarea class="textarea is-link" 
+                          name="ItemDescription"
                           type="text"
                           [(ngModel)]="Item.ItemDescription"
                           required></textarea>
@@ -114,7 +115,6 @@
                             <th><abbr title="ItemDescription">Item Description</abbr></th>
                             <th><abbr title="ItemPrice">Item Price</abbr></th>
                             <th><abbr title="ItemSubCategoryId">Item Subcategory Id</abbr></th>
-                            <th><abbr title="ItemSubName">Item Subcategory Name</abbr></th>
                             <th><abbr title="Edit"></abbr></th>
                             <th><abbr title="Delete"></abbr></th>
                         </tr>
@@ -125,7 +125,6 @@
                                 <td>{{item.ItemDescription}}</td>
                                 <td>{{item.ItemPrice}},-</td>
                                 <td>{{item.SubCategoryId}}</td>
-                                <td>Item Sub Name</td>
                                 <td><button class="button is-link is-rounded" (click)="editItem(item)">Edit item</button></td>
                             </tr>
                         </tbody>

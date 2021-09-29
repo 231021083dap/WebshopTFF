@@ -140,9 +140,9 @@
         <label class="label">User Role</label>
         <div class="select is-link is-rounded is-fullwidth">
             <select [(ngModel)]="User.UserRoleId">
-                <option disabled value ="null" selected>Select Role</option>
-                <option *ngFor="let role og Roles" [value]="role.RoleId">
-                    {{role.RoleName}}
+                <option disabled value ="0">Select Role</option>
+                <option *ngFor="let Role of Roles" [value]="User.UserRoleId">
+                    {{Role.RoleName}}
                 </option>
             </select>
         </div>
