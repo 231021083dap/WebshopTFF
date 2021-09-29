@@ -40,8 +40,7 @@ export class ItembyidComponent implements OnInit {
     (
       private itemService: ItemService,
       private categoryService: CategoryService,
-      private cartService : CartService,
-      private http: HttpClient,
+      private cartService : CartService,      
       private route: ActivatedRoute
     ) { }
 

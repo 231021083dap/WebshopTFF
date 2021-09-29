@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Roles, User } from 'src/app/models';
+import { Role, User } from 'src/app/models';
 import { UserService } from 'src/app/Services/UserService';
 
 @Component({
@@ -13,8 +13,7 @@ export class AdminUsersComponent implements OnInit {
   Users: User[] = [];
   User: User = 
   { 
-    UserId: 0,
-    UserRoleId: 0,
+    UserId: 0,    
     Email: '',
     Phone: '',
     Password: '',
@@ -25,13 +24,8 @@ export class AdminUsersComponent implements OnInit {
     PostalCode: ''
   }
 
-  Roles: Roles[] = [];
-  Role: Roles = 
-  {
-    RoleId: 0,
-    RoleName: ''
-  }
-
+  Role: Role[] = [];
+  
   constructor(private userService:UserService) { }
 
   ngOnInit(): void {
@@ -52,8 +46,8 @@ export class AdminUsersComponent implements OnInit {
     this.userService.GetUserRoles()
     .subscribe(b => 
       {
-        this.Roles = b;
-        console.log(this.Roles);
+        this.Role = b;
+        console.log(this.Role);
       });
   }
 
@@ -92,8 +86,7 @@ export class AdminUsersComponent implements OnInit {
   {
     this.User = 
     { 
-      UserId: 0,
-      UserRoleId: 0,
+      UserId: 0,      
       Email: '',
       Phone: '',
       Password: '',
