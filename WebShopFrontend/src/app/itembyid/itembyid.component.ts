@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { Item, CartItem } from '../models';
+
+import { AuthenticationService } from '../Services/AuthenticationService';
+import { Item, CartItem, User } from '../models';
 import { ItemService } from '../Services/ItemService';
 import { CategoryService } from '../Services/CategoryService';
 import { CartService } from '../Services/CartService';
@@ -12,6 +13,8 @@ import { CartService } from '../Services/CartService';
   styleUrls: ['./itembyid.component.css']
 })
 export class ItembyidComponent implements OnInit {
+
+  currentUser: User = { UserId: 0, Email: '', Phone: '', FirstName: '', MiddleName: '', LastName: '', Address: '', PostalCode: '', Password: ''}
 
   Items: Item[] = [];
   Item: Item =
@@ -27,9 +30,9 @@ export class ItembyidComponent implements OnInit {
 
   CartItem: CartItem = 
   {
-    ItemId: 0,
-    ItemName: '',
-    ItemPrice: 0,
+    ItemId: this.Item.ItemId,
+    ItemName: this.Item.ItemName,
+    ItemPrice: this.Item.ItemPrice,
     AmountInCart: 0,
   }
 
@@ -41,21 +44,26 @@ export class ItembyidComponent implements OnInit {
       private itemService: ItemService,
       private categoryService: CategoryService,
       private cartService : CartService,      
-      private route: ActivatedRoute
-    ) { }
+      private route: ActivatedRoute,
+      private authenticationService: AuthenticationService
+    ) {
+      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    }
 
 
   ngOnInit(): void {
     this.itemid = this.route.snapshot.paramMap.get("itemid") || 0;
 
     this.getitembyid();
+
+
   }
 
   getitembyid(): void {
     this.itemService.GetItemById(this.itemid)
-      .subscribe(a => {
-        this.Item = a;
-        console.log(this.Item)
+      .subscribe(a => 
+      {
+        this.Item = a
       });
 
   }

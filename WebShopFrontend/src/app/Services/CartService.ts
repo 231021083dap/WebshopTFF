@@ -49,12 +49,14 @@ export class CartService{
                 cartitem.AmountInCart += item.AmountInCart;
 
                 itemchanged = true;
+                console.log(cartitem.AmountInCart);
             }
          })      
 
         if(!itemchanged)
         {
-            this.cartItems.push(item);  
+            this.cartItems.push(item); 
+            console.log(this.cartItems); 
         }
         
         this.savecart();

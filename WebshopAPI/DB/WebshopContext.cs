@@ -41,7 +41,7 @@ namespace WebshopAPI.DB
                 {
                     ItemId = 2,
                     ItemName = "SteelSeries Arctic 7 Wireless",
-                    ItemDescription = "Top teir audio to own your teammates",
+                    ItemDescription = "Top tier audio to own your teammates",
                     SubCategoryId = 2,
                     ItemPrice = 999,
                     ItemDiscount = 0,

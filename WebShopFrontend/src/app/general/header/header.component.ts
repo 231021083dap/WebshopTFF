@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
+
+
 import { Category, SubCategory, User } from 'src/app/models';
 import { CategoryService } from 'src/app/Services/CategoryService';
 import { AuthenticationService } from 'src/app/Services/AuthenticationService';
@@ -29,6 +31,8 @@ export class HeaderComponent implements OnInit {
 
     this.categoryService.GetAllSubCategories()
     .subscribe(a => this.SubCategories = a)
+
+    console.log(this.currentUser);
   }
   LogOut() {
     if (confirm('Er du sikker på du vil logge ud')) {
