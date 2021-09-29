@@ -8,7 +8,7 @@
 </section>
 
 <section class="section">
-  <div class="container">
+  <div class="container" *ngIf="currentUser != null && currentUser.Role =='Customer'">
       <div class="field-body">
         <div class="column is-one-third">
           <p class="control is-expanded has-icons-left">
@@ -103,6 +103,8 @@
     <div class="buttons is-centered">
       <button class="button is-link is-rounded" type="button">Save</button>
       <button class="button is-link is-rounded" type="button">Cancel</button>
+      <p class="mt-2"></p>
+      <button class="button is-danger is-rounded" (click)="LogOut()">Logout</button>
     </div>
   </div>
 </section>

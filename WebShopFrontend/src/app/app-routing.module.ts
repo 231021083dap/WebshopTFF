@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './Helpers/auth.guard';
+import { Role } from './models';
+
 import { HomeComponent } from './home/home.component';
 import { ItemsComponent } from './items/items.component';
 import { LoginComponent } from './Authentication/login/login.component';
@@ -13,6 +16,7 @@ import { AdminSubCategoryComponent } from './admin/admin-sub-category/admin-sub-
 import { AdminItemsComponent } from './admin/admin-items/admin-items.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 
+
 const routes: Routes = 
 [
   { path : '', component: HomeComponent },
@@ -22,11 +26,11 @@ const routes: Routes =
   { path : 'mysite', component: MySiteComponent  },
   { path : 'mycart', component: MyCartComponent },
   { path : 'item/:itemid', component: ItembyidComponent },
-  { path : 'admin/adminsite', component: AdministrationsSiteComponent },
-  { path : 'admin/user', component: AdminUsersComponent},
-  { path : 'admin/subcategory', component: AdminSubCategoryComponent },
-  { path : 'admin/items', component: AdminItemsComponent},
-  { path : 'admin/orders', component: AdminOrdersComponent}
+  { path : 'admin/adminsite', component: AdministrationsSiteComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin, Role.SuperUser] } },
+  { path : 'admin/user', component: AdminUsersComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin, Role.SuperUser] }},
+  { path : 'admin/subcategory', component: AdminSubCategoryComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin, Role.SuperUser] } },
+  { path : 'admin/items', component: AdminItemsComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin, Role.SuperUser] }},
+  { path : 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin, Role.SuperUser] }}
 
 ];
 

@@ -1,5 +1,7 @@
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/Services/AuthenticationService';
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models';
+import { Role, User } from 'src/app/models';
 import { UserService } from 'src/app/Services/UserService';
 
 @Component({
@@ -13,8 +15,7 @@ export class MySiteComponent implements OnInit {
 
   User: User = 
   { 
-    UserId: 0,
-    UserRoleId: 0,
+    UserId: 0,    
     Email: '',
     Phone: '',
     Password: '',
@@ -29,7 +30,7 @@ export class MySiteComponent implements OnInit {
   constructor
   (
     private userService: UserService
-  ) { }
+  ) {  }
 
   ngOnInit(): void {
   }
@@ -53,5 +54,7 @@ export class MySiteComponent implements OnInit {
   {
 
   }
+    
+  
 
 }

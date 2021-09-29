@@ -15,7 +15,7 @@ export interface Item
 export interface User
 {
     UserId: number;
-    UserRoleId: number;
+    Role?: Role;
     Email: string;
     Phone: string;
     Password: string;
@@ -40,10 +40,12 @@ export interface SubCategory
     CategoryId: number;
 }
 
-export interface Roles
+export enum Role
 {
-    RoleId: number;
-    RoleName: string;
+    Customer = 'Customer',
+    Employee = 'Employee',
+    Admin = 'Admin',
+    SuperUser = 'SuperUser'
 };
 
 export interface Order

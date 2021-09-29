@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 // import { environment } from '../environments/environment';
-import { Roles, User } from '../models';
+import { Role, User } from '../models';
 import { Router } from '@angular/router';
 
 

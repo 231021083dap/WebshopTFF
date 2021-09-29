@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 import { Observable } from "rxjs";
-import { Roles, User } from "../models";
+import { Role, User } from "../models";
 
 
 @Injectable({
@@ -28,9 +28,9 @@ export class UserService{
         return this.http.get<User[]>(this.apiUrl);
     }
 
-    GetUserRoles() : Observable<Roles[]>
+    GetUserRoles() : Observable<Role[]>
     {
-        return this.http.get<Roles[]>(this.RolesapiUrl);
+        return this.http.get<Role[]>(this.RolesapiUrl);
     }
 
     GetUserById(userid : number) : Observable<User>
