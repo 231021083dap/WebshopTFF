@@ -17,7 +17,7 @@ namespace WebshopAPI.DB.Entities
 
         public User User { get; set; }
 
-        public static DateTime OrderDate { get; set; } = DateTime.Now;
+        public DateTime OrderDate { get; set; } = DateTime.Now;
 
         public string OrderStatus { get; set; }
 

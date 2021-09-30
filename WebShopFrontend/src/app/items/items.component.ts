@@ -31,8 +31,6 @@ export class ItemsComponent implements OnInit {
       }
   }};
 
-
-  Categories : Category[] = [];
   SubCategories : SubCategory[] = [];
   Items: Item[] = [];
 
@@ -43,8 +41,6 @@ export class ItemsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.categoryService.GetAllCategories()
-    .subscribe(a => this.Categories = a);
 
     this.categoryService.GetAllSubCategories()
     .subscribe(b => this.SubCategories = b);
@@ -55,7 +51,7 @@ export class ItemsComponent implements OnInit {
 
   adjustSearch()
   {
-    
+    console.log('test');
   }
 
 }

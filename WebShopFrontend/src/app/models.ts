@@ -57,7 +57,7 @@ export enum Role
 export interface Order
 {
     OrderId: number;
-    Userid: number;
-    OrderDate: Date; 
+    UserId: number;
+    OrderStatus: string;
 };
 

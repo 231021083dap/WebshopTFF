@@ -36,6 +36,14 @@ export class ItembyidComponent implements OnInit {
     AmountInCart: 0,
   }
 
+  // CartItem: CartItem = 
+  // {
+  //   ItemId: 0,
+  //   ItemName: '',
+  //   ItemPrice: 0,
+  //   AmountInCart: 0,
+  // }
+
   public itemid: any = 0;
   public catid: number = 0;
 
@@ -55,8 +63,6 @@ export class ItembyidComponent implements OnInit {
     this.itemid = this.route.snapshot.paramMap.get("itemid") || 0;
 
     this.getitembyid();
-
-
   }
 
   getitembyid(): void {

@@ -1,26 +1,42 @@
 <div class="hero">
     <div class="hero-body">
-
-
         <div class="container">
-
             <div class="columns is-centered has-text-centered">
                 <div class="column is-full">
                     <div class="columns">
-
                         <div class="column is-one-quarter">
                             <div class="box has-text-left">
-                                <div *ngFor="let cat of Categories">
+
                                     <div class="control">
                                         <label class="radio">
-                                            <input type="radio" (click)="adjustSearch()" name="cat{{cat.CategoryName}}">
-                                            {{cat.CategoryName}}
-                                        </label>     
+                                            <input type="radio" name="foobar" id=1 (click)="adjustSearch()">
+                                            <b>  Hardware</b>
+                                        </label>
+                                        <br>
+                                        <label class="radio">
+                                            <input type="radio" name="foobar" id=2 (click)="adjustSearch()">
+                                            <b>  Gaming</b>
+                                        </label>
+                                        <br>
+                                        <label class="radio">
+                                            <input type="radio" name="foobar" id=3 (click)="adjustSearch()">
+                                            <b>  PC & Tablet</b>
+                                        </label>
+                                        <br>    
+                                        <label class="radio">
+                                            <input type="radio" name="foobar" id=4 (click)="adjustSearch()">
+                                            <b>  TV & HIFI</b>
+                                        </label>   
+                                        <br>    
+                                        <label class="radio">
+                                            <input type="radio" name="foobar" id=5 (click)="adjustSearch()">
+                                            <b>  Mobile</b>
+                                        </label>  
                                     </div>
+
                                 </div>
-                            </div>
                             <div class="box">
-                                <h2>Price: </h2>
+                                <h2><b>Price: </b></h2>
                                 <br/>
                                 <ng5-slider [(value)]="minPrice" [(highValue)]="maxPrice" [options]="options"></ng5-slider>
                             </div>
@@ -30,26 +46,23 @@
                             <div class="columns is-multiline is-mobile">
                                 <div class="column is-one-third"  *ngFor="let item of Items">
                                     <div *ngIf="item.ItemPrice < maxPrice && item.ItemPrice > minPrice">
+                                    <a routerLink="/item/{{item.ItemId}}">
                                     <div class="box">
                                         <figure class="image is-1by1">
-                                            <a routerLink="/item/{{item.ItemId}}"><img src="../../assets/Pics/ItemPics/{{item.ItemName}}.jpg"></a>
+                                            <img src="../../assets/Pics/ItemPics/{{item.ItemName}}.jpg">
                                         </figure>
                                             <p class="title is-4"><u><a routerLink="/Item/{{item.ItemName}}"></a></u></p>
                                             <p class="subtitle is-6"><b>Product Name :</b> {{item.ItemName}} </p>
                                             <p class="subtitle is-6"><b>Product price :</b> {{item.ItemPrice}} </p>
                                     </div>
+                                    </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
         </div>
-
-
     </div>
 </div>

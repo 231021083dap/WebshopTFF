@@ -14,8 +14,9 @@ export class CartService{
 
     constructor() {}
 
+
     private createcart()
-    {
+    {        
         var createcart = JSON.parse(localStorage.getItem(this.key) || '');
 
         if(createcart == null || createcart == '')
@@ -23,6 +24,7 @@ export class CartService{
             localStorage.setItem(this.key, JSON.stringify([]));
         }
     }
+
 
     getcart() : CartItem[]
     {
@@ -33,10 +35,12 @@ export class CartService{
         return this.cartItems;
     }
 
+
     savecart()
     {
         localStorage.setItem(this.key, JSON.stringify(this.cartItems));
     }
+
 
     additemtocart(item : CartItem)
     {
@@ -62,6 +66,7 @@ export class CartService{
         this.savecart();
     }
 
+
     updateitemincart(item : CartItem)
     {
         this.getcart();
@@ -69,10 +74,12 @@ export class CartService{
         // ...... No clue atm
     }
 
+
     emptyCart()
     {
         localStorage.clear();
     }
+
 
     removefromCart(item : CartItem)
     {

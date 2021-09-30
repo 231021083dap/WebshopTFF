@@ -38,7 +38,11 @@
                     <p class="pt-6"></p>
 
                     <button class="button is-link is-fullwidth is-rounded" 
-                            (click)="addtoCart()">
+                            (click)="addtoCart()"
+                            *ngIf="currentUser != null && currentUser.Role =='Customer' ||
+                                   currentUser != null && currentUser.Role =='Employee' ||
+                                   currentUser != null && currentUser.Role =='Admin'    ||
+                                   currentUser != null && currentUser.Role =='SuperUser'">
                             Add To Cart
                         </button>
                     <a button class="button is-link is-fullwidth is-rounded" routerLink="/authentication/login" *ngIf="currentUser == null">Login</a>
