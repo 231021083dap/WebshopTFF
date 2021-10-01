@@ -34,6 +34,9 @@ export class ItemsComponent implements OnInit {
   SubCategories : SubCategory[] = [];
   Items: Item[] = [];
 
+
+  SelectedItems: Item[] = [];
+
   constructor
   (
     private categoryService:CategoryService,
@@ -42,16 +45,26 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.itemService.GetAllItems()
+    .subscribe(i => 
+      {
+        this.Items = i;
+        this.SelectedItems = this.Items;
+      });
+
     this.categoryService.GetAllSubCategories()
     .subscribe(b => this.SubCategories = b);
-
-    this.itemService.GetAllItems()
-    .subscribe(i => this.Items = i);
   }
 
-  adjustSearch()
+  adjustSearch(CategoryId : number)
   {
-    console.log('test');
+    if(CategoryId == 0)
+    {
+      this.SelectedItems = this.Items
+    }
+    else
+    {
+      this.SelectedItems = this.Items.filter(Item =>  {return Item.SubCategory?.CategoryId == CategoryId})
+    }
   }
-
 }
