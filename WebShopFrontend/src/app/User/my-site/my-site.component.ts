@@ -11,6 +11,9 @@ import { UserService } from 'src/app/Services/UserService';
 })
 export class MySiteComponent implements OnInit {
 
+
+  currentUser: User = { UserId: 0, Email: '', Phone: '', FirstName: '', MiddleName: '', LastName: '', Address: '', PostalCode: '', Password: ''}
+
   Users: User[] = [];
 
   User: User = 
@@ -26,20 +29,28 @@ export class MySiteComponent implements OnInit {
     PostalCode: ''
 
   }
-
+  
   constructor
   (
-    private userService: UserService
-  ) {  }
+    private userService: UserService,
+    private authenticationService: AuthenticationService
+  ) {  
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  }
 
   ngOnInit(): void {
-    
+    console.log(this.currentUser);
+    this.userService.GetUserById(this.currentUser.UserId)
+    .subscribe(a => this.User = a);
+    console.log(this.User);
+    console.log(this.currentUser.UserId);
   }
 
   
-  UpdateUser(User : User): void
+  UpdateUser(): void
   {
-    this.User = User;
+    this.userService.UpdateUser(this.currentUser.UserId, this.currentUser)
+        .subscribe(() => {this.cancel()})
   }
 
   DeleteUser(user : User) : void
@@ -51,11 +62,25 @@ export class MySiteComponent implements OnInit {
     }
   }
 
+
   GetAllMyOrders()
   {
 
   }
-    
+  cancel() : void
+  {
+    this.currentUser = 
+    { 
+      UserId: 0,      
+      Email: '',
+      Phone: '',
+      Password: '',
+      FirstName: '',
+      LastName: '',
+      MiddleName: '',
+      Address: '',
+      PostalCode: ''
+    }
   
-
+  }
 }
