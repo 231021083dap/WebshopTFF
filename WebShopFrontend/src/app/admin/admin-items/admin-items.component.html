@@ -115,6 +115,7 @@
                             <th><abbr title="ItemDescription">Item Description</abbr></th>
                             <th><abbr title="ItemPrice">Item Price</abbr></th>
                             <th><abbr title="ItemSubCategoryId">Item Subcategory Id</abbr></th>
+                            <th><abbr title="SubCategoryName">Item Subcategory Name</abbr></th>
                             <th><abbr title="Edit"></abbr></th>
                             <th><abbr title="Delete"></abbr></th>
                         </tr>
@@ -125,6 +126,7 @@
                                 <td>{{item.ItemDescription}}</td>
                                 <td>{{item.ItemPrice}},-</td>
                                 <td>{{item.SubCategoryId}}</td>
+                                <td>{{item.SubCategory?.SubName}}</td>
                                 <td><button class="button is-link is-rounded" (click)="editItem(item)">Edit item</button></td>
                             </tr>
                         </tbody>

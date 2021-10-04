@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Role, User } from 'src/app/models';
+import { AuthenticationService } from 'src/app/Services/AuthenticationService';
 import { UserService } from 'src/app/Services/UserService';
 
 @Component({
@@ -8,6 +9,8 @@ import { UserService } from 'src/app/Services/UserService';
   styleUrls: ['./admin-users.component.css']
 })
 export class AdminUsersComponent implements OnInit {
+
+  currentUser: User = { UserId: 0, Email: '', Phone: '', FirstName: '', MiddleName: '', LastName: '', Address: '', PostalCode: '', Password: ''}
 
   Users: User[] = [];
   User: User = 
@@ -23,14 +26,18 @@ export class AdminUsersComponent implements OnInit {
     PostalCode: ''
   }
 
+  public roletype = Object.values(Role).filter(value => typeof value === 'string');
+
   Role: Role[] = [];
   
-  constructor(private userService:UserService) { }
+  constructor
+  (
+    private userService:UserService,
+    private authenticationService:AuthenticationService  
+  ) { this.authenticationService.currentUser.subscribe(x => this.currentUser = x); }
 
   ngOnInit(): void {
     this.getUsers();
-
-    this.getUserRoles();
   }
 
 
@@ -38,16 +45,6 @@ export class AdminUsersComponent implements OnInit {
   {
     this.userService.GetAllUsers()
     .subscribe(a => this.Users = a);
-  }
-
-  getUserRoles() : void
-  {
-    this.userService.GetUserRoles()
-    .subscribe(b => 
-      {
-        this.Role = b;
-        console.log(this.Role);
-      });
   }
 
   editUser(user : User) : void

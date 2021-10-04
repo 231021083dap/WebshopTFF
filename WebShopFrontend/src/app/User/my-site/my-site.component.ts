@@ -39,11 +39,8 @@ export class MySiteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.currentUser);
     this.userService.GetUserById(this.currentUser.UserId)
     .subscribe(a => this.User = a);
-    console.log(this.User);
-    console.log(this.currentUser.UserId);
   }
 
   
@@ -67,6 +64,8 @@ export class MySiteComponent implements OnInit {
   {
 
   }
+
+
   cancel() : void
   {
     this.currentUser = 

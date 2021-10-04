@@ -15,7 +15,6 @@ export class ItembyidComponent implements OnInit {
 
   currentUser: User = { UserId: 0, Email: '', Phone: '', FirstName: '', MiddleName: '', LastName: '', Address: '', PostalCode: '', Password: ''}
 
-  Items: Item[] = [];
   Item: Item =
     {
       ItemId: 0,
@@ -63,5 +62,8 @@ export class ItembyidComponent implements OnInit {
       ItemName : this.Item.ItemName,
       ItemPrice : this.Item.ItemPrice,
       AmountInCart : 1});
+
+
+      window.alert("Product added to cart");
   }
 }

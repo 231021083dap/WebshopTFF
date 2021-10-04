@@ -17,22 +17,13 @@ export class AdminSubCategoryComponent implements OnInit {
     CategoryId: 0
   }
 
-  Categories : Category[] = [];
-  Cat : Category = 
-  {
-    CategoryId: 0,
-    CategoryName: ''
-  }
-
-
   constructor(private categoryService:CategoryService) { }
 
   ngOnInit(): void 
   {
     this.getSubs();
 
-    this.getCategory();
-
+    console.log(this.Subs);
   }
 
 
@@ -40,12 +31,6 @@ export class AdminSubCategoryComponent implements OnInit {
   {
     this.categoryService.GetAllSubCategories()
     .subscribe(a => this.Subs = a);
-  }
-
-  getCategory() : void
-  {
-    this.categoryService.GetAllCategories()
-    .subscribe(b => this.Categories = b);
   }
 
   editSub(sub : SubCategory) : void

@@ -83,7 +83,7 @@ namespace WebshopAPI.Services
         {
             User user = new()
             {
-                Role = Helpers.Role.Employee,
+                Role = newUser.Role,
                 Email = newUser.Email,
                 Phone = newUser.Phone,
                 Password = newUser.Password,

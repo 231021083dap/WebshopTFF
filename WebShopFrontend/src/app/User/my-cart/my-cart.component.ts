@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CartService } from 'src/app/Services/CartService';
-
-import { LocalStorageService } from 'src/app/Services/my-cartService';
+import { CartItem, Item } from 'src/app/models';
 
 
 @Component({
@@ -11,15 +10,12 @@ import { LocalStorageService } from 'src/app/Services/my-cartService';
   styleUrls: ['./my-cart.component.css']
 })
 export class MyCartComponent implements OnInit {
-  // localStorageChanges$ = this.localStorageService.changes$;
 
+  cartItems: CartItem[] = [];
+  
+  result: number = 0;
 
   constructor(private cartService : CartService) { }
- 
-  // persist(key: string, value: any) {
-  //   this.localStorageService.set(key, value);
-  // }
-
 
   ngOnInit(): void {
     this.getCart();
@@ -27,17 +23,33 @@ export class MyCartComponent implements OnInit {
 
   getCart()
   {
-    const item = this.cartService.getcart();
+    this.cartItems = this.cartService.getcart();
+
+    this.calculatePrice();
   }
 
-  removeFromCart() : void
+  
+  calculatePrice()
   {
-    
+    this.cartItems.forEach(cartItem => 
+      {
+        this.result = cartItem.ItemPrice * cartItem.AmountInCart;
+      });
+  }
+  
+
+  removeFromCart(ItemId : number) : void
+  {
+    this.cartService.removefromCart(ItemId);
+
+    this.getCart();
   }
 
   deleteEntireCart() : void
   {
     this.cartService.emptyCart();
+
+    window.location.reload();
   }
 
 }

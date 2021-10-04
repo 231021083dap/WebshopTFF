@@ -13,7 +13,6 @@ import { Role, User } from "../models";
 
 export class UserService{
     private apiUrl = 'Https://Localhost:5001/api/user';
-    private RolesapiUrl = 'https://localhost:5001/api/User/Roles'
     private GetUserByIdUrl = "https://localhost:5001/api/User/" + this.route.snapshot.paramMap.get("UserId") 
 
     httpOptions = 
@@ -32,11 +31,6 @@ export class UserService{
     GetAllUsers() : Observable<User[]>
     {
         return this.http.get<User[]>(this.apiUrl);
-    }
-
-    GetUserRoles() : Observable<Role[]>
-    {
-        return this.http.get<Role[]>(this.RolesapiUrl);
     }
 
     GetUserById(userid : number) : Observable<User>

@@ -50,7 +50,7 @@ namespace WebshopAPI.DB
                 new Item
                 {
                     ItemId = 3,
-                    ItemName = "Razor Naga Trinity mouse with detachables sides",
+                    ItemName = "Razor Naga Trinity mouse with detachable sides",
                     ItemDescription = "Top tier MMO mouse, and bottom tier for friendly fire",
                     SubCategoryId = 2,
                     ItemPrice = 699,
