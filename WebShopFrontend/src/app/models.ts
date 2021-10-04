@@ -4,6 +4,7 @@ export interface Item
     ItemName: string;
     ItemDescription: string;
     SubCategoryId: number;
+    SubCategory?: SubCategory;
     ItemPrice: number;    
     ItemDiscount: number;    
     ItemAmount: number;
@@ -57,7 +58,7 @@ export enum Role
 export interface Order
 {
     OrderId: number;
-    Userid: number;
-    OrderDate: Date; 
+    UserId: number;
+    OrderStatus: string;
 };
 

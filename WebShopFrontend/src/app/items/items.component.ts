@@ -31,10 +31,11 @@ export class ItemsComponent implements OnInit {
       }
   }};
 
-
-  Categories : Category[] = [];
   SubCategories : SubCategory[] = [];
   Items: Item[] = [];
+
+
+  SelectedItems: Item[] = [];
 
   constructor
   (
@@ -43,19 +44,27 @@ export class ItemsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.categoryService.GetAllCategories()
-    .subscribe(a => this.Categories = a);
+
+    this.itemService.GetAllItems()
+    .subscribe(i => 
+      {
+        this.Items = i;
+        this.SelectedItems = this.Items;
+      });
 
     this.categoryService.GetAllSubCategories()
     .subscribe(b => this.SubCategories = b);
-
-    this.itemService.GetAllItems()
-    .subscribe(i => this.Items = i);
   }
 
-  adjustSearch()
+  adjustSearch(CategoryId : number)
   {
-    
+    if(CategoryId == 0)
+    {
+      this.SelectedItems = this.Items
+    }
+    else
+    {
+      this.SelectedItems = this.Items.filter(Item =>  {return Item.SubCategory?.CategoryId == CategoryId})
+    }
   }
-
 }

@@ -33,6 +33,7 @@ export class HeaderComponent implements OnInit {
     .subscribe(a => this.SubCategories = a)
 
     console.log(this.currentUser);
+
   }
   LogOut() {
     if (confirm('Er du sikker på du vil logge ud')) {

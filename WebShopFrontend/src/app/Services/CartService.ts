@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { CartItem } from "../models";
+import { CartItem, Item } from "../models";
 
 import { Observable } from "rxjs";
 
@@ -10,43 +10,53 @@ import { Observable } from "rxjs";
 export class CartService{
 
     key = 'cart';
+    
     cartItems: CartItem[] = [];
 
     constructor() {}
 
+    
+
     private createcart()
-    {
-        var createcart = JSON.parse(localStorage.getItem(this.key) || '');
+    {        
+        var createcart = JSON.parse(localStorage.getItem(this.key) || '[]');
 
         if(createcart == null || createcart == '')
         {
-            localStorage.setItem(this.key, JSON.stringify([]));
+            localStorage.setItem(this.key, JSON.stringify(this.cartItems));
         }
     }
+
 
     getcart() : CartItem[]
     {
         this.createcart();
 
-        this.cartItems = JSON.parse(localStorage.getItem(this.key) || '');
+        this.cartItems = JSON.parse(localStorage.getItem(this.key) || '[]');
 
         return this.cartItems;
     }
+
 
     savecart()
     {
         localStorage.setItem(this.key, JSON.stringify(this.cartItems));
     }
 
+
     additemtocart(item : CartItem)
     {
+        console.log(item);
+        
         this.cartItems = this.getcart();
 
         var itemchanged = false;
         this.cartItems.forEach(cartitem => { 
             if(cartitem.ItemId == item.ItemId)
             {
-                cartitem.AmountInCart += item.AmountInCart;
+ //               cartitem.AmountInCart += item.AmountInCart;
+
+                cartitem.AmountInCart ++;
 
                 itemchanged = true;
                 console.log(cartitem.AmountInCart);
@@ -62,6 +72,7 @@ export class CartService{
         this.savecart();
     }
 
+
     updateitemincart(item : CartItem)
     {
         this.getcart();
@@ -69,10 +80,12 @@ export class CartService{
         // ...... No clue atm
     }
 
+
     emptyCart()
     {
         localStorage.clear();
     }
+
 
     removefromCart(item : CartItem)
     {
