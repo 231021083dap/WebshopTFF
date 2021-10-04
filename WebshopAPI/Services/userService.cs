@@ -68,7 +68,7 @@ namespace WebshopAPI.Services
             return user == null ? null : new UserResponse
             {
                 UserId = user.UserId,
-                Role = Helpers.Role.Employee,
+                Role = user.Role,
                 Email = user.Email,
                 Phone = user.Phone,
                 Password = user.Password,
@@ -143,7 +143,14 @@ namespace WebshopAPI.Services
                     Id = user.UserId,
                     Email = user.Email,                    
                     Role = user.Role,
-                    Token = _jwtUtils.GenerateJwtToken(user)
+                    Token = _jwtUtils.GenerateJwtToken(user),
+                    FirstName = user.FirstName,
+                    MiddleName = user.MiddleName,
+                    LastName = user.LastName,
+                    Phone = user.Phone,                   
+                    Address = user.Address,
+                    PostalCode = user.PostalCode,
+
                 };
                 return response;
             }

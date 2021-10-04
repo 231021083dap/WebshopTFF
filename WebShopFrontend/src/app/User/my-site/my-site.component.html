@@ -1,8 +1,8 @@
 <section class="hero is-primary is-bold">
   <div class="hero-body">
     <div class="container has-text-centered">
-      Min Side. Logget ind som: {{ User.FirstName }} {{ User.LastName }}
-      {{ User.Email }} {{ User.UserId }}
+      Min Side. Logget ind som: {{ currentUser.FirstName }} 
+      {{ currentUser.MiddleName }} {{ currentUser.LastName }}
     </div>
   </div>
 </section>
@@ -10,119 +10,124 @@
 <section class="section">
   <div class="container">
     <div class="field-body">
+      <div class="column is-half">
+        <label class="label">Email</label>
+        <p class="control is-expanded has-icons-left has-icons-right">
+          <input
+            class="input is-link is-rounded"
+            type="email"
+            name="Email"
+            [(ngModel)]="currentUser.Email"
+            required
+          />
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+          <span class="icon is-small is-right">
+            <i class="fas fa-check"></i>
+          </span>
+        </p>
+      </div>
+
+      <div class="column is-half">
+        <label class="label">Password</label>
+        <p class="control is-expanded has-icons-left">
+          <input
+            class="input is-link is-rounded"
+            type="password"
+            name="Password"
+            [(ngModel)]="currentUser.Password"
+            required
+          />
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <div class="field-body">
       <div class="column is-one-third">
-          <label class="label">Name</label>
-          <p class="control is-expanded has-icons-left">
-            <input
-              class="input is-link is-rounded"
-              type="text"
-            />
-            <span class="icon is-small is-left">
-              <i class="fas fa-user"></i>
-            </span>
+        <label class="label">Phone Number</label>
+        <div class="field has-addons">
+          <p class="control">
+            <a class="button is-static is-link is-rounded"> +45 </a>
           </p>
-        </div>
-
-        <div class="column is-one-third">
-          <label class="label">Email</label>
-          <p class="control is-expanded has-icons-left has-icons-right">
+          <p class="control is-expanded has-icons-right">
             <input
               class="input is-link is-rounded"
-              type="email"
+              type="phone"
+              name="Phone"
+              [(ngModel)]="currentUser.Phone"
+              required
             />
-            <span class="icon is-small is-left">
-              <i class="fas fa-envelope"></i>
-            </span>
             <span class="icon is-small is-right">
-              <i class="fas fa-check"></i>
+              <i class="fas fa-phone"></i>
             </span>
           </p>
-        </div>
-
-        <div class="column is-one-third">
-          <label class="label">Phone Number</label>
-          <div class="field has-addons">
-            <p class="control">
-              <a class="button is-static is-link is-rounded"> +45 </a>
-            </p>
-            <p class="control is-expanded has-icons-right">
-              <input
-                class="input is-link is-rounded"
-                type="phone"
-                
-              />
-              <span class="icon is-small is-right">
-                <i class="fas fa-phone"></i>
-              </span>
-            </p>
-          </div>
         </div>
       </div>
 
-      <div class="field-body">
-        <div class="column is-one-third">
-          <label class="label">Password</label>
-          <p class="control is-expanded has-icons-left">
-            <input
-              class="input is-link is-rounded"
-              type="password"
-            />
-            <span class="icon is-small is-left">
-              <i class="fas fa-lock"></i>
-            </span>
-          </p>
-          <p class="mt-2"></p>
-          <button class="button is-link is-rounded" type="button">
-            Change Password
-          </button>
-        </div>
-        <div class="column is-one-third">
-          <label class="label">Address</label>
-          <p class="control is-expanded has-icons-left">
-            <input
-              class="input is-link is-rounded"
-              type="address"
-            />
-            <span class="icon is-small is-left">
-              <i class="fas fa-home"></i>
-            </span>
-          </p>
-        </div>
-        <div class="column is-one-third">
-          <label class="label">Postal Code</label>
-          <p class="control is-expanded has-icons-left">
-            <input
-              class="input is-link is-rounded"
-              type="address"
-            />
-            <span class="icon is-small is-left">
-              <i class="fas fa-home"></i>
-            </span>
-          </p>
-        </div>
+      <div class="column is-one-third">
+        <label class="label">Address</label>
+        <p class="control is-expanded has-icons-left">
+          <input
+            class="input is-link is-rounded"
+            type="address"
+            name="Address"
+            [(ngModel)]="currentUser.Address"
+            required
+          />
+          <span class="icon is-small is-left">
+            <i class="fas fa-home"></i>
+          </span>
+        </p>
+      </div>
+
+      <div class="column is-one-third">
+        <label class="label">Postal Code</label>
+        <p class="control is-expanded has-icons-left">
+          <input
+            class="input is-link is-rounded"
+            type="address"
+            name="PostalCode"
+            [(ngModel)]="currentUser.PostalCode"
+            required
+          />
+          <span class="icon is-small is-left">
+            <i class="fas fa-home"></i>
+          </span>
+        </p>
+      </div>
     </div>
+
     <div class="buttons is-centered">
-      <button class="button is-link is-rounded" type="button">Save</button>
-      <button class="button is-link is-rounded" type="button">Cancel</button>
-      <p class="mt-2"></p>      
+      <button class="button is-link is-rounded" type="button" (click)="UpdateUser()">Save</button>
+      <button class="button is-link is-rounded" type="button" (click)="cancel()">Cancel</button>
+      <p class="mt-2"></p>
     </div>
   </div>
 </section>
 
 <p class="mt-3"></p>
-<hr class="divider">
+<hr class="divider" />
 <p class="mt-3"></p>
 
-
 <section class="section">
-  
   <div class="container">
     <nav class="pagination" role="navigation" aria-label="pagination">
-      <a class="pagination-previous" title="This is the first page" disabled>Previous</a>
+      <a class="pagination-previous" title="This is the first page" disabled
+        >Previous</a
+      >
       <a class="pagination-next">Next page</a>
       <ul class="pagination-list">
         <li>
-          <a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a>
+          <a
+            class="pagination-link is-current"
+            aria-label="Page 1"
+            aria-current="page"
+            >1</a
+          >
         </li>
         <li>
           <a class="pagination-link" aria-label="Goto page 2">2</a>
