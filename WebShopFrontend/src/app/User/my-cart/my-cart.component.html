@@ -1,77 +1,63 @@
-
 <p class="mt-6"></p>
 <p class="pt-6"></p>
 
 
 <section class="section">
-
-      <div class="container">
-          <div class="buttons is-right">
-            <button class="button is-link is-rounded" (click)="deleteEntireCart()">Empty Cart</button>
-
-<section class="hero is-primary is-bold">
-    <div class="hero-body">
-      <div class="container has-text-centered">
-       If myCart == Null: You have no items in your cart.
-      </div>
+  <div class="container">
+    <div class="buttons is-right">
+      <button class="button is-link is-rounded" (click)="deleteEntireCart()">Empty Cart</button>
     </div>
-  </section>
-  
-  
-  <section class="section">      
-      <div class="container">    
-          <div class="buttons is-right">
-            <button class="button is-link is-rounded" type="button">Empty Cart</button>    
 
+    <p class="mt-6"></p>
+    <p class="mt-6"></p>
+    <p class="pt-6"></p>
+    <p class="pt-6"></p>
+
+    <section class="hero is-centered is-bold">
+      <div class="table-container">
+        <table class="table is-striped is-hoverable is-fullwidth">
+          <div *ngFor="let item of cartItems">
+            <thead>
+              <tr>
+                <th><abbr title="Item">Product</abbr></th>
+                <th><abbr title="Item Amount">Amount in Cart</abbr></th>
+                <th><abbr title="Item Price">Product Price</abbr></th>
+                <th><abbr title="Total">Total</abbr></th>
+                <th><abbr title="Remove">Remove</abbr></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><img src="../../assets/Pics/ItemPics/{{item.ItemName}}.jpg"><b>{{item.ItemName}}</b></td>
+                <td><b>{{item.AmountInCart}}</b></td>
+                <td><b>{{item.ItemPrice}},-</b></td>
+                <td><b>{{item.AmountInCart * item.ItemPrice}},-</b></td>
+                <td><button class="button is-link is-rounded" (click)="removeFromCart(item.ItemId)">Remove Item / Items</button>
+                </td>
+              </tr>
+            </tbody>
+            <p class="mt-6"></p>
           </div>
-          <table class="table is-striped is-hoverable is-fullwidth">
-              <thead>
-                  <tr>
-                      <th><abbr title="Item">Item</abbr></th>
-                      <th><abbr title="ItemAmount">Amount</abbr></th>
-                      <th><abbr title="ItemPrice">ItemPrice</abbr></th>
-                      <th><abbr title="Total">Total</abbr></th>
-                      <th><abbr title="Remove">Remove</abbr></th>
-                    </tr>
-                </thead>
-        <tbody>
-          <tr>
-
-            <td><img src="../../assets/Pics/ItemPics/Item.ItemName.jpg"> Item.ItemName</td>
-            <th>Item.Description</th>
-            <th>Item.Amount</th>
-            <th>Item.ItemPrice</th>
-            <th>Item.ItemPrice X Item.ItemAmount</th>
-
-            <td>Item.Img Item.ItemId Item.Description</td>
-            <th>Item.Amount</th>
-            <th>Item.ItemPrice</th>
-            <th>ItemPrice X ItemAmount</th>
-            <th>X</th>
-          </tr>
-          <tr>
-            <td>Item.Img Item.ItemId Item.Description</td>
-            <th>Item.Amount</th>
-            <th>Item.ItemPrice</th>
-            <th>ItemPrice X ItemAmount</th>
-
-            <th>X</th>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="PriceCheck has-text-right">
-          <p>Cart total price: 2000 </p>
+        </table>
       </div>
+    </section>
 
-      <p class="mt-3"></p>
 
-      <div class="buttons is-right">
-
-        <button class="button is-link is-rounded" (click)="deleteEntireCart()">Go to payment</button>
-      </div>
+    <div class="PriceCheck has-text-right">
+      <p>Cart total price: 2000 </p>
     </div>
-  </section>
+
+    <p class="mt-6"></p>
+    <p class="mt-6"></p>
+    <p class="pt-6"></p>
+    <p class="pt-6"></p>
+
+    <div class="buttons is-right">
+
+      <button class="button is-link is-rounded" (click)="deleteEntireCart()">Go to payment</button>
+    </div>
+  </div>
+</section>
 
 
 
@@ -79,8 +65,3 @@
 <p class="mt-6"></p>
 <p class="pt-6"></p>
 <p class="pt-6"></p>
-
-        <button class="button is-link is-rounded" type="button">Go to payment</button>    
-      </div>
-    </div>
-  </section>

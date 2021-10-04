@@ -12,146 +12,115 @@
         <div class="Field">
             <label class="label">User Email</label>
             <div class="control">
-                <input type="text" 
-                        name="Email"
-                        id="Email"
-                        class="input is-link is-rounded"
-                        [(ngModel)]="User.Email" 
-                        #RegisterUserForm="ngModel"
-                        required>  
+                <input type="text" name="Email" id="Email" class="input is-link is-rounded" [(ngModel)]="User.Email"
+                    #RegisterUserForm="ngModel" required>
             </div>
         </div>
 
         <p class="mt-4">
         </p>
-        
+
         <div class="Field">
             <label class="label">User Password</label>
             <div class="control">
-                <input type="password" 
-                        name="Password"
-                        id="Password"
-                        class="input is-link is-rounded" 
-                        [(ngModel)]="User.Password"
-                        #RegisterUserForm="ngModel"
-                        required>
+                <input type="password" name="Password" id="Password" class="input is-link is-rounded"
+                    [(ngModel)]="User.Password" #RegisterUserForm="ngModel" required>
             </div>
         </div>
 
         <p class="mt-4">
         </p>
-        
+
         <div class="Field">
             <label class="label">User Phone number</label>
             <div class="control">
-                <input type="text" 
-                        name="Phone"
-                        id="Phone"
-                        class="input is-link is-rounded"
-                        [(ngModel)]="User.Phone"
-                        #RegisterUserForm="ngModel"
-                        required>
+                <input type="text" name="Phone" id="Phone" class="input is-link is-rounded" [(ngModel)]="User.Phone"
+                    #RegisterUserForm="ngModel" required>
             </div>
         </div>
-        
+
         <p class="mt-4">
         </p>
-        
+
         <div class="Field">
             <label class="label">User Firstname</label>
             <div class="control">
-                <input type="text" 
-                        name="FirstName"
-                        id="FirstName"
-                        class="input is-link is-rounded"
-                        [(ngModel)]="User.FirstName"
-                        #RegisterUserForm="ngModel"
-                        required>
+                <input type="text" name="FirstName" id="FirstName" class="input is-link is-rounded"
+                    [(ngModel)]="User.FirstName" #RegisterUserForm="ngModel" required>
             </div>
         </div>
-        
+
         <p class="mt-4">
         </p>
-        
+
         <div class="Field">
             <label class="label">User Middlename</label>
             <div class="control">
-                <input type="text" 
-                        name="MiddleName"
-                        id="MiddleName"
-                        class="input is-link is-rounded"
-                        [(ngModel)]="User.MiddleName"
-                        #RegisterUserForm="ngModel"
-                        >
+                <input type="text" name="MiddleName" id="MiddleName" class="input is-link is-rounded"
+                    [(ngModel)]="User.MiddleName" #RegisterUserForm="ngModel">
             </div>
         </div>
-        
+
         <p class="mt-4">
         </p>
-        
+
         <div class="Field">
             <label class="label">User Lastname</label>
             <div class="control">
-                <input type="text" 
-                        name="LastName"
-                        id="LastName"
-                        class="input is-link is-rounded"
-                        [(ngModel)]="User.LastName" 
-                        #RegisterUserForm="ngModel" 
-                        required>
+                <input type="text" name="LastName" id="LastName" class="input is-link is-rounded"
+                    [(ngModel)]="User.LastName" #RegisterUserForm="ngModel" required>
             </div>
         </div>
-        
+
         <p class="mt-4">
         </p>
-        
+
         <div class="Field">
             <label class="label">User Address</label>
             <div class="control">
-                <input type="text" 
-                        name="Address"
-                        id="Address"
-                        class="input is-link is-rounded"
-                        [(ngModel)]="User.Address" 
-                        #RegisterUserForm="ngModel" 
-                        required>
+                <input type="text" name="Address" id="Address" class="input is-link is-rounded"
+                    [(ngModel)]="User.Address" #RegisterUserForm="ngModel" required>
             </div>
         </div>
-        
+
         <p class="mt-4">
         </p>
-        
+
         <div class="Field">
             <label class="label">User Postal code</label>
             <div class="control">
-                <input type="text" 
-                        name="Postal Code"
-                        id="Postal Code"
-                        class="input is-link is-rounded"
-                        [(ngModel)]="User.PostalCode" 
-                        #RegisterUserForm="ngModel" 
-                        required>
+                <input type="text" name="Postal Code" id="Postal Code" class="input is-link is-rounded"
+                    [(ngModel)]="User.PostalCode" #RegisterUserForm="ngModel" required>
             </div>
+        </div>
+
+        <label class="label">User Role</label>
+        <div class="select is-link is-rounded is-fullwidth">
+            <select [(ngModel)]="User.Role">
+                <option *ngFor="let role of roletype" [value]="role">
+                    {{role}}
+                </option>
+            </select>
         </div>
 
         <p class="mt-4">
         </p>
 
-     
+
 
         <p class="mt-4">
         </p>
 
-        
-        
+
+
         <button class="button is-link is-rounded is-fullwidth" (click)="saveUser()">Save User</button>
-        
+
         <p class="mt-2">
         </p>
-        
+
         <button class="button is-link is-rounded is-fullwidth" (click)="cancel()">Cancel</button>
-            
-        
+
+
         <p class="mt-6">
         </p>
         <p class="mt-6">
@@ -166,34 +135,36 @@
             <div class="table-container">
                 <table class="table is-striped is-hoverable is-fullwidth">
                     <div *ngFor="let user of Users">
-                    <thead>
-                        <tr>
-                            <th><abbr title="FirstName">Firstname</abbr></th>
-                            <th><abbr title="MiddleName">Middlename</abbr></th>
-                            <th><abbr title="LastName">Lastname</abbr></th>
-                            <th><abbr title="Email">Email</abbr></th>
-                            <th><abbr title="Edit"></abbr></th>
-                            <th><abbr title="Delete"></abbr></th>
-                        </tr>
-                    </thead>    
-                    <tbody>
+                        <thead>
+                            <tr>
+                                <th><abbr title="FirstName">Firstname</abbr></th>
+                                <th><abbr title="MiddleName">Middlename</abbr></th>
+                                <th><abbr title="LastName">Lastname</abbr></th>
+                                <th><abbr title="Email">Email</abbr></th>
+                                <th><abbr title="Edit"></abbr></th>
+                                <th><abbr title="Delete"></abbr></th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             <tr>
                                 <td>{{user.FirstName}}</td>
                                 <td>{{user.MiddleName}}</td>
                                 <td>{{user.LastName}}</td>
                                 <td>{{user.Email}}</td>
-                                <td><button class="button is-link is-rounded" (click)="editUser(user)">Edit user</button></td>
-                                <td><button class="button is-link is-rounded" (click)="deleteUser(user)">Delete user</button></td>
+                                <td><button class="button is-link is-rounded" (click)="editUser(user)">Edit
+                                        user</button></td>
+                                <td><button class="button is-link is-rounded" (click)="deleteUser(user)">Delete
+                                        user</button></td>
                             </tr>
                         </tbody>
                     </div>
                 </table>
             </div>
         </section>
-        
+
         <p class="mt-6">
         </p>
-        
+
         <p class="mt-6">
         </p>
     </div>

@@ -58,6 +58,7 @@ namespace WebshopAPI.Repositories
             if (UpdateItem != null)
             {
                 UpdateItem.ItemName = item.ItemName;
+                UpdateItem.ItemDescription = item.ItemDescription;
                 UpdateItem.SubCategoryId = item.SubCategoryId;
                 UpdateItem.ItemPrice = item.ItemPrice;
                 UpdateItem.ItemDiscount = item.ItemDiscount;

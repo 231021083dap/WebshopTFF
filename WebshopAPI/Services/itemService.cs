@@ -168,7 +168,8 @@ namespace WebshopAPI.Services
                         CategoryId = item.SubCategory.CategoryId
                     }
                 };
-            }   
+            }
+            
             return null;
         }
 

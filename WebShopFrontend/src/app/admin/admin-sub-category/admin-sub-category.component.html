@@ -65,7 +65,7 @@
                             <tr>
                                 <td>{{sub.SubName}}</td>
                                 <td>{{sub.CategoryId}}</td>
-                                <td> category name</td>
+                                <td>{{sub.Category?.CategoryName}}</td>
                                 <td><button class="button is-link is-rounded" (click)="editSub(sub)">Edit subcategory</button></td>
                                 <td><button class="button is-link is-rounded" (click)="deleteSub(sub)">Delete subcategory</button></td>
                             </tr>

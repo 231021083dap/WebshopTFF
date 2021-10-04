@@ -45,6 +45,7 @@ export interface SubCategory
     SubId: number;
     SubName: string;
     CategoryId: number;
+    Category?: Category;
 }
 
 export enum Role

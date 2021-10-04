@@ -54,9 +54,9 @@ export class CartService{
         this.cartItems.forEach(cartitem => { 
             if(cartitem.ItemId == item.ItemId)
             {
- //               cartitem.AmountInCart += item.AmountInCart;
+                cartitem.AmountInCart += item.AmountInCart;
 
-                cartitem.AmountInCart ++;
+                //cartitem.AmountInCart ++;
 
                 itemchanged = true;
                 console.log(cartitem.AmountInCart);
@@ -87,9 +87,20 @@ export class CartService{
     }
 
 
-    removefromCart(item : CartItem)
+    removefromCart(passedId : number)
     {
-        localStorage.removeItem('item');
+        var cart_items = JSON.parse(localStorage["cart"]);
+
+        for (var i=0; i < cart_items.length; i++)
+        {   
+            if (cart_items[i].ItemId == passedId) 
+            {
+                cart_items.splice(i,1);
+            }
+
+            localStorage["cart"] = JSON.stringify(cart_items);
+    
+        }
     }
 
 }
