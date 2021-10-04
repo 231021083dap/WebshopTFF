@@ -27,22 +27,6 @@ export class ItembyidComponent implements OnInit {
       ItemAmount: 0,
     }
 
-  // CartItem: CartItem = 
-  // {
-  //   ItemId: this.Item.ItemId,
-  //   ItemName: this.Item.ItemName,
-  //   ItemPrice: this.Item.ItemPrice,
-  //   AmountInCart: 0,
-  // }
-
-  CartItem: CartItem = 
-  {
-    ItemId: 0,
-    ItemName: '',
-    ItemPrice: 0,
-    AmountInCart: 0,
-  }
-
   public itemid: any = 0;
   public catid: number = 0;
 
@@ -74,6 +58,10 @@ export class ItembyidComponent implements OnInit {
 
   addtoCart()
   {
-    this.cartService.additemtocart(this.CartItem);
+    this.cartService.additemtocart(
+      {ItemId : this.Item.ItemId,
+      ItemName : this.Item.ItemName,
+      ItemPrice : this.Item.ItemPrice,
+      AmountInCart : 1});
   }
 }

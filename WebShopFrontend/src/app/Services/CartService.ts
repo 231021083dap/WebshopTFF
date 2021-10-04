@@ -19,11 +19,11 @@ export class CartService{
 
     private createcart()
     {        
-        var createcart = JSON.parse(localStorage.getItem(this.key) || '');
+        var createcart = JSON.parse(localStorage.getItem(this.key) || '[]');
 
         if(createcart == null || createcart == '')
         {
-            localStorage.setItem(this.key, JSON.stringify([]));
+            localStorage.setItem(this.key, JSON.stringify(this.cartItems));
         }
     }
 
@@ -32,7 +32,7 @@ export class CartService{
     {
         this.createcart();
 
-        this.cartItems = JSON.parse(localStorage.getItem(this.key) || '');
+        this.cartItems = JSON.parse(localStorage.getItem(this.key) || '[]');
 
         return this.cartItems;
     }
@@ -46,13 +46,17 @@ export class CartService{
 
     additemtocart(item : CartItem)
     {
+        console.log(item);
+        
         this.cartItems = this.getcart();
 
         var itemchanged = false;
         this.cartItems.forEach(cartitem => { 
             if(cartitem.ItemId == item.ItemId)
             {
-                cartitem.AmountInCart += item.AmountInCart;
+ //               cartitem.AmountInCart += item.AmountInCart;
+
+                cartitem.AmountInCart ++;
 
                 itemchanged = true;
                 console.log(cartitem.AmountInCart);
