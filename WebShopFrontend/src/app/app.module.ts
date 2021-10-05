@@ -50,7 +50,7 @@ import { ItembyidComponent } from './itembyid/itembyid.component';
     CommonModule,
     Ng5SliderModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

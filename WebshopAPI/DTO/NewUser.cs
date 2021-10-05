@@ -17,7 +17,7 @@ namespace WebshopAPI.DTO
         public string Email { get; set; }
 
         [MinLength(8, ErrorMessage = "Invalid Phone length")]
-        [MaxLength(24, ErrorMessage = "Unexpected Phone length")]
+        [MaxLength(24, ErrorMessage = "Invalid Phone length")]
         public string Phone { get; set; }
 
         [Required]
@@ -38,8 +38,8 @@ namespace WebshopAPI.DTO
         public string Address { get; set; }
 
         [Required(ErrorMessage = "Postal code is required")]
-        [MinLength(3, ErrorMessage = "Unexpected Postal Code length")]
-        [MaxLength(4, ErrorMessage = "Unexpected Postal Code length")]
+        [MinLength(3, ErrorMessage = "Invalid Postal Code length")]
+        [MaxLength(4, ErrorMessage = "Invalid Postal Code length")]
         public string PostalCode { get; set; }
 
 

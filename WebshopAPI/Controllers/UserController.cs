@@ -12,7 +12,7 @@ using WebshopAPI.Authorization;
 
 namespace WebshopAPI.Controllers
 {
-
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -26,13 +26,16 @@ namespace WebshopAPI.Controllers
 
 
         //Get Request
-        [Authorize(Role.Admin)]
+        [Authorize(Role.Admin)]   
+        [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAll()
         {
+
+            var currentUser = (UserResponse)HttpContext.Items["User"];
             try
             {
                 //Return 500 code

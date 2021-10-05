@@ -13,7 +13,7 @@ namespace WebshopAPI.Responses
 
         public OrderUserResponse User { get; set; }
 
-        public DateTime OrderDate { get; set; }
+       // public DateTime OrderDate { get; set; }
         public string OrderStatus { get; set; }
     }
 

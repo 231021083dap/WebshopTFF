@@ -15,7 +15,7 @@ namespace WebshopAPI.DTO
         [ForeignKey("User.UserId")]
         public int UserId { get; set; }
 
-        public static DateTime OrderDate { get; set; } = DateTime.Now;
+       // public static DateTime OrderDate { get; set; } = DateTime.Now;
 
         public string OrderStatus { get; set; }
     }

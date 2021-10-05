@@ -1,5 +1,5 @@
 <p class="mt-6"></p>
-<p class="pt-6"></p>
+
 
 
 <section class="section">
@@ -10,12 +10,11 @@
 
     <p class="mt-6"></p>
     <p class="mt-6"></p>
-    <p class="pt-6"></p>
-    <p class="pt-6"></p>
+    
 
     <section class="hero is-centered is-bold">
       <div class="table-container">
-        <table class="table is-striped is-hoverable is-fullwidth">
+        <table class="table is-striped is-hoverable is-fullwidth" id="CartTable">
           <div *ngFor="let item of cartItems">
             <thead>
               <tr>
@@ -31,7 +30,7 @@
                 <td><img src="../../assets/Pics/ItemPics/{{item.ItemName}}.jpg"><b>{{item.ItemName}}</b></td>
                 <td><b>{{item.AmountInCart}}</b></td>
                 <td><b>{{item.ItemPrice}},-</b></td>
-                <td><b>{{item.AmountInCart * item.ItemPrice}},-</b></td>
+                <td class="price"><b>{{item.AmountInCart * item.ItemPrice}},-</b></td>
                 <td><button class="button is-link is-rounded" (click)="removeFromCart(item.ItemId)">Remove Item / Items</button>
                 </td>
               </tr>
@@ -40,17 +39,10 @@
           </div>
         </table>
       </div>
-    </section>
-
-
-    <div class="PriceCheck has-text-right">
-      <p>Cart total price: 2000 </p>
-    </div>
-
+    </section>   
+    
     <p class="mt-6"></p>
-    <p class="mt-6"></p>
-    <p class="pt-6"></p>
-    <p class="pt-6"></p>
+ 
 
     <div class="buttons is-right">
 
