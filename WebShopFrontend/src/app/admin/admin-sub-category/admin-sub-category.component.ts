@@ -10,6 +10,9 @@ import { CategoryService } from 'src/app/Services/CategoryService';
 export class AdminSubCategoryComponent implements OnInit {
 
   Subs : SubCategory[] = [];
+
+  Cats : Category[] = [];
+
   Sub : SubCategory = 
   {
     SubId: 0,
@@ -23,6 +26,8 @@ export class AdminSubCategoryComponent implements OnInit {
   {
     this.getSubs();
 
+    this.getCategory();
+
     console.log(this.Subs);
   }
 
@@ -31,6 +36,12 @@ export class AdminSubCategoryComponent implements OnInit {
   {
     this.categoryService.GetAllSubCategories()
     .subscribe(a => this.Subs = a);
+  }
+
+  getCategory(): void
+  {
+    this.categoryService.GetAllCategories()
+    .subscribe(b => this.Cats = b);
   }
 
   editSub(sub : SubCategory) : void
