@@ -28,8 +28,22 @@
                     [(ngModel)]="Sub.CategoryId" required>  
             </div>
         </div>
-        
+
         <p class="mt-4">
+        </p>
+        
+        <label class="label">Category</label>
+        <div class="select is-link is-rounded is-fullwidth">
+            <select [(ngModel)]="Sub.Category">
+                <option *ngFor="let cat og Cats" [value]="cat.CategoryId">
+                    {{cat.CategoryName}}
+                </option>
+            </select>
+        </div>
+        
+        <p class="mt-6">
+        </p>
+        <p class="mt-6">
         </p>
 
         <button class="button is-link is-rounded is-fullwidth" (click)="saveSub()">Save SubCategory</button>
