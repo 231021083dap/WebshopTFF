@@ -32,14 +32,14 @@ namespace WebshopTest.OrderTest
             {
                 OrderId = 1,
                 UserId = 1,
-                OrderDate = DateTime.Now,
+               // OrderDate = DateTime.Now,
                 OrderStatus = "Shipping"
             });
             orders.Add(new OrderResponse
             {
                 OrderId = 2,
                 UserId = 1,
-                OrderDate = DateTime.Now,
+              //  OrderDate = DateTime.Now,
                 OrderStatus = "Delivered"
             });
 
@@ -116,7 +116,7 @@ namespace WebshopTest.OrderTest
             {
                 OrderId = orderid,
                 UserId = 1,
-                OrderDate = DateTime.Now,
+               // OrderDate = DateTime.Now,
                 OrderStatus = "Shipping",
             };
 
@@ -185,7 +185,7 @@ namespace WebshopTest.OrderTest
             {
                 OrderId = orderid,
                 UserId = 1,
-                OrderDate = DateTime.Now,
+             // OrderDate = DateTime.Now,
                 OrderStatus = "Shipping"
             };
 
@@ -240,7 +240,7 @@ namespace WebshopTest.OrderTest
             {
                 OrderId = orderid,
                 UserId = 1,
-                OrderDate = DateTime.Now,
+              //  OrderDate = DateTime.Now,
                 OrderStatus = "Shipping"
             };
 

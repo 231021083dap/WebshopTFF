@@ -40,7 +40,7 @@ namespace WebshopAPI.DB
                 new Item
                 {
                     ItemId = 2,
-                    ItemName = "Steelseries Arctic 7 Wireless",
+                    ItemName = "SteelSeries Arctic 7 Wireless",
                     ItemDescription = "Top tier audio to own your teammates",
                     SubCategoryId = 2,
                     ItemPrice = 999,

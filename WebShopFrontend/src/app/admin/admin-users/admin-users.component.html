@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <p class="mt-4">
+        <p class="mt-2">
         </p>
 
         <div class="Field">
@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <p class="mt-4">
+        <p class="mt-2">
         </p>
 
         <div class="Field">
@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <p class="mt-4">
+        <p class="mt-2">
         </p>
 
         <div class="Field">
@@ -50,7 +50,7 @@
             </div>
         </div>
 
-        <p class="mt-4">
+        <p class="mt-2">
         </p>
 
         <div class="Field">
@@ -61,7 +61,7 @@
             </div>
         </div>
 
-        <p class="mt-4">
+        <p class="mt-2">
         </p>
 
         <div class="Field">
@@ -72,7 +72,7 @@
             </div>
         </div>
 
-        <p class="mt-4">
+        <p class="mt-2">
         </p>
 
         <div class="Field">
@@ -83,7 +83,7 @@
             </div>
         </div>
 
-        <p class="mt-4">
+        <p class="mt-2">
         </p>
 
         <div class="Field">
@@ -93,6 +93,8 @@
                     [(ngModel)]="User.PostalCode" #RegisterUserForm="ngModel" required>
             </div>
         </div>
+
+        <p class="mt-2"></p>
 
         <label class="label">User Role</label>
         <div class="select is-link is-rounded is-fullwidth">
@@ -141,6 +143,7 @@
                                 <th><abbr title="MiddleName">Middlename</abbr></th>
                                 <th><abbr title="LastName">Lastname</abbr></th>
                                 <th><abbr title="Email">Email</abbr></th>
+                                <th><abbr title="Role">Role</abbr></th>
                                 <th><abbr title="Edit"></abbr></th>
                                 <th><abbr title="Delete"></abbr></th>
                             </tr>
@@ -151,6 +154,7 @@
                                 <td>{{user.MiddleName}}</td>
                                 <td>{{user.LastName}}</td>
                                 <td>{{user.Email}}</td>
+                                <td>{{user.Role}}</td>
                                 <td><button class="button is-link is-rounded" (click)="editUser(user)">Edit
                                         user</button></td>
                                 <td><button class="button is-link is-rounded" (click)="deleteUser(user)">Delete
